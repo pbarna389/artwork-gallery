@@ -4,5 +4,9 @@ export interface IArtworkContextProps {
 
 export interface IArtworkContext {
   artworks: any;
+  artists: any;
+  artistPagination: number;
+  artistMaxPage: number;
+  setArtistPagination: React.Dispatch<React.SetStateAction<number>>;
   message: string;
 }

@@ -1,0 +1,15 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav div {
+  margin-right: 1rem;
+}
+nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+}
+nav a :active {
+  color: black;
+}/*# sourceMappingURL=Navbar.css.map */
