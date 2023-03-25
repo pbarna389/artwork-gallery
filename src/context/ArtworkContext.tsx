@@ -3,25 +3,33 @@ import { IArtworkContext, IArtworkContextProps } from "../@types/artwork";
 import { initialState } from "../reducers/dataReducer";
 import dataReducer from "../reducers/dataReducer";
 
+const ARTIST_SITE = import.meta.env.VITE_GET_ARTISTS;
+const ARTIST_DATA = import.meta.env.VITE_ARTIST_DATA;
+const ARTIST_ARTWORKS = import.meta.env.VITE_ARTIST_ARTWORKS;
+
 export const artworkContext = createContext<IArtworkContext | null>(null);
+
 
 const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) => {
     const [artworks, setArtworks] = useState<any>([]);
 
     const [artistState, dataDispatch] = useReducer(dataReducer, initialState);
     const [artistPagination, setArtistPagination] = useState<number>(1);
+    const [artistID, setArtistID] = useState<number>();
+    const [artistName, setArtistName] = useState<string>();
+    const [artistArtworkPag, setArtistArtworkPag] = useState<number>(1);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`https://api.artic.edu/api/v1/artists?page=${artistPagination}&limit=100`);
+                const response = await fetch(`${ARTIST_SITE}${artistPagination}`);
 
                 if (!response.ok) {
                     throw new Error(response.statusText);
                 };
 
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 dataDispatch({
                     type: "set_artists", payload: data.data.sort((a: any, b: any) => {
                         const actElement = a.title.charAt(0) + a.title.slice(1);
@@ -31,7 +39,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                 });
 
                 dataDispatch({
-                    type: "set_artist_pagination", payload: data.pagination.total_pages
+                    type: "set_artist_max_page_num", payload: data.pagination.total_pages
                 })
 
             } catch (error) {
@@ -42,25 +50,58 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
         fetchData();
     }, [artistPagination]);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await fetch("https://api.artic.edu/api/v1/artworks/");
+    useEffect(() => {
+        if (artistName) {
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(`${ARTIST_ARTWORKS}search?size=100&from=${(artistArtworkPag * 100) - 100}&q=${artistName}`);
 
-    //             if (!response.ok) {
-    //                 throw new Error(response.statusText);
-    //             };
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    };
 
-    //             const data = await response.json();
-    //             setArtworks(data);
+                    const data = await response.json();
+                    console.log(data);
+                    dataDispatch({
+                        type: "actual_artist_related_artworks", payload: data.data
+                    });
+                    dataDispatch({
+                        type: "actual_artist_artwork_max_page_num", payload: data.pagination.total_pages
+                    })
 
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
+                } catch (error) {
+                    console.log(error)
+                }
+            }
 
-    //     fetchData();
-    // }, []);
+            fetchData();
+        }
+
+    }, [artistName, artistArtworkPag]);
+
+    useEffect(() => {
+        if (artistID) {
+
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(`${ARTIST_DATA}${artistID}`);
+
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    };
+
+                    const data = await response.json();
+                    console.log(data)
+                    dataDispatch({ type: "set_actual_artist", payload: data.data });
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            fetchData();
+
+        }
+    }, [artistID]);
 
     return (
         <artworkContext.Provider value={{
@@ -68,8 +109,15 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             artworks: artworks,
             artists: artistState.artists,
             artistPagination: artistPagination,
-            artistMaxPage: artistState.artist_pagination,
+            artistMaxPage: artistState.artist_max_page_num,
             setArtistPagination: setArtistPagination,
+            setArtistID: setArtistID,
+            actual_artist: artistState.actual_artist,
+            setArtistName: setArtistName,
+            artistArtworks: artistState.artist_related_artworks,
+            artistArtworkMaxPage: artistState.actual_artist_artwork_max_page,
+            artistArtworkPag: artistArtworkPag,
+            setArtistArtworkPag: setArtistArtworkPag,
         }}>
             {children}
         </artworkContext.Provider>
