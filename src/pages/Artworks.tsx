@@ -15,7 +15,7 @@ const Artworks = () => {
 
     return (
         <div>
-            <p>Current page: {artworksPagination}</p>
+            <div>Current page: {artworksPagination}</div>
             <ul>
                 {
                     artworks ?
