@@ -5,6 +5,9 @@ export const initialState = {
   actual_artist: undefined,
   artist_related_artworks: undefined,
   actual_artist_artwork_max_page: undefined,
+  actual_artwork: undefined,
+  actual_artwork_URL: undefined,
+  actual_artwork_ID: undefined,
 };
 
 type dataActionType = {
@@ -14,7 +17,10 @@ type dataActionType = {
     | "set_artist_max_page_num"
     | "set_actual_artist"
     | "actual_artist_related_artworks"
-    | "actual_artist_artwork_max_page_num";
+    | "actual_artist_artwork_max_page_num"
+    | "set_actual_artwork"
+    | "set_actual_artwork_URL"
+    | "set_actual_artwork_ID";
   payload: any;
 };
 
@@ -35,6 +41,12 @@ const dataReducer = (dataState: any, dataAction: dataActionType) => {
         ...dataState,
         actual_artist_artwork_max_page: dataAction.payload,
       };
+    case "set_actual_artwork":
+      return { ...dataState, actual_artwork: dataAction.payload };
+    case "set_actual_artwork_URL":
+      return { ...dataState, actual_artwork_URL: dataAction.payload };
+    case "set_actual_artwork_ID":
+      return { ...dataState, actual_artwork_ID: dataAction.payload };
     default:
       return dataState;
   }

@@ -10,8 +10,7 @@ import Artist from "./pages/Artist";
 import Artworks from "./pages/Artworks";
 import Artwork from "./pages/Artwork";
 
-import './App.css'
-
+import './App.css';
 
 function App() {
 	const { message, artworks } = useContext(artworkContext) as IArtworkContext;

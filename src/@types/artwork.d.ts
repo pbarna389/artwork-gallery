@@ -16,4 +16,8 @@ export interface IArtworkContext {
   artistArtworkMaxPage: number;
   artistArtworkPag: number;
   setArtistArtworkPag: React.Dispatch<React.SetStateAction<number>>;
+  setArtworkID: React.Dispatcj<React.SetStateAction<number | undefined>>;
+  actual_artwork: any;
+  actual_artwork_url: string;
+  actual_artwork_id: string;
 }
