@@ -12,6 +12,7 @@ export const artworkContext = createContext<IArtworkContext | null>(null);
 
 const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) => {
     const [artworks, setArtworks] = useState<any>([]);
+    const [artworksPagination, setArtworksPagination] = useState<number>(1);
 
     const [artistPagination, setArtistPagination] = useState<number>(1);
     const [artistID, setArtistID] = useState<number>();
@@ -131,10 +132,40 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
         }
     }, [artworkID]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${ARTWORKS_SITE}${artworksPagination}`);
+
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                };
+
+                const data = await response.json();
+                console.log(data);
+                dataDispatch({
+                    type: "set_artworks", payload: data.data.sort((a: any, b: any) => {
+                        const actElement = a.title.charAt(0) + a.title.slice(1);
+                        const nextElement = b.title.charAt(0) + b.title.slice(1);
+                        return (actElement < nextElement) ? -1 : (actElement > nextElement) ? 1 : 0
+                    })
+                });
+
+                dataDispatch({
+                    type: "set_artworks_max_page_num", payload: data.pagination.total_pages
+                })
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        fetchData();
+    }, [artworksPagination]);
+
     return (
         <artworkContext.Provider value={{
             message: "ALIVE",
-            artworks: artworks,
             artists: artistState.artists,
             artistPagination: artistPagination,
             artistMaxPage: artistState.artist_max_page_num,
@@ -150,6 +181,10 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             actual_artwork: artistState.actual_artwork,
             actual_artwork_url: artistState.actual_artwork_URL,
             actual_artwork_id: artistState.actual_artwork_ID,
+            artworks: artistState.artworks,
+            artworksMaxPage: artistState.artworks_max_page_num,
+            artworksPagination: artworksPagination,
+            setArtworksPagination: setArtworksPagination
         }}>
             {children}
         </artworkContext.Provider>

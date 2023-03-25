@@ -6,14 +6,14 @@ import { IArtworkContext } from '../@types/artwork';
 import "../styles/components/Navbar.css"
 
 const Navbar = () => {
-    const { artistPagination } = useContext(artworkContext) as IArtworkContext;
+    const { artistPagination, artworksPagination } = useContext(artworkContext) as IArtworkContext;
 
     return (
         <nav>
             <Link to="/">Home</Link>
             <div>
                 <Link to={`artists/${artistPagination}`}>Artists</Link>
-                <Link to="artworks">Artworks</Link>
+                <Link to={`artworks/${artworksPagination}`}>Artworks</Link>
             </div>
         </nav>
     )

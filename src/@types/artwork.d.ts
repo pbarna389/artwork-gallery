@@ -3,7 +3,6 @@ export interface IArtworkContextProps {
 }
 
 export interface IArtworkContext {
-  artworks: any;
   artists: any;
   artistPagination: number;
   artistMaxPage: number;
@@ -20,4 +19,8 @@ export interface IArtworkContext {
   actual_artwork: any;
   actual_artwork_url: string;
   actual_artwork_id: string;
+  artworks: any;
+  artworksMaxPage: number;
+  artworksPagination: number;
+  setArtworksPagination: React.Dispatch<React.SetStateAction<number>>;
 }

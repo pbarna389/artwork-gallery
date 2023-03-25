@@ -30,7 +30,7 @@ const Artists = () => {
                         : null
                 }
             </ul>
-            <Pagination pageNumMax={artistMaxPage} setPagination={setArtistPagination} related={"artist_artworks_list"} />
+            <Pagination pageNumMax={artistMaxPage} setPagination={setArtistPagination} related={"artist_list"} />
         </div>
     )
 }

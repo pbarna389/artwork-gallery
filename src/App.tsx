@@ -33,7 +33,12 @@ function App() {
 							</Route>
 						</Route>
 					</Route>
-					<Route path="/artworks" element={<Artworks />} />
+					<Route path="/artworks">
+						<Route path=":artworkspage">
+							<Route index element={< Artworks />} />
+							<Route path=":artworkid" element={<Artwork />}></Route>
+						</Route>
+					</Route>
 				</Routes>
 			</BrowserRouter>
 		</div>
