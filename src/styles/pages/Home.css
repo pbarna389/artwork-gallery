@@ -1,1 +1,51 @@
-/*# sourceMappingURL=Home.css.map */
+body {
+  position: relative;
+  margin: 0;
+  height: 100vh;
+}
+
+.home-wrapper {
+  margin: 0;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+}
+.home-wrapper .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+.home-wrapper .background .picture {
+  height: 100vh;
+  width: inherit;
+  background-position: top;
+  background-size: cover;
+  transition: all 1s ease-in;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.home-wrapper .background .picture.not-loaded {
+  top: -50vh;
+  left: -50vw;
+  width: 200vw;
+  height: 200vh;
+}
+
+.column {
+  width: 30rem;
+  height: 90vh;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.column .helper {
+  width: 3px;
+  height: inherit;
+  background-color: grey;
+  opacity: 0.3;
+}/*# sourceMappingURL=Home.css.map */

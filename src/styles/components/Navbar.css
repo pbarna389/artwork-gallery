@@ -1,7 +1,23 @@
+header .toolbar .toolbar-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+}
+header .toolbar .toolbar-helper {
+  height: 3px;
+  width: 100vw;
+  background-color: grey;
+  opacity: 0.3;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 nav div {
   margin-right: 1rem;

@@ -1,7 +1,29 @@
+@use "../shared/shared.scss";
+
+header {
+  .toolbar {
+    .toolbar-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 5rem;
+    }
+    .toolbar-helper {
+      height: shared.$column-helper-width;
+      width: 100vw;
+      background-color: shared.$column-bg;
+      opacity: shared.$column-opac;
+    }
+  }
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   div {
     margin-right: 1rem;
