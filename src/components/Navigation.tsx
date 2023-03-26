@@ -4,13 +4,13 @@ import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from '../@types/artwork';
 
 const Navigation = () => {
-    const { artistPagination, artworksPagination } = useContext(artworkContext) as IArtworkContext;
+    const { artistPagination, artworksPagination, setNavShown, navShown } = useContext(artworkContext) as IArtworkContext;
     return (
         <nav>
             <div className="link-wrapper">
-                <Link to="/">Home</Link>
-                <Link to={`artists/${artistPagination}`}>Artists</Link>
-                <Link to={`artworks/${artworksPagination}`}>Artworks</Link>
+                <Link to="/" onClick={e => setNavShown(!navShown)}>Home</Link>
+                <Link to={`artists/${artistPagination}`} onClick={e => setNavShown(!navShown)}>Artists</Link>
+                <Link to={`artworks/${artworksPagination}`} onClick={e => setNavShown(!navShown)}>Artworks</Link>
             </div>
         </nav>
     )
