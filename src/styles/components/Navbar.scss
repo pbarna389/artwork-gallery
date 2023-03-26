@@ -11,7 +11,7 @@ header {
     .toolbar-helper {
       height: shared.$column-helper-width;
       width: 100vw;
-      background-color: shared.$column-bg;
+      background-color: shared.$basic-color;
       opacity: shared.$column-opac;
     }
   }
@@ -25,13 +25,24 @@ nav {
   top: 0;
   left: 0;
 
-  div {
-    margin-right: 1rem;
+  .link-wrapper {
+    display: flex;
+    margin: 0;
+    width: 100vw;
+    background-color: shared.$secondary-solor;
   }
 
   a {
-    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
+    text-align: center;
+    width: 20%;
+    height: 100vh;
+    font-family: "Vidaloka", serif;
+    font-size: 40px;
+    letter-spacing: 3px;
 
     :active {
       color: black;

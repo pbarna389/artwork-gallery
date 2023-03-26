@@ -1,6 +1,8 @@
 * {
   font-family: "Heebo", sans-serif;
   box-sizing: border-box;
+  color: #fff;
+  font-size: 14px;
 }
 
 h1,
@@ -10,4 +12,5 @@ h4,
 h5,
 h6 {
   font-family: "Vidaloka", serif;
+  font-size: 40px;
 }

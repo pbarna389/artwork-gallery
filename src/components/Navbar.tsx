@@ -1,16 +1,16 @@
-import { useState, useContext } from 'react';
-import { Link } from "react-router-dom";
+import { useContext } from 'react';
 import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from '../@types/artwork';
 import Menu from './Menu';
 import Logo from './Logo';
 import Searchbar from './Searchbar';
+import Navigation from './Navigation';
 
 import "../styles/components/Navbar.css"
 
 const Navbar = () => {
-    const [navShown, setNavShown] = useState<boolean>(false);
-    const { artistPagination, artworksPagination } = useContext(artworkContext) as IArtworkContext;
+
+    const { navShown } = useContext(artworkContext) as IArtworkContext;
 
     return (
         <header>
@@ -24,13 +24,7 @@ const Navbar = () => {
             </div>
             {
                 navShown ?
-                    <nav>
-                        <div>
-                            <Link to="/">Home</Link>
-                            <Link to={`artists/${artistPagination}`}>Artists</Link>
-                            <Link to={`artworks/${artworksPagination}`}>Artworks</Link>
-                        </div>
-                    </nav>
+                    <Navigation />
                     : null
             }
         </header>

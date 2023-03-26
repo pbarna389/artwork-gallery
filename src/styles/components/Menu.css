@@ -1,0 +1,33 @@
+.hamburger-menu {
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid white;
+  position: relative;
+  margin-left: 3rem;
+  z-index: 1;
+}
+.hamburger-menu.active::before {
+  top: 2.5rem;
+  rotate: 45deg;
+}
+.hamburger-menu.active::after {
+  top: 2.5rem;
+  rotate: -45deg;
+}
+.hamburger-menu::before, .hamburger-menu::after {
+  content: "";
+  width: 80%;
+  height: 3px;
+  background-color: #fff;
+  opacity: 0.7;
+  position: absolute;
+  transition: all 0.3s ease-in;
+}
+.hamburger-menu::before {
+  top: 2rem;
+  left: 0.5rem;
+}
+.hamburger-menu::after {
+  bottom: 2rem;
+  left: 0.5rem;
+}/*# sourceMappingURL=Menu.css.map */

@@ -11,7 +11,8 @@ const ARTWORKS_SITE = import.meta.env.VITE_GET_ARTWORKS;
 export const artworkContext = createContext<IArtworkContext | null>(null);
 
 const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) => {
-    const [artworks, setArtworks] = useState<any>([]);
+    const [navShown, setNavShown] = useState<boolean>(false);
+
     const [artworksPagination, setArtworksPagination] = useState<number>(1);
 
     const [artistPagination, setArtistPagination] = useState<number>(1);
@@ -184,7 +185,9 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             artworks: artistState.artworks,
             artworksMaxPage: artistState.artworks_max_page_num,
             artworksPagination: artworksPagination,
-            setArtworksPagination: setArtworksPagination
+            setArtworksPagination: setArtworksPagination,
+            navShown: navShown,
+            setNavShown: setNavShown
         }}>
             {children}
         </artworkContext.Provider>

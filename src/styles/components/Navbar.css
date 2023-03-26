@@ -7,8 +7,8 @@ header .toolbar .toolbar-options {
 header .toolbar .toolbar-helper {
   height: 3px;
   width: 100vw;
-  background-color: grey;
-  opacity: 0.3;
+  background-color: #fff;
+  opacity: 0.4;
 }
 
 nav {
@@ -19,12 +19,23 @@ nav {
   top: 0;
   left: 0;
 }
-nav div {
-  margin-right: 1rem;
+nav .link-wrapper {
+  display: flex;
+  margin: 0;
+  width: 100vw;
+  background-color: #000;
 }
 nav a {
-  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
+  text-align: center;
+  width: 20%;
+  height: 100vh;
+  font-family: "Vidaloka", serif;
+  font-size: 40px;
+  letter-spacing: 3px;
 }
 nav a :active {
   color: black;

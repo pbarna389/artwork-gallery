@@ -1,0 +1,43 @@
+@use "../shared/shared.scss";
+
+.hamburger-menu {
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid white;
+  position: relative;
+  margin-left: 3rem;
+  z-index: 1;
+
+  &.active {
+    &::before {
+      top: 2.5rem;
+      rotate: 45deg;
+    }
+
+    &::after {
+      top: 2.5rem;
+      rotate: -45deg;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    width: 80%;
+    height: shared.$column-helper-width;
+    background-color: shared.$basic-color;
+    opacity: shared.$column-opac + 0.3;
+    position: absolute;
+    transition: all 0.3s ease-in;
+  }
+
+  &::before {
+    top: 2rem;
+    left: 0.5rem;
+  }
+
+  &::after {
+    bottom: 2rem;
+    left: 0.5rem;
+  }
+}

@@ -46,6 +46,6 @@ body {
 .column .helper {
   width: 3px;
   height: inherit;
-  background-color: grey;
-  opacity: 0.3;
+  background-color: #fff;
+  opacity: 0.4;
 }/*# sourceMappingURL=Home.css.map */

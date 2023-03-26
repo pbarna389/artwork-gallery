@@ -23,4 +23,6 @@ export interface IArtworkContext {
   artworksMaxPage: number;
   artworksPagination: number;
   setArtworksPagination: React.Dispatch<React.SetStateAction<number>>;
+  setNavShown: React.Dispatch<React.SetStateAction<boolean>>;
+  navShown: boolean;
 }
