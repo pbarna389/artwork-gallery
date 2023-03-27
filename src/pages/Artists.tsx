@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { EffectCoverflow, Virtual } from "swiper";
+import SwiperCore, { Virtual, Mousewheel, Pagination as SwiperPagination } from "swiper";
 
 import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from "../@types/artwork";
@@ -17,7 +17,9 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import 'swiper/css/navigation';
 
-SwiperCore.use([Virtual, EffectCoverflow]);
+import Picture from "../assets/prof-pic.png";
+
+SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
 const Artists = () => {
     const { artists, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag } = useContext(artworkContext) as IArtworkContext;
@@ -45,19 +47,15 @@ const Artists = () => {
 
                 <Swiper
                     direction={"vertical"}
-                    modules={[EffectCoverflow, Virtual]}
-                    effect={"coverflow"}
+                    modules={[Virtual, Mousewheel, SwiperPagination]}
                     grabCursor={true}
+                    mousewheel={true}
+                    pagination={{
+                        type: "fraction"
+                    }}
                     centeredSlides={true}
                     slidesPerView={3}
                     spaceBetween={30}
-                    coverflowEffect={{
-                        rotate: 50,
-                        stretch: 0,
-                        depth: 50,
-                        modifier: 1,
-                        slideShadows: true,
-                    }}
                     className="mySwiper"
                     virtual
                 >
@@ -65,8 +63,8 @@ const Artists = () => {
                         artists ?
                             artists.map((el: any, index: number) =>
                                 <SwiperSlide key={el.title} virtualIndex={index}>
-                                    <Link key={el.id} to={`/artists/${params.page}/${el.id}/${artistArtworkPag}`} onClick={e => handleClick(e, el.id)}>
-                                        <div>
+                                    <Link key={el.id} to={`/artists/${params.page}/${el.id}/${artistArtworkPag}`} onClick={e => handleClick(e, el.id)} style={{ backgroundImage: `url(${Picture})` }}>
+                                        <div className="artist-name">
                                             {el.title}
                                         </div>
                                     </Link>

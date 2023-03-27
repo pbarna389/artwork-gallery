@@ -9,7 +9,7 @@
   z-index: 0;
 }
 .artists-wrapper .mySwiper {
-  height: 50rem;
+  height: 45rem;
 }
 .artists-wrapper .mySwiper .swiper-slide {
   background-position: center;
@@ -17,10 +17,21 @@
   width: 15rem;
   height: 15rem !important;
 }
-.artists-wrapper .mySwiper .swiper-slide div {
-  background-color: green;
+.artists-wrapper .mySwiper .swiper-slide a {
+  height: inherit;
+  display: block;
+  text-decoration: none;
+  background-repeat: none;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 .artists-wrapper .mySwiper .swiper-wrapper {
   justify-content: center;
   align-items: center;
+}
+.artists-wrapper .mySwiper .swiper-pagination-fraction {
+  top: 0;
+  height: 1rem;
 }/*# sourceMappingURL=Artists.css.map */

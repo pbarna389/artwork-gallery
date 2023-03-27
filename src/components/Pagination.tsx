@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 
+import "../styles/components/Pagination.css"
+
 interface IPaginationProps {
     related: "artist_list" | "artwork_list" | "related_list",
     pageNumMax: number,

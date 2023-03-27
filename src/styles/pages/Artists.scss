@@ -9,7 +9,7 @@
   z-index: 0;
 
   .mySwiper {
-    height: 50rem;
+    height: 45rem;
 
     .swiper-slide {
       background-position: center;
@@ -17,14 +17,29 @@
       width: 15rem;
       height: 15rem !important;
 
-      div {
-        background-color: green;
+      a {
+        height: inherit;
+        display: block;
+        text-decoration: none;
+        background-repeat: none;
+        background-size: cover;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        .artist-name {
+        }
       }
     }
 
     .swiper-wrapper {
       justify-content: center;
       align-items: center;
+    }
+
+    .swiper-pagination-fraction {
+      top: 0;
+      height: 1rem;
     }
   }
 }
