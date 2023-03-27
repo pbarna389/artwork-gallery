@@ -29,7 +29,7 @@ const Pagination: React.FC<IPaginationProps> = ({ related, pageNumMax, setPagina
     };
 
     return (
-        <>
+        <div className="pag-wrapper">
             {
                 pageNumMax && pagType ?
                     pagType === "artist_list" ?
@@ -40,7 +40,7 @@ const Pagination: React.FC<IPaginationProps> = ({ related, pageNumMax, setPagina
                             pageLinks.map(el => typeof el === "string" ? <span>{el}</span> : <Link key={el} to={`/artists/${params.page}/${params.personid}/${el}`} onClick={e => handleClick(e, el)}>{el}</Link>)
                     : null
             }
-        </>
+        </div>
     )
 }
 

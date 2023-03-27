@@ -7,4 +7,20 @@
   justify-content: center;
   align-items: center;
   z-index: 0;
+}
+.artists-wrapper .mySwiper {
+  height: 50rem;
+}
+.artists-wrapper .mySwiper .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 10rem;
+  height: 10rem;
+}
+.artists-wrapper .mySwiper .swiper-slide div {
+  background-color: green;
+}
+.artists-wrapper .mySwiper .swiper-wrapper {
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=Artists.css.map */

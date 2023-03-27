@@ -7,4 +7,24 @@
   justify-content: center;
   align-items: center;
   z-index: 0;
+
+  .mySwiper {
+    height: 50rem;
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 10rem;
+      height: 10rem;
+
+      div {
+        background-color: green;
+      }
+    }
+
+    .swiper-wrapper {
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
