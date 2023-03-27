@@ -17,13 +17,30 @@ nav {
   align-items: center;
   position: absolute;
   top: 0;
+  z-index: 1;
+  transition: all 0.3s ease-in;
+}
+nav.shown {
   left: 0;
+  opacity: 1;
+}
+nav.not-shown {
+  left: -150rem;
+  opacity: 0;
+  transition: all 0.3s ease-in;
 }
 nav .link-wrapper {
   display: flex;
   margin: 0;
   width: 100vw;
   background-color: #000;
+  z-index: 1;
+}
+nav .link-wrapper .helper {
+  width: 3px;
+  height: inherit;
+  background-color: #fff;
+  opacity: 0.4;
 }
 nav a {
   display: flex;

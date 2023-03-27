@@ -1,0 +1,29 @@
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99.1vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  background-color: black;
+}
+.background .picture {
+  height: 100vh;
+  width: inherit;
+  background-position: top;
+  background-size: cover;
+  transition: all 1s ease-in;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 1;
+}
+.background .picture.not-loaded {
+  top: -50vh;
+  left: -50vw;
+  width: 200vw;
+  height: 200vh;
+  opacity: 0;
+}/*# sourceMappingURL=Background.css.map */

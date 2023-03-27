@@ -4,7 +4,7 @@
   border: 1px solid white;
   position: relative;
   margin-left: 3rem;
-  z-index: 1;
+  z-index: 2;
 }
 .hamburger-menu.active::before {
   top: 2.5rem;

@@ -10,32 +10,6 @@ body {
   width: 100%;
   display: flex;
 }
-.home-wrapper .background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: inherit;
-  height: 100vh;
-  overflow: hidden;
-  z-index: -1;
-}
-.home-wrapper .background .picture {
-  height: 100vh;
-  width: inherit;
-  background-position: top;
-  background-size: cover;
-  transition: all 1s ease-in;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-.home-wrapper .background .picture.not-loaded {
-  top: -50vh;
-  left: -50vw;
-  width: 200vw;
-  height: 200vh;
-}
 
 .column {
   width: 30rem;

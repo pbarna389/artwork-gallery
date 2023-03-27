@@ -23,13 +23,33 @@ nav {
   align-items: center;
   position: absolute;
   top: 0;
-  left: 0;
+  z-index: 1;
+  transition: all 0.3s ease-in;
+
+  &.shown {
+    left: 0;
+    opacity: 1;
+  }
+
+  &.not-shown {
+    left: -150rem;
+    opacity: 0;
+    transition: all 0.3s ease-in;
+  }
 
   .link-wrapper {
     display: flex;
     margin: 0;
     width: 100vw;
     background-color: shared.$secondary-solor;
+    z-index: 1;
+
+    .helper {
+      width: 3px;
+      height: inherit;
+      background-color: #fff;
+      opacity: 0.4;
+    }
   }
 
   a {

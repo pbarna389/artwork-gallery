@@ -22,11 +22,7 @@ const Navbar = () => {
                 </div>
                 <div className="toolbar-helper"></div>
             </div>
-            {
-                navShown ?
-                    <Navigation />
-                    : null
-            }
+            <Navigation />
         </header>
     )
 }

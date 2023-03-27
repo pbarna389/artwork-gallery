@@ -3,6 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from "../@types/artwork";
 import Pagination from '../components/Pagination';
+import Background from '../components/Background';
+import Columns from '../components/Columns';
+
+import "../styles/pages/Artists.css";
 
 const Artists = () => {
     const { artists, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag } = useContext(artworkContext) as IArtworkContext;
@@ -22,15 +26,20 @@ const Artists = () => {
 
     return (
         <div>
-            <div>Current page: {params.page}</div>
-            <ul>
-                {
-                    artists ?
-                        artists.map((el: any) => <li><Link key={el.id} to={`/artists/${params.page}/${el.id}/${artistArtworkPag}`} onClick={e => handleClick(e, el.id)}>{el.title}</Link></li>)
-                        : null
-                }
-            </ul>
-            <Pagination pageNumMax={artistMaxPage} setPagination={setArtistPagination} related={"artist_list"} />
+            <Background />
+            <Columns />
+            <div className="artists-wrapper">
+                <div>Current page: {params.page}</div>
+
+                <ul>
+                    {
+                        artists ?
+                            artists.map((el: any) => <li><Link key={el.id} to={`/artists/${params.page}/${el.id}/${artistArtworkPag}`} onClick={e => handleClick(e, el.id)}>{el.title}</Link></li>)
+                            : null
+                    }
+                </ul>
+                <Pagination pageNumMax={artistMaxPage} setPagination={setArtistPagination} related={"artist_list"} />
+            </div>
         </div>
     )
 }
