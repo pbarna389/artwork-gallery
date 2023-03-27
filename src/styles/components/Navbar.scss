@@ -34,7 +34,6 @@ nav {
   &.not-shown {
     left: -150rem;
     opacity: 0;
-    transition: all 0.3s ease-in;
   }
 
   .link-wrapper {
