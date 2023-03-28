@@ -61,7 +61,15 @@ const Artist = () => {
                             >
                                 {
                                     artistArtworks ?
-                                        artistArtworks.map((el: any) => <SwiperSlide key={el.id}><Link to={`/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}`} onClick={e => handleClick(e, el.id)}><img src={`${el.thumbnail?.lqip}`} />{el.title}</Link></SwiperSlide>)
+                                        artistArtworks.map((el: any, idx: number) =>
+                                            <SwiperSlide key={el.id} virtualIndex={idx}>
+                                                <Link
+                                                    to={`/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}`}
+                                                    style={{ backgroundImage: `url(${el.thumbnail?.lqip})` }}
+                                                    onClick={e => handleClick(e, el.id)}
+                                                >{el.title}
+                                                </Link>
+                                            </SwiperSlide>)
                                         : null
                                 }
                             </Swiper>

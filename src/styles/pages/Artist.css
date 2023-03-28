@@ -19,8 +19,8 @@
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide {
   background-position: center;
   background-size: cover;
-  width: 15rem;
-  height: 15rem !important;
+  width: 40rem;
+  height: 20rem !important;
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide a {
   height: inherit;
@@ -37,6 +37,6 @@
   height: 1rem;
 }
 .artist-wrapper .artist-artwork-wrapper img {
-  width: 2rem;
-  height: 2rem;
+  width: 15rem;
+  height: 15rem;
 }/*# sourceMappingURL=Artist.css.map */
