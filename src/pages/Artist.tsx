@@ -62,7 +62,7 @@ const Artist = () => {
                                 {
                                     actualArtistArtworksURLS ?
                                         actualArtistArtworksURLS.map((el: any, idx: number) =>
-                                            <SwiperSlide key={el.id} virtualIndex={idx}>
+                                            <SwiperSlide key={el.id} virtualIndex={idx} style={{ backgroundImage: `url(${el.lqip})` }}>
                                                 <img src={`${el.url}/full/600,/0/default.jpg`} alt="" />
                                                 <Link
                                                     to={`/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}`}
