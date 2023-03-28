@@ -2,6 +2,13 @@ export interface IArtworkContextProps {
   children: React.ReactNode;
 }
 
+export interface IArtistData {
+  url: string;
+  title: string;
+  id: string;
+  lqip: string;
+}
+
 export interface IArtworkContext {
   artists: any;
   artistPagination: number;
@@ -25,4 +32,5 @@ export interface IArtworkContext {
   setArtworksPagination: React.Dispatch<React.SetStateAction<number>>;
   setNavShown: React.Dispatch<React.SetStateAction<boolean>>;
   navShown: boolean;
+  actualArtistArtworksURLS: IArtistData;
 }

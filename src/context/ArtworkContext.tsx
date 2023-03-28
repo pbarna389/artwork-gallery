@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useReducer } from "react";
-import { IArtworkContext, IArtworkContextProps } from "../@types/artwork";
+import { IArtworkContext, IArtworkContextProps, IArtistData } from "../@types/artwork";
 import { initialState } from "../reducers/dataReducer";
 import dataReducer from "../reducers/dataReducer";
 
@@ -71,7 +71,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
 
                     console.log(data);
 
-                    const imageSites: any = [];
+                    const imageSites: IArtistData[] = [];
 
                     Object.values(data.data).forEach((el: any, idx: number) => {
                         {
@@ -224,7 +224,8 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             artworksPagination: artworksPagination,
             setArtworksPagination: setArtworksPagination,
             navShown: navShown,
-            setNavShown: setNavShown
+            setNavShown: setNavShown,
+            actualArtistArtworksURLS: artistState.actual_artist_artworks_URLS,
         }}>
             {children}
         </artworkContext.Provider>
