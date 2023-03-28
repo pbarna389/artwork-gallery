@@ -4,6 +4,7 @@ export const initialState = {
   artist_max_page_num: undefined,
   actual_artist: undefined,
   artist_related_artworks: undefined,
+  actual_artist_artworks_URLS: undefined,
   actual_artist_artwork_max_page: undefined,
   actual_artwork: undefined,
   actual_artwork_URL: undefined,
@@ -19,6 +20,7 @@ type dataActionType = {
     | "set_artist_max_page_num"
     | "set_actual_artist"
     | "actual_artist_related_artworks"
+    | "actual_artist_artworks_URLS"
     | "actual_artist_artwork_max_page_num"
     | "set_actual_artwork"
     | "set_actual_artwork_URL"
@@ -40,6 +42,8 @@ const dataReducer = (dataState: any, dataAction: dataActionType) => {
       return { ...dataState, actual_artist: dataAction.payload };
     case "actual_artist_related_artworks":
       return { ...dataState, artist_related_artworks: dataAction.payload };
+    case "actual_artist_artworks_URLS":
+      return { ...dataState, actual_artist_artworks_URLS: dataAction.payload };
     case "actual_artist_artwork_max_page_num":
       return {
         ...dataState,

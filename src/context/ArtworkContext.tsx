@@ -14,6 +14,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     const [navShown, setNavShown] = useState<boolean>(false);
 
     const [artworksPagination, setArtworksPagination] = useState<number>(1);
+    const [artworksPictures, setArtworksPictures] = useState<string[]>();
 
     const [artistPagination, setArtistPagination] = useState<number>(1);
     const [artistID, setArtistID] = useState<number>();
@@ -33,7 +34,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                 };
 
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 dataDispatch({
                     type: "set_artists", payload: data.data.sort((a: any, b: any) => {
                         const actElement = a.title.charAt(0) + a.title.slice(1);
@@ -66,6 +67,30 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
 
                     const data = await response.json();
 
+                    // console.log(data.data.length);
+
+                    const imageSites: string[] = [];
+
+                    Object.values(data.data).forEach((el: any, idx: number) => {
+                        {
+                            const fetchAPI = async () => {
+                                try {
+                                    const response = await fetch(`${el.api_link}`);
+                                    const imgdata = await response.json();
+                                    imageSites.push(`${imgdata.config.iiif_url}/${imgdata.data.image_id}`);
+                                    if (imageSites.length === data.data.length) {
+                                        dataDispatch({ type: "actual_artist_artworks_URLS", payload: imageSites })
+                                    }
+                                } catch (error) {
+                                    console.log(error)
+                                }
+
+                            }
+                            fetchAPI();
+                        }
+                    }
+                    )
+
                     dataDispatch({
                         type: "actual_artist_related_artworks", payload: data.data
                     });
@@ -82,6 +107,10 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
         }
 
     }, [artistName, artistArtworkPag]);
+
+    useEffect(() => {
+        console.log("artworks data added")
+    }, [artistName, artistArtworkPag])
 
     useEffect(() => {
         if (artistID) {

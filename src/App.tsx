@@ -13,8 +13,7 @@ import Artwork from "./pages/Artwork";
 import './App.css';
 
 function App() {
-	const { message, artworks } = useContext(artworkContext) as IArtworkContext;
-	console.log(message, artworks);
+	// const { message, artworks } = useContext(artworkContext) as IArtworkContext;
 
 	return (
 		<div className="App">

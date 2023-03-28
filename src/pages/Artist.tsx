@@ -67,7 +67,8 @@ const Artist = () => {
                                                     to={`/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}`}
                                                     style={{ backgroundImage: `url(${el.thumbnail?.lqip})` }}
                                                     onClick={e => handleClick(e, el.id)}
-                                                >{el.title}
+                                                >
+                                                    {el.title}
                                                 </Link>
                                             </SwiperSlide>)
                                         : null
