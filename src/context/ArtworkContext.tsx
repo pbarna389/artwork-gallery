@@ -33,7 +33,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                 };
 
                 const data = await response.json();
-                // console.log(data);
+                console.log(data);
                 dataDispatch({
                     type: "set_artists", payload: data.data.sort((a: any, b: any) => {
                         const actElement = a.title.charAt(0) + a.title.slice(1);

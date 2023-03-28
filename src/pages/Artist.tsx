@@ -9,10 +9,12 @@ import Pagination from "../components/Pagination";
 import "../styles/pages/Artist.css"
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Virtual, Mousewheel, Pagination as SwiperPagination } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
+SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
 const Artist = () => {
     const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID } = useContext(artworkContext) as IArtworkContext;
@@ -29,27 +31,42 @@ const Artist = () => {
             {
                 actual_artist ?
                     <>
-                        <h2>{actual_artist.title}</h2>
-                        <p>{actual_artist.birth_date} - {actual_artist.death_date}</p>
-                        <div>
-                            {
-                                actual_artist.description ?
-                                    <Interweave
-                                        content={`${actual_artist.description}`} />
-                                    :
-                                    <p>No data is available at the moment</p>
-                            }
-                            <div className="artist-artwork-wrapper">
-                                <Swiper spaceBetween={50} slidesPerView={3} onSlideChange={() => console.log("slide change")}>
-                                    {
-                                        artistArtworks ?
-                                            artistArtworks.map((el: any) => <SwiperSlide key={el.id}><Link to={`/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}`} onClick={e => handleClick(e, el.id)}><img src={`${el.thumbnail?.lqip}`} />{el.title}</Link></SwiperSlide>)
-                                            : null
-                                    }
-                                </Swiper>
+                        <div className="artist-info-wrapper">
+                            <h2>{actual_artist.title}</h2>
+                            <p>{actual_artist.birth_date} - {actual_artist.death_date}</p>
+                            <div>
+                                {
+                                    actual_artist.description ?
+                                        <Interweave
+                                            content={`${actual_artist.description}`} />
+                                        :
+                                        <p>No data is available at the moment</p>
+                                }
                             </div>
                         </div>
-                        <Pagination pageNumMax={artistArtworkMaxPage} setPagination={setArtistArtworkPag} related={"related_list"} />
+                        <div className="artist-artwork-wrapper">
+                            <Swiper
+                                direction={"vertical"}
+                                modules={[Virtual, Mousewheel, SwiperPagination]}
+                                grabCursor={true}
+                                mousewheel={true}
+                                pagination={{
+                                    type: "fraction"
+                                }}
+                                centeredSlides={true}
+                                slidesPerView={3}
+                                spaceBetween={30}
+                                className="mySwiper"
+                                virtual
+                            >
+                                {
+                                    artistArtworks ?
+                                        artistArtworks.map((el: any) => <SwiperSlide key={el.id}><Link to={`/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}`} onClick={e => handleClick(e, el.id)}><img src={`${el.thumbnail?.lqip}`} />{el.title}</Link></SwiperSlide>)
+                                        : null
+                                }
+                            </Swiper>
+                            <Pagination pageNumMax={artistArtworkMaxPage} setPagination={setArtistArtworkPag} related={"related_list"} />
+                        </div>
                     </>
                     : null
             }

@@ -1,4 +1,42 @@
-.artist-artwork-wrapper img {
+.artist-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+.artist-wrapper .artist-info-wrapper {
+  width: 45vw;
+}
+.artist-wrapper .artist-artwork-wrapper {
+  width: 45vw;
+}
+.artist-wrapper .artist-artwork-wrapper .mySwiper {
+  height: 45rem;
+}
+.artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-wrapper {
+  justify-content: center;
+  align-items: center;
+}
+.artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 15rem;
+  height: 15rem !important;
+}
+.artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide a {
+  height: inherit;
+  display: block;
+  text-decoration: none;
+  background-repeat: none;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-pagination-fraction {
+  top: 0;
+  height: 1rem;
+}
+.artist-wrapper .artist-artwork-wrapper img {
   width: 2rem;
   height: 2rem;
 }/*# sourceMappingURL=Artist.css.map */

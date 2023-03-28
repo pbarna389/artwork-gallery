@@ -1,6 +1,50 @@
-.artist-artwork-wrapper {
-  img {
-    width: 2rem;
-    height: 2rem;
+.artist-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+
+  .artist-info-wrapper {
+    width: 45vw;
+  }
+
+  .artist-artwork-wrapper {
+    width: 45vw;
+
+    .mySwiper {
+      height: 45rem;
+
+      .swiper-wrapper {
+        justify-content: center;
+        align-items: center;
+      }
+
+      .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 15rem;
+        height: 15rem !important;
+
+        a {
+          height: inherit;
+          display: block;
+          text-decoration: none;
+          background-repeat: none;
+          background-size: cover;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+        }
+      }
+
+      .swiper-pagination-fraction {
+        top: 0;
+        height: 1rem;
+      }
+    }
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
   }
 }
