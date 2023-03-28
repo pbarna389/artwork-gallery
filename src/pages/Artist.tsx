@@ -17,7 +17,7 @@ import "swiper/css/pagination";
 SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
 const Artist = () => {
-    const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID } = useContext(artworkContext) as IArtworkContext;
+    const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading } = useContext(artworkContext) as IArtworkContext;
     const params = useParams();
     console.log(params);
     if (actual_artist && artistArtworks) console.log(artistArtworks)
@@ -29,7 +29,7 @@ const Artist = () => {
     return (
         <div className="artist-wrapper">
             {
-                actual_artist ?
+                !loading && actual_artist ?
                     <>
                         <div className="artist-info-wrapper">
                             <h2>{actual_artist.title}</h2>
@@ -60,12 +60,12 @@ const Artist = () => {
                                 virtual
                             >
                                 {
-                                    artistArtworks ?
-                                        artistArtworks.map((el: any, idx: number) =>
+                                    actualArtistArtworksURLS ?
+                                        actualArtistArtworksURLS.map((el: any, idx: number) =>
                                             <SwiperSlide key={el.id} virtualIndex={idx}>
+                                                <img src={`${el.url}/full/600,/0/default.jpg`} alt="" />
                                                 <Link
                                                     to={`/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}`}
-                                                    style={{ backgroundImage: `url(${el.thumbnail?.lqip})` }}
                                                     onClick={e => handleClick(e, el.id)}
                                                 >
                                                     {el.title}
@@ -77,7 +77,7 @@ const Artist = () => {
                             <Pagination pageNumMax={artistArtworkMaxPage} setPagination={setArtistArtworkPag} related={"related_list"} />
                         </div>
                     </>
-                    : null
+                    : <div>Loading...</div>
             }
 
         </div>

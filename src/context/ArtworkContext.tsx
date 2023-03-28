@@ -226,6 +226,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             navShown: navShown,
             setNavShown: setNavShown,
             actualArtistArtworksURLS: artistState.actual_artist_artworks_URLS,
+            loading: artistState.loading,
         }}>
             {children}
         </artworkContext.Provider>

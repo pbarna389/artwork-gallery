@@ -6,7 +6,7 @@
   border: 1px solid white;
   position: relative;
   margin-left: 3rem;
-  z-index: 2;
+  z-index: 100;
 
   &.active {
     &::before {
