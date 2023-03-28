@@ -17,26 +17,23 @@
   align-items: center;
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide {
-  background-position: center;
-  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 40rem;
   height: 20rem !important;
+}
+.artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide img {
+  width: 20rem;
+  height: 20rem;
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide a {
   height: inherit;
   display: block;
   text-decoration: none;
-  background-repeat: none;
-  background-size: cover;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-pagination-fraction {
   top: 0;
   height: 1rem;
-}
-.artist-wrapper .artist-artwork-wrapper img {
-  width: 15rem;
-  height: 15rem;
 }/*# sourceMappingURL=Artist.css.map */

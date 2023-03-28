@@ -22,20 +22,21 @@ import Picture from "../assets/prof-pic.png";
 SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
 const Artists = () => {
-    const { artists, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag } = useContext(artworkContext) as IArtworkContext;
+    const { artists, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag } = useContext(artworkContext) as IArtworkContext;
 
     const params = useParams();
     console.log(params);
 
     useEffect(() => {
         if (params.page) setArtistPagination(Number(params.page))
+        setArtistArtworkPag(1)
     }, []);
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: number): void => {
         const target = e.target as unknown as HTMLAnchorElement;
-        console.log(target.innerHTML);
+        console.log(target.innerText);
         setArtistID(id);
-        setArtistName(target.innerHTML.split(" ").slice(-1).join(""));
+        setArtistName(target.innerText.split(" ").slice(-1).join(""));
     };
 
     return (

@@ -57,6 +57,8 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
 
     useEffect(() => {
         if (artistName) {
+            dataDispatch({ type: "actual_artist_artworks_URLS", payload: undefined })
+            dataDispatch({ type: "loading", payload: true })
             const fetchData = async () => {
                 try {
                     const response = await fetch(`${ARTIST_ARTWORKS}search?size=100&from=${(artistArtworkPag * 100) - 100}&q=${artistName}`);
@@ -67,9 +69,9 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
 
                     const data = await response.json();
 
-                    // console.log(data.data.length);
+                    console.log(data);
 
-                    const imageSites: string[] = [];
+                    const imageSites: any = [];
 
                     Object.values(data.data).forEach((el: any, idx: number) => {
                         {
@@ -77,9 +79,15 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                                 try {
                                     const response = await fetch(`${el.api_link}`);
                                     const imgdata = await response.json();
-                                    imageSites.push(`${imgdata.config.iiif_url}/${imgdata.data.image_id}`);
+                                    imageSites.push({
+                                        url: `${imgdata.config.iiif_url}/${imgdata.data.image_id}`,
+                                        title: `${el.title}`,
+                                        id: `${el.id}`,
+                                        lqip: `${el.thumbnail?.lqip}`
+                                    });
                                     if (imageSites.length === data.data.length) {
                                         dataDispatch({ type: "actual_artist_artworks_URLS", payload: imageSites })
+                                        dataDispatch({ type: "loading", payload: false })
                                     }
                                 } catch (error) {
                                     console.log(error)
@@ -95,7 +103,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                         type: "actual_artist_related_artworks", payload: data.data
                     });
                     dataDispatch({
-                        type: "actual_artist_artwork_max_page_num", payload: data.pagination.total_pages
+                        type: "actual_artist_artwork_max_page_num", payload: data.pagination.total_pages > 10 ? 10 : data.pagination.total_pages
                     })
 
                 } catch (error) {

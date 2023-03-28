@@ -19,20 +19,22 @@
       }
 
       .swiper-slide {
-        background-position: center;
-        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         width: 40rem;
         height: 20rem !important;
+
+        img {
+          width: 20rem;
+          height: 20rem;
+        }
 
         a {
           height: inherit;
           display: block;
           text-decoration: none;
-          background-repeat: none;
-          background-size: cover;
-          display: flex;
-          align-items: flex-end;
-          justify-content: center;
         }
       }
 
@@ -40,11 +42,6 @@
         top: 0;
         height: 1rem;
       }
-    }
-
-    img {
-      width: 15rem;
-      height: 15rem;
     }
   }
 }
