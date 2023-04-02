@@ -2,7 +2,7 @@ import { useState, useContext, FormEvent } from "react";
 import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
 import { auth, googleProvider } from "../config/firebase-config"
-import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 import "../styles/pages/Login.css"
 
@@ -18,7 +18,7 @@ const Login: React.FC = (): JSX.Element => {
         e.preventDefault();
 
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password);
             userDispatch({ type: "setLogin", payload: true });
         } catch (error) {
             console.log(error);
@@ -39,7 +39,7 @@ const Login: React.FC = (): JSX.Element => {
             <form onSubmit={e => signIn(e)}>
                 <input required placeholder="Email..." type="email" onChange={(e) => setEmail(e.target.value)} />
                 <input required placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Register</button>
+                <button type="submit">Sign-in</button>
             </form>
             <button disabled>Sign-in</button>
             <button onClick={signInWithGoogle}> Sign in With Google</button>
