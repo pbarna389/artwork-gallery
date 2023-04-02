@@ -1,3 +1,13 @@
+interface IFBConfig {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+  measurementId: string;
+}
+
 export interface IArtworkContextProps {
   children: React.ReactNode;
 }
@@ -34,4 +44,6 @@ export interface IArtworkContext {
   navShown: boolean;
   actualArtistArtworksURLS: IArtistData[];
   loading: boolean;
+  userState: any;
+  userDispatch: React.Dispatch<React.ReducerAction<any>>;
 }

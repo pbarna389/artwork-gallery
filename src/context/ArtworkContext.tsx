@@ -1,7 +1,9 @@
 import { createContext, useState, useEffect, useReducer } from "react";
 import { IArtworkContext, IArtworkContextProps, IArtistData } from "../@types/artwork";
 import { initialState } from "../reducers/dataReducer";
+import { userInitialState } from "../reducers/userReducer";
 import dataReducer from "../reducers/dataReducer";
+import userReducer from "../reducers/userReducer";
 
 const ARTIST_SITE = import.meta.env.VITE_GET_ARTISTS;
 const ARTIST_DATA = import.meta.env.VITE_ARTIST_DATA;
@@ -23,6 +25,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     const [artworkID, setArtworkID] = useState<number>();
 
     const [artistState, dataDispatch] = useReducer(dataReducer, initialState);
+    const [userState, userDispatch] = useReducer(userReducer, userInitialState);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -227,6 +230,8 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             setNavShown: setNavShown,
             actualArtistArtworksURLS: artistState.actual_artist_artworks_URLS,
             loading: artistState.loading,
+            userState: userState,
+            userDispatch: userDispatch
         }}>
             {children}
         </artworkContext.Provider>

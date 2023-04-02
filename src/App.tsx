@@ -9,6 +9,7 @@ import Artists from "./pages/Artists";
 import Artist from "./pages/Artist";
 import Artworks from "./pages/Artworks";
 import Artwork from "./pages/Artwork";
+import Login from "./pages/Login";
 
 import './App.css';
 
@@ -38,6 +39,7 @@ function App() {
 							<Route path=":artworkid" element={<Artwork />}></Route>
 						</Route>
 					</Route>
+					<Route path="/login" element={<Login />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

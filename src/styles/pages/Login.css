@@ -1,0 +1,11 @@
+.login-wrapper {
+  color: black;
+  position: relative;
+  z-index: 10;
+}
+.login-wrapper input {
+  color: inherit;
+}
+.login-wrapper button {
+  color: inherit;
+}/*# sourceMappingURL=Login.css.map */
