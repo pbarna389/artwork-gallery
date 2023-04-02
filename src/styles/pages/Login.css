@@ -1,11 +1,26 @@
 .login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: black;
   position: relative;
   z-index: 10;
+  border: 1px solid white;
+  height: 100vh;
+  margin: 0;
 }
-.login-wrapper input {
+.login-wrapper form {
+  display: flex;
+  flex-direction: column;
   color: inherit;
+}
+.login-wrapper form input {
+  color: inherit;
+  width: 20rem;
+  text-align: center;
 }
 .login-wrapper button {
   color: inherit;
+  width: 20rem;
 }/*# sourceMappingURL=Login.css.map */

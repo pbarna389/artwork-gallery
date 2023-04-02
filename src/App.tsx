@@ -14,35 +14,41 @@ import Login from "./pages/Login";
 import './App.css';
 
 function App() {
-	// const { message, artworks } = useContext(artworkContext) as IArtworkContext;
+	const { userState } = useContext(artworkContext) as IArtworkContext;
 
 	return (
-		<div className="App">
-			<BrowserRouter>
-				<Navbar />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/artists">
-						<Route path=":page">
-							<Route index element={<Artists />} />
-							<Route path=":personid">
-								<Route path=":artworkpage">
-									<Route index element={<Artist />} />
-									<Route path=":artworkid" element={<Artwork />} />
+		<>
+			{
+				!userState.login ?
+					<Login />
+					:
+					<div className="App">
+						<BrowserRouter>
+							<Navbar />
+							<Routes>
+								<Route path="/" element={<Home />} />
+								<Route path="/artists">
+									<Route path=":page">
+										<Route index element={<Artists />} />
+										<Route path=":personid">
+											<Route path=":artworkpage">
+												<Route index element={<Artist />} />
+												<Route path=":artworkid" element={<Artwork />} />
+											</Route>
+										</Route>
+									</Route>
 								</Route>
-							</Route>
-						</Route>
-					</Route>
-					<Route path="/artworks">
-						<Route path=":artworkspage">
-							<Route index element={< Artworks />} />
-							<Route path=":artworkid" element={<Artwork />}></Route>
-						</Route>
-					</Route>
-					<Route path="/login" element={<Login />} />
-				</Routes>
-			</BrowserRouter>
-		</div>
+								<Route path="/artworks">
+									<Route path=":artworkspage">
+										<Route index element={< Artworks />} />
+										<Route path=":artworkid" element={<Artwork />}></Route>
+									</Route>
+								</Route>
+							</Routes>
+						</BrowserRouter>
+					</div>
+			}
+		</>
 	)
 }
 

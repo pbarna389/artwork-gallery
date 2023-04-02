@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent } from "react";
 import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
 import { auth, googleProvider } from "../config/firebase-config"
@@ -14,7 +14,9 @@ const Login: React.FC = (): JSX.Element => {
 
     console.log(auth?.currentUser);
 
-    const signIn = async () => {
+    const signIn = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
         try {
             await createUserWithEmailAndPassword(auth, email, password);
             userDispatch({ type: "setLogin", payload: true });
@@ -32,22 +34,15 @@ const Login: React.FC = (): JSX.Element => {
         }
     };
 
-    const logout = async () => {
-        try {
-            await signOut(auth);
-            userDispatch({ type: "setLogin", payload: false });
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
     return (
         <div className="login-wrapper">
-            <input placeholder="Email..." type="email" onChange={(e) => setEmail(e.target.value)} />
-            <input placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={signIn}>Sign in</button>
+            <form onSubmit={e => signIn(e)}>
+                <input required placeholder="Email..." type="email" onChange={(e) => setEmail(e.target.value)} />
+                <input required placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
+                <button type="submit">Register</button>
+            </form>
+            <button disabled>Sign-in</button>
             <button onClick={signInWithGoogle}> Sign in With Google</button>
-            <button onClick={logout}>Logout</button>
         </div>
     )
 }

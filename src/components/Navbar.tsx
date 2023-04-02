@@ -7,10 +7,21 @@ import Searchbar from './Searchbar';
 import Navigation from './Navigation';
 
 import "../styles/components/Navbar.css"
+import { auth } from '../config/firebase-config';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
 
-    const { navShown } = useContext(artworkContext) as IArtworkContext;
+    const { navShown, userDispatch } = useContext(artworkContext) as IArtworkContext;
+
+    const logout = async () => {
+        try {
+            await signOut(auth);
+            userDispatch({ type: "setLogin", payload: false });
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     return (
         <header>
@@ -19,6 +30,7 @@ const Navbar = () => {
                     <Menu />
                     <Logo />
                     <Searchbar />
+                    <button onClick={logout}>Logout</button>
                 </div>
                 <div className="toolbar-helper"></div>
             </div>
