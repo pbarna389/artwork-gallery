@@ -15,6 +15,9 @@
   flex-direction: column;
   color: inherit;
 }
+.login-wrapper form a {
+  color: inherit;
+}
 .login-wrapper form input {
   color: inherit;
   width: 20rem;
@@ -23,4 +26,7 @@
 .login-wrapper button {
   color: inherit;
   width: 20rem;
+}
+.login-wrapper a {
+  color: black;
 }/*# sourceMappingURL=Login.css.map */

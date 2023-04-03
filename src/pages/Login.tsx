@@ -2,7 +2,8 @@ import { useState, useContext, FormEvent } from "react";
 import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
 import { auth, googleProvider } from "../config/firebase-config"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 import "../styles/pages/Login.css"
 
@@ -41,7 +42,7 @@ const Login: React.FC = (): JSX.Element => {
                 <input required placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
                 <button type="submit">Sign-in</button>
             </form>
-            <button disabled>Sign-in</button>
+            <Link to="/registration"><button>Registration</button></Link>
             <button onClick={signInWithGoogle}> Sign in With Google</button>
         </div>
     )

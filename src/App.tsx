@@ -10,6 +10,7 @@ import Artist from "./pages/Artist";
 import Artworks from "./pages/Artworks";
 import Artwork from "./pages/Artwork";
 import Login from "./pages/Login";
+import Register from "./pages/Registration";
 
 import './App.css';
 
@@ -20,7 +21,12 @@ function App() {
 		<>
 			{
 				!userState.login ?
-					<Login />
+					<BrowserRouter>
+						<Routes>
+							<Route path="/" element={<Login />} />
+							<Route path="/registration" element={<Register />} />
+						</Routes>
+					</BrowserRouter>
 					:
 					<div className="App">
 						<BrowserRouter>
