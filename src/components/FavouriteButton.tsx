@@ -3,7 +3,6 @@ import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db, auth } from "../config/firebase-config";
-import { useLocation, useParams } from "react-router-dom";
 
 interface IFavouriteButton {
     type: "Artist" | "Artwork"
@@ -15,8 +14,6 @@ const FavouriteButton: React.FC<IFavouriteButton> = ({ type }): JSX.Element => {
     const [favouriteArtworks, setFavouriteArtworks] = useState<any>();
 
     const { actual_artist, actual_artwork } = useContext(artworkContext) as IArtworkContext;
-
-    const location = useLocation();
 
     console.log(actual_artist, actual_artwork, location.pathname)
 
