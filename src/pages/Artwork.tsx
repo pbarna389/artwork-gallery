@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { IArtworkContext } from "../@types/artwork";
 import { artworkContext } from "../context/ArtworkContext";
+import FavouriteButton from "../components/FavouriteButton";
 
 import "../styles/pages/Artwork.css"
 
@@ -24,6 +25,7 @@ const Artwork = () => {
                                 : <p>Loading...</p>
                         }
                         <div className="artwork-details-wrapper">
+                            <FavouriteButton type="Artwork" />
                             <h2>Title: {actual_artwork.title} ({actual_artwork.date_start}, {actual_artwork.date_end})</h2>
                             <h3>Artist: {actual_artwork.artist_title}</h3>
                             <h4>Department: {actual_artwork.department_title}</h4>

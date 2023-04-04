@@ -5,6 +5,7 @@ import { IArtworkContext } from "../@types/artwork";
 import { Interweave } from "interweave";
 
 import Pagination from "../components/Pagination";
+import FavouriteButton from "../components/FavouriteButton";
 
 import "../styles/pages/Artist.css"
 
@@ -32,6 +33,7 @@ const Artist = () => {
                 !loading && actual_artist ?
                     <>
                         <div className="artist-info-wrapper">
+                            <FavouriteButton type="Artist" />
                             <h2>{actual_artist.title}</h2>
                             <p>{actual_artist.birth_date} - {actual_artist.death_date}</p>
                             <div>
