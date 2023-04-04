@@ -1,0 +1,15 @@
+.oauth-wrapper {
+  width: 20rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+.oauth-wrapper img {
+  height: inherit;
+}
+.oauth-wrapper span {
+  font-size: 1.5rem;
+}/*# sourceMappingURL=Oauth.css.map */

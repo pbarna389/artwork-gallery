@@ -15,6 +15,8 @@ const Navigation = () => {
                 <div className="helper"></div>
                 <Link to={`artworks/${artworksPagination}`} onClick={e => setNavShown(!navShown)}>Artworks</Link>
                 <div className="helper"></div>
+                <Link to={`/profile`} onClick={e => setNavShown(!navShown)}>Profile</Link>
+                <div className="helper"></div>
             </div>
         </nav>
     )

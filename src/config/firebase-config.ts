@@ -1,6 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+
+import { getFirestore } from "firebase/firestore";
+
 import { IFBConfig } from "../@types/artwork";
 
 const API_KEY: string = import.meta.env.VITE_FIREBASE_API_KEY;
@@ -26,3 +29,4 @@ const firebaseConfig: IFBConfig = {
 const app = initializeApp(firebaseConfig);
 export const googleProvider = new GoogleAuthProvider();
 export const auth = getAuth(app);
+export const db = getFirestore();

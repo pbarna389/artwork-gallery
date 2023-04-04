@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { artworkContext } from "./context/ArtworkContext";
 import { IArtworkContext } from "./@types/artwork";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { auth } from "./config/firebase-config"
 
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
@@ -11,11 +12,13 @@ import Artworks from "./pages/Artworks";
 import Artwork from "./pages/Artwork";
 import Login from "./pages/Login";
 import Register from "./pages/Registration";
+import Profile from "./pages/Profile";
 
 import './App.css';
 
 function App() {
 	const { userState } = useContext(artworkContext) as IArtworkContext;
+	console.log(auth?.currentUser)
 
 	return (
 		<>
@@ -50,6 +53,7 @@ function App() {
 										<Route path=":artworkid" element={<Artwork />}></Route>
 									</Route>
 								</Route>
+								<Route path="/profile" element={<Profile />} />
 							</Routes>
 						</BrowserRouter>
 					</div>

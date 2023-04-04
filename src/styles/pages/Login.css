@@ -6,7 +6,6 @@
   color: black;
   position: relative;
   z-index: 10;
-  border: 1px solid white;
   height: 100vh;
   margin: 0;
 }

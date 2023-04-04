@@ -1,11 +1,18 @@
 import { useState, useContext, FormEvent } from "react";
+
 import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
+
 import { auth, googleProvider } from "../config/firebase-config"
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
 import { Link } from "react-router-dom";
 
+import OAuth from "../components/OAuth";
+
 import "../styles/pages/Login.css"
+
+
 
 const Login: React.FC = (): JSX.Element => {
     const [email, setEmail] = useState<string>("");
@@ -13,6 +20,7 @@ const Login: React.FC = (): JSX.Element => {
 
     const { userDispatch } = useContext(artworkContext) as IArtworkContext;
 
+    console.log(auth)
     console.log(auth?.currentUser);
 
     const signIn = async (e: FormEvent<HTMLFormElement>) => {
@@ -43,7 +51,7 @@ const Login: React.FC = (): JSX.Element => {
                 <button type="submit">Sign-in</button>
             </form>
             <Link to="/registration"><button>Registration</button></Link>
-            <button onClick={signInWithGoogle}> Sign in With Google</button>
+            <OAuth />
         </div>
     )
 }
