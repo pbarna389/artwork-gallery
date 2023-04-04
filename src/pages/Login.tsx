@@ -27,7 +27,9 @@ const Login: React.FC = (): JSX.Element => {
         e.preventDefault();
 
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredentials.user;
+            console.log(user);
             userDispatch({ type: "setLogin", payload: true });
         } catch (error) {
             console.log(error);
