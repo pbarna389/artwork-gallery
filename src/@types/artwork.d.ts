@@ -21,6 +21,7 @@ export interface IArtistData {
 
 export interface IuserState {
   login: boolean;
+  update: boolean;
   userData: any;
   favouriteArtists: any;
   favouriteArtworks: any;

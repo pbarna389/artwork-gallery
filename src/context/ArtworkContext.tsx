@@ -32,6 +32,13 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     const [userState, userDispatch] = useReducer(userReducer, userInitialState);
 
     useEffect(() => {
+        console.log("Update sceduled");
+        fetchUserData();
+        userDispatch({ type: "setUpdate", payload: false });
+        console.log("Updated")
+    }, [userState.update])
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch(`${ARTIST_SITE}${artistPagination}`);

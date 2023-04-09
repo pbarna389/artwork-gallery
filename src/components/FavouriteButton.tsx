@@ -38,6 +38,7 @@ const FavouriteButton: React.FC<IFavouriteButton> = ({ type }): JSX.Element => {
         const fetchUserData = async () => {
             if (userData) {
                 const userCopy = { ...userData };
+                userDispatch({ type: "setUpdate", payload: true });
                 if (type === "Artist") {
                     delete userCopy.favArtist;
                     userCopy.favArtist = favouriteArtists;
