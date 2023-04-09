@@ -14,7 +14,7 @@ import googlePic from "../assets/googleIcon.svg";
 import "../styles/components/Oauth.css";
 
 const OAuth = () => {
-    const { userDispatch } = useContext(artworkContext) as IArtworkContext;
+    const { userDispatch, fetchUserData } = useContext(artworkContext) as IArtworkContext;
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -38,6 +38,8 @@ const OAuth = () => {
         } catch (error) {
             console.log(error)
         }
+
+        fetchUserData();
     };
 
     return (

@@ -1,5 +1,9 @@
 import { createContext, useState, useEffect, useReducer } from "react";
 import { IArtworkContext, IArtworkContextProps, IArtistData } from "../@types/artwork";
+
+import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { db, auth } from "../config/firebase-config";
+
 import { initialState } from "../reducers/dataReducer";
 import { userInitialState } from "../reducers/userReducer";
 import dataReducer from "../reducers/dataReducer";
@@ -204,6 +208,18 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
         fetchData();
     }, [artworksPagination]);
 
+    const fetchUserData = async () => {
+        if (auth.currentUser?.uid) {
+            const userRef = doc(db, "users", auth.currentUser.uid);
+            const userSnap = await getDoc(userRef);
+
+            console.log(userSnap.data());
+            userDispatch({ type: "setUserData", payload: userSnap.data() });
+            userDispatch({ type: "setFavouriteArtists", payload: userSnap.data()?.favArtist });
+            userDispatch({ type: "setFavouriteArtworks", payload: userSnap.data()?.favArtworks });
+        }
+    }
+
     return (
         <artworkContext.Provider value={{
             message: "ALIVE",
@@ -231,7 +247,8 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             actualArtistArtworksURLS: artistState.actual_artist_artworks_URLS,
             loading: artistState.loading,
             userState: userState,
-            userDispatch: userDispatch
+            userDispatch: userDispatch,
+            fetchUserData: fetchUserData,
         }}>
             {children}
         </artworkContext.Provider>

@@ -19,6 +19,13 @@ export interface IArtistData {
   lqip: string;
 }
 
+export interface IuserState {
+  login: boolean;
+  userData: any;
+  favouriteArtists: any;
+  favouriteArtworks: any;
+}
+
 export interface IArtworkContext {
   artists: any;
   artistPagination: number;
@@ -46,4 +53,5 @@ export interface IArtworkContext {
   loading: boolean;
   userState: any;
   userDispatch: React.Dispatch<React.ReducerAction<any>>;
+  fetchUserData: Function;
 }

@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import { Link } from "react-router-dom";
 import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from '../@types/artwork';
-import Columns from './Columns';
 
 const Navigation = () => {
     const { artistPagination, artworksPagination, setNavShown, navShown } = useContext(artworkContext) as IArtworkContext;

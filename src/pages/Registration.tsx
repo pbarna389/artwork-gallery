@@ -17,7 +17,7 @@ const Register = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
-    const { userDispatch } = useContext(artworkContext) as IArtworkContext;
+    const { userDispatch, fetchUserData } = useContext(artworkContext) as IArtworkContext;
     const navigate = useNavigate();
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -42,6 +42,8 @@ const Register = () => {
         } catch (error) {
             console.log(error);
         }
+
+        fetchUserData();
     }
 
     const handleChange = (e: any, setter: React.Dispatch<React.SetStateAction<string>>) => {

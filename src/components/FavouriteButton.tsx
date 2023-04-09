@@ -13,9 +13,9 @@ const FavouriteButton: React.FC<IFavouriteButton> = ({ type }): JSX.Element => {
     const [favouriteArtists, setFavouriteArtists] = useState<any>();
     const [favouriteArtworks, setFavouriteArtworks] = useState<any>();
 
-    const { actual_artist, actual_artwork } = useContext(artworkContext) as IArtworkContext;
+    const { actual_artist, actual_artwork, userState, userDispatch } = useContext(artworkContext) as IArtworkContext;
 
-    console.log(actual_artist, actual_artwork, location.pathname)
+    console.log(actual_artist, actual_artwork, userState)
 
     console.log(auth.currentUser?.uid)
 

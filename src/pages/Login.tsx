@@ -3,8 +3,9 @@ import { useState, useContext, FormEvent } from "react";
 import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
 
-import { auth, googleProvider } from "../config/firebase-config"
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, db } from "../config/firebase-config"
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 import { Link } from "react-router-dom";
 
@@ -12,16 +13,26 @@ import OAuth from "../components/OAuth";
 
 import "../styles/pages/Login.css"
 
-
-
 const Login: React.FC = (): JSX.Element => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
-    const { userDispatch } = useContext(artworkContext) as IArtworkContext;
+    const { userDispatch, fetchUserData } = useContext(artworkContext) as IArtworkContext;
 
     console.log(auth)
     console.log(auth?.currentUser);
+
+    // const fetchUserData = async () => {
+    //     if (auth.currentUser?.uid) {
+    //         const userRef = doc(db, "users", auth.currentUser.uid);
+    //         const userSnap = await getDoc(userRef);
+
+    //         console.log(userSnap.data());
+    //         userDispatch({ type: "setUserData", payload: userSnap.data() });
+    //         userDispatch({ type: "setFavouriteArtists", payload: userSnap.data()?.favArtist });
+    //         userDispatch({ type: "setFavouriteArtworks", payload: userSnap.data()?.favArtworks });
+    //     }
+    // }
 
     const signIn = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -34,15 +45,8 @@ const Login: React.FC = (): JSX.Element => {
         } catch (error) {
             console.log(error);
         }
-    };
 
-    const signInWithGoogle = async () => {
-        try {
-            await signInWithPopup(auth, googleProvider);
-            userDispatch({ type: "setLogin", payload: true });
-        } catch (error) {
-            console.log(error)
-        }
+        fetchUserData();
     };
 
     return (
