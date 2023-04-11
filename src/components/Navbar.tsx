@@ -1,20 +1,21 @@
 import { useContext } from 'react';
 import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from '../@types/artwork';
+
+import { useNavigate } from "react-router-dom";
+
+import { auth } from '../config/firebase-config';
+import { signOut } from 'firebase/auth';
+
 import Menu from './Menu';
 import Logo from './Logo';
 import Searchbar from './Searchbar';
 import Navigation from './Navigation';
 
-import { useNavigate } from "react-router-dom";
-
 import "../styles/components/Navbar.css"
-import { auth } from '../config/firebase-config';
-import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
-
-    const { navShown, userDispatch } = useContext(artworkContext) as IArtworkContext;
+    const { userDispatch } = useContext(artworkContext) as IArtworkContext;
     const navigate = useNavigate();
 
     const logout = async () => {

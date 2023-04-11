@@ -9,10 +9,12 @@ header {
       height: 5rem;
     }
     .toolbar-helper {
+      position: absolute;
       height: shared.$column-helper-width;
       width: 100vw;
       background-color: shared.$basic-color;
       opacity: shared.$column-opac;
+      z-index: 4;
     }
   }
 }

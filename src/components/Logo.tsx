@@ -1,8 +1,10 @@
-import React from 'react'
+import LogoPic from "../assets/logo.png";
+
+import "../styles/components/Logo.css";
 
 const Logo = () => {
     return (
-        <div>Logo</div>
+        <img src={LogoPic} />
     )
 }
 
