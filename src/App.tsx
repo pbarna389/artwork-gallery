@@ -41,7 +41,7 @@ function App() {
 										<Route index element={<Artists />} />
 										<Route path=":personid">
 											<Route path=":artworkpage">
-												<Route index element={<Artist />} />
+												<Route index element={<Artist type="browse" />} />
 												<Route path=":artworkid" element={<Artwork />} />
 											</Route>
 										</Route>
@@ -53,14 +53,19 @@ function App() {
 										<Route path=":artworkid" element={<Artwork />} />
 									</Route>
 								</Route>
-								<Route path="/profile" >
+								<Route path="/profile">
 									<Route index element={<Profile />} />
-									<Route path=":personid">
-										<Route path=":artworkpage">
-											<Route index element={<Artist />} />
+									<Route path="/profile/artist">
+										<Route path=":personid">
+											<Route path=":artworkpage">
+												<Route index element={<Artist type="profile" />} />
+												<Route path=":artworkid" element={<Artwork />} />
+											</Route>
 										</Route>
 									</Route>
-									{/* <Route path=":profileArtworkId" element={<Artwork />} /> */}
+									<Route path="/profile/artwork">
+										<Route path=":artworkid" element={<Artwork />} />
+									</Route>
 								</Route>
 							</Routes>
 						</BrowserRouter>

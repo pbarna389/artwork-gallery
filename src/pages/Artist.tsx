@@ -17,7 +17,11 @@ import "swiper/css/pagination";
 
 SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
-const Artist = () => {
+interface IArtist {
+    type: "profile" | "browse"
+};
+
+const Artist: React.FC<IArtist> = ({ type }) => {
     const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading } = useContext(artworkContext) as IArtworkContext;
     const params = useParams();
     console.log(params);
@@ -68,7 +72,7 @@ const Artist = () => {
                                             <SwiperSlide key={el.id} virtualIndex={idx} >
                                                 <img src={`${el.url}/full/200,/0/default.jpg`} alt="" />
                                                 <Link
-                                                    to={`/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}`}
+                                                    to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/${params.personid}/${params.artworkpage}/${el.id}`}`}
                                                     onClick={e => handleClick(e, el.id)}
                                                 >
                                                     {el.title}
