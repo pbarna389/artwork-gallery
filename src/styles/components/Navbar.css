@@ -6,11 +6,11 @@ header .toolbar .toolbar-options {
 }
 header .toolbar .toolbar-helper {
   position: absolute;
+  z-index: 4;
   height: 3px;
   width: 100vw;
   background-color: #fff;
   opacity: 0.4;
-  z-index: 4;
 }
 
 nav {
@@ -21,6 +21,15 @@ nav {
   top: 0;
   z-index: 3;
   transition: all 0.3s ease-in;
+}
+nav::before {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  content: "";
+  height: 5rem;
+  width: 100vw;
 }
 nav.shown {
   left: 0;
@@ -44,6 +53,7 @@ nav .link-wrapper .helper {
   opacity: 0.4;
 }
 nav a {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,6 +65,26 @@ nav a {
   font-size: 40px;
   letter-spacing: 3px;
   color: #fff;
+  overflow: hidden;
+}
+nav a:hover img {
+  opacity: 0.2;
+  left: -20rem;
+}
+nav a img {
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  width: 75rem;
+  height: 75rem;
+  z-index: -1;
+  opacity: 0;
+  transition: all 2s ease-in;
+}
+nav a p {
+  font-family: "Vidaloka", serif;
+  font-size: 40px;
+  letter-spacing: 3px;
 }
 nav a :active {
   color: black;
