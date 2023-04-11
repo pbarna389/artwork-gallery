@@ -41,7 +41,7 @@ const Artists = () => {
 
     return (
         <div>
-            <Background />
+            {/* <Background /> */}
             <Columns />
             <div className="artists-wrapper">
                 <div>Current page: {params.page}</div>

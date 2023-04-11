@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import { IconContext } from "react-icons/lib";
 import { RiMailLockFill, RiLockFill } from "react-icons/ri";
 
-import Background from "../components/Background";
 import InputWrapper from "../components/InputWrapper";
 import OAuth from "../components/OAuth";
 import Form from "../components/Form";
@@ -45,7 +44,7 @@ const Login: React.FC = (): JSX.Element => {
 
     return (
         <div className="login-wrapper">
-            <Background />
+            {/* <Background /> */}
             <Form>
                 <LoginTitle text="Login" />
                 <form onSubmit={e => signIn(e)}>
@@ -61,11 +60,11 @@ const Login: React.FC = (): JSX.Element => {
                         </IconContext.Provider>
                         <input required placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
                     </InputWrapper>
-                    <button type="submit">Sign-in</button>
+                    <button className="basic-button" type="submit">Sign-in</button>
                 </form>
                 <div className="auth-wrapper">
                     <Link to="/registration">
-                        <button>Registration</button>
+                        <button className="basic-button">Registration</button>
                     </Link>
                     <OAuth />
                 </div>

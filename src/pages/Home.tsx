@@ -6,7 +6,7 @@ import Columns from "../components/Columns";
 const Home = () => {
     return (
         <main className="home-wrapper">
-            <Background />
+            {/* <Background /> */}
             <Columns />
             {/* <div className="column">
                 <div className="helper"></div>

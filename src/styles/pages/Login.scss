@@ -10,36 +10,7 @@
   height: 100vh;
   margin: 0;
 
-  .background {
-    width: 99.9vw;
-    height: 99.9vh;
-    opacity: 0.2;
-  }
-
-  .auth-wrapper {
-    margin-top: 2rem;
+  a {
+    color: black;
   }
 }
-
-button {
-  color: white;
-  width: 20rem;
-  margin-top: 1rem;
-
-  background: none;
-  height: 5rem;
-  border: none;
-  border-radius: 15px;
-  font-size: 2rem;
-  background-color: shared.$third-color-opac;
-  transition: background-color 0.5s ease-in;
-
-  &:hover {
-    background-color: shared.$third-color;
-  }
-}
-
-a {
-  color: black;
-}
-// }

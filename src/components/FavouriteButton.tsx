@@ -4,6 +4,9 @@ import { IArtworkContext } from "../@types/artwork";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db, auth } from "../config/firebase-config";
 
+import { IconContext } from "react-icons/lib";
+import { RiHeartAddLine, RiHeart3Fill } from "react-icons/ri";
+
 interface IFavouriteButton {
     type: "Artist" | "Artwork"
 }
@@ -90,14 +93,17 @@ const FavouriteButton: React.FC<IFavouriteButton> = ({ type }): JSX.Element => {
 
     return (
         <>
-            {
-                type === "Artist" && favouriteArtists ?
-                    <button onClick={handleClick}>{favouriteArtists.filter((el: any) => el.id === actual_artist.id).length === 0 ? "Add to favourites" : "Remove from favourites"}</button>
-                    : type === "Artwork" && favouriteArtworks ?
-                        <button onClick={handleClick}>{favouriteArtworks.filter((el: any) => el.id === actual_artwork.id).length === 0 ? "Add to favourites" : "Remove from favourites"}</button>
-                        : null
+            <IconContext.Provider value={{ className: "icon-prov", color: "red" }}>
+                {
+                    type === "Artist" && favouriteArtists ?
+                        favouriteArtists.filter((el: any) => el.id === actual_artist.id).length === 0 ? <RiHeartAddLine onClick={handleClick} /> : <RiHeart3Fill onClick={handleClick} />
 
-            }
+                        : type === "Artwork" && favouriteArtworks ?
+                            favouriteArtworks.filter((el: any) => el.id === actual_artwork.id).length === 0 ? <RiHeartAddLine onClick={handleClick} /> : <RiHeart3Fill onClick={handleClick} />
+                            : null
+
+                }
+            </IconContext.Provider>
         </>
     )
 }

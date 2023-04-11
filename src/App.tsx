@@ -13,6 +13,7 @@ import Artwork from "./pages/Artwork";
 import Login from "./pages/Login";
 import Register from "./pages/Registration";
 import Profile from "./pages/Profile";
+import Background from "./components/Background";
 
 import './App.css';
 
@@ -22,6 +23,7 @@ function App() {
 
 	return (
 		<>
+			<Background />
 			{
 				!userState.login ?
 					<BrowserRouter>

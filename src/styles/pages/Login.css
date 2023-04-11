@@ -8,31 +8,6 @@
   height: 100vh;
   margin: 0;
 }
-.login-wrapper .background {
-  width: 99.9vw;
-  height: 99.9vh;
-  opacity: 0.2;
-}
-.login-wrapper .auth-wrapper {
-  margin-top: 2rem;
-}
-
-button {
-  color: white;
-  width: 20rem;
-  margin-top: 1rem;
-  background: none;
-  height: 5rem;
-  border: none;
-  border-radius: 15px;
-  font-size: 2rem;
-  background-color: rgba(157, 27, 49, 0.5);
-  transition: background-color 0.5s ease-in;
-}
-button:hover {
-  background-color: #9d1b31;
-}
-
-a {
+.login-wrapper a {
   color: black;
 }/*# sourceMappingURL=Login.css.map */

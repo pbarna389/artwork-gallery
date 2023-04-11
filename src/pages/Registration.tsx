@@ -8,13 +8,16 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 
 import { useNavigate } from "react-router-dom";
 
+import { IconContext } from "react-icons/lib";
+import { RiMailLockFill, RiLockFill } from "react-icons/ri";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+
 import LoginTitle from "../components/LoginTitle";
 import Form from "../components/Form";
 import InputWrapper from "../components/InputWrapper";
 import OAuth from "../components/OAuth";
 
 import "../styles/pages/Registration.css"
-import Login from "./Login";
 
 const Register = () => {
     const [name, setName] = useState<string>("");
@@ -60,18 +63,27 @@ const Register = () => {
                 <LoginTitle text="Registration" />
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <InputWrapper>
+                        <IconContext.Provider value={{ className: "icon-prov" }}>
+                            <MdOutlineDriveFileRenameOutline />
+                        </IconContext.Provider>
                         <input placeholder="Your name..." type="string" onChange={(e) => handleChange(e, setName)} />
                     </InputWrapper>
                     <InputWrapper>
+                        <IconContext.Provider value={{ className: "icon-prov" }}>
+                            <RiMailLockFill />
+                        </IconContext.Provider>
                         <input placeholder="Email..." type="email" onChange={(e) => handleChange(e, setEmail)} />
                     </InputWrapper>
                     <InputWrapper>
+                        <IconContext.Provider value={{ className: "icon-prov" }}>
+                            <RiLockFill />
+                        </IconContext.Provider>
                         <input placeholder="Password..." type="password" onChange={(e) => handleChange(e, setPassword)} />
                     </InputWrapper>
-                    <button type="submit">Register</button>
+                    <button className="basic-button" type="submit">Register</button>
                 </form>
+                <OAuth />
             </Form>
-            <OAuth />
         </div>
     )
 }

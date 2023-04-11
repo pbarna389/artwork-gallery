@@ -2,3 +2,28 @@
   overflow-x: hidden;
   height: 100vh;
 }
+
+.basic-button {
+  color: white;
+  width: 20rem;
+  margin-top: 1rem;
+
+  background: none;
+  height: 5rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 2rem;
+  background-color: rgb(157, 27, 49, 0.5);
+  transition: background-color 0.5s ease-in;
+}
+.icon-prov {
+  height: 5rem;
+  width: 5rem;
+  margin-right: 1rem;
+
+  fill: rgb(157, 27, 49);
+}
+
+.basic-button:hover {
+  background-color: rgb(157, 27, 49);
+}

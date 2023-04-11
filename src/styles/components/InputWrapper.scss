@@ -4,14 +4,7 @@
   position: relative;
   width: 20rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  .icon-prov {
-    height: 5rem;
-    width: 5rem;
-    margin-right: 1rem;
-  }
 
   &:after {
     content: "";
