@@ -72,7 +72,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                             <SwiperSlide key={el.id} virtualIndex={idx} >
                                                 <img src={`${el.url}/full/200,/0/default.jpg`} alt="" />
                                                 <Link
-                                                    to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/${params.personid}/${params.artworkpage}/${el.id}`}`}
+                                                    to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/artist/${params.personid}/${params.artworkpage}/${el.id}`}`}
                                                     onClick={e => handleClick(e, el.id)}
                                                 >
                                                     {el.title}
