@@ -3,29 +3,36 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: black;
   position: relative;
   z-index: 10;
   height: 100vh;
   margin: 0;
 }
-.login-wrapper form {
-  display: flex;
-  flex-direction: column;
-  color: inherit;
+.login-wrapper .background {
+  width: 99.9vw;
+  height: 99.9vh;
+  opacity: 0.2;
 }
-.login-wrapper form a {
-  color: inherit;
+.login-wrapper .auth-wrapper {
+  margin-top: 2rem;
 }
-.login-wrapper form input {
-  color: inherit;
+
+button {
+  color: white;
   width: 20rem;
-  text-align: center;
+  margin-top: 1rem;
+  background: none;
+  height: 5rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 2rem;
+  background-color: rgba(157, 27, 49, 0.5);
+  transition: background-color 0.5s ease-in;
 }
-.login-wrapper button {
-  color: inherit;
-  width: 20rem;
+button:hover {
+  background-color: #9d1b31;
 }
-.login-wrapper a {
+
+a {
   color: black;
 }/*# sourceMappingURL=Login.css.map */

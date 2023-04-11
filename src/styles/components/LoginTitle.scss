@@ -1,0 +1,29 @@
+@use "../shared/shared.scss";
+
+h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  margin: 0;
+  margin-bottom: 1rem;
+
+  width: 50rem;
+  height: 12rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 500;
+
+  letter-spacing: 0.5rem;
+
+  background-color: shared.$third-color;
+
+  border-top-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+}

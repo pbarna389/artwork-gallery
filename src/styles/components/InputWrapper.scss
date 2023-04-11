@@ -1,0 +1,43 @@
+@use "../shared/shared.scss";
+
+.inputWrapper {
+  position: relative;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icon-prov {
+    height: 5rem;
+    width: 5rem;
+    margin-right: 1rem;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0rem;
+    left: 0;
+
+    width: inherit;
+
+    height: 1px;
+    background-color: shared.$third-color;
+  }
+
+  input {
+    color: inherit;
+    width: 17rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    position: relative;
+
+    &:active {
+      outline: none;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}

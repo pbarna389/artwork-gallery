@@ -8,9 +8,13 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 
 import { useNavigate } from "react-router-dom";
 
+import LoginTitle from "../components/LoginTitle";
+import Form from "../components/Form";
+import InputWrapper from "../components/InputWrapper";
 import OAuth from "../components/OAuth";
 
 import "../styles/pages/Registration.css"
+import Login from "./Login";
 
 const Register = () => {
     const [name, setName] = useState<string>("");
@@ -52,12 +56,21 @@ const Register = () => {
 
     return (
         <div className="registration-wrapper">
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <input placeholder="Your name..." type="string" onChange={(e) => handleChange(e, setName)} />
-                <input placeholder="Email..." type="email" onChange={(e) => handleChange(e, setEmail)} />
-                <input placeholder="Password..." type="password" onChange={(e) => handleChange(e, setPassword)} />
-                <button type="submit">Register</button>
-            </form>
+            <Form>
+                <LoginTitle text="Registration" />
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <InputWrapper>
+                        <input placeholder="Your name..." type="string" onChange={(e) => handleChange(e, setName)} />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <input placeholder="Email..." type="email" onChange={(e) => handleChange(e, setEmail)} />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <input placeholder="Password..." type="password" onChange={(e) => handleChange(e, setPassword)} />
+                    </InputWrapper>
+                    <button type="submit">Register</button>
+                </form>
+            </Form>
             <OAuth />
         </div>
     )

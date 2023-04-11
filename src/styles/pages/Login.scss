@@ -1,37 +1,45 @@
+@use "../shared/shared.scss";
+
 .login-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: black;
   position: relative;
   z-index: 10;
-  // border: 1px solid white;
   height: 100vh;
   margin: 0;
 
-  form {
-    display: flex;
-    flex-direction: column;
-    color: inherit;
-
-    a {
-      color: inherit;
-    }
-
-    input {
-      color: inherit;
-      width: 20rem;
-      text-align: center;
-    }
+  .background {
+    width: 99.9vw;
+    height: 99.9vh;
+    opacity: 0.2;
   }
 
-  button {
-    color: inherit;
-    width: 20rem;
-  }
-
-  a {
-    color: black;
+  .auth-wrapper {
+    margin-top: 2rem;
   }
 }
+
+button {
+  color: white;
+  width: 20rem;
+  margin-top: 1rem;
+
+  background: none;
+  height: 5rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 2rem;
+  background-color: shared.$third-color-opac;
+  transition: background-color 0.5s ease-in;
+
+  &:hover {
+    background-color: shared.$third-color;
+  }
+}
+
+a {
+  color: black;
+}
+// }

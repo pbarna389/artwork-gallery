@@ -1,0 +1,35 @@
+.inputWrapper {
+  position: relative;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputWrapper .icon-prov {
+  height: 5rem;
+  width: 5rem;
+  margin-right: 1rem;
+}
+.inputWrapper:after {
+  content: "";
+  position: absolute;
+  bottom: 0rem;
+  left: 0;
+  width: inherit;
+  height: 1px;
+  background-color: #9d1b31;
+}
+.inputWrapper input {
+  color: inherit;
+  width: 17rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  position: relative;
+}
+.inputWrapper input:active {
+  outline: none;
+}
+.inputWrapper input:focus {
+  outline: none;
+}/*# sourceMappingURL=InputWrapper.css.map */

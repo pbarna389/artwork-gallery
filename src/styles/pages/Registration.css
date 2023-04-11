@@ -5,16 +5,4 @@
   justify-content: center;
   height: 100vh;
   margin: 0;
-}
-.registration-wrapper form {
-  display: inherit;
-  flex-direction: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-}
-.registration-wrapper form input {
-  color: black;
-}
-.registration-wrapper form button {
-  color: black;
 }/*# sourceMappingURL=Registration.css.map */

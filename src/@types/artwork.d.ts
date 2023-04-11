@@ -56,3 +56,7 @@ export interface IArtworkContext {
   userDispatch: React.Dispatch<React.ReducerAction<any>>;
   fetchUserData: Function;
 }
+
+interface IChildren {
+  children: React.ReactNode;
+}
