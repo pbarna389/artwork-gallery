@@ -221,6 +221,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             const userSnap = await getDoc(userRef);
 
             console.log(userSnap.data());
+
             userDispatch({ type: "setUserData", payload: userSnap.data() });
             userDispatch({ type: "setFavouriteArtists", payload: userSnap.data()?.favArtist });
             userDispatch({ type: "setFavouriteArtworks", payload: userSnap.data()?.favArtworks });

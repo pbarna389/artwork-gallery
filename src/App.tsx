@@ -50,10 +50,18 @@ function App() {
 								<Route path="/artworks">
 									<Route path=":artworkspage">
 										<Route index element={< Artworks />} />
-										<Route path=":artworkid" element={<Artwork />}></Route>
+										<Route path=":artworkid" element={<Artwork />} />
 									</Route>
 								</Route>
-								<Route path="/profile" element={<Profile />} />
+								<Route path="/profile" >
+									<Route index element={<Profile />} />
+									<Route path=":personid">
+										<Route path=":artworkpage">
+											<Route index element={<Artist />} />
+										</Route>
+									</Route>
+									{/* <Route path=":profileArtworkId" element={<Artwork />} /> */}
+								</Route>
 							</Routes>
 						</BrowserRouter>
 					</div>

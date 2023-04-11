@@ -2,13 +2,15 @@ import { useContext } from "react";
 import { IArtworkContext } from "../@types/artwork";
 import { artworkContext } from "../context/ArtworkContext";
 import FavouriteButton from "../components/FavouriteButton";
+import { useParams } from "react-router-dom";
 
 import "../styles/pages/Artwork.css"
 
 const Artwork = () => {
     const { actual_artwork, actual_artwork_url, actual_artwork_id } = useContext(artworkContext) as IArtworkContext;
-
+    const params = useParams();
     if (actual_artwork) console.log(actual_artwork)
+    console.log(params);
 
     return (
         <div className="artwork-wrapper">

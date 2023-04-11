@@ -47,6 +47,7 @@ const Artist = () => {
                             </div>
                         </div>
                         <div className="artist-artwork-wrapper">
+                            <p>Current page: {params.artworkpage}</p>
                             <Swiper
                                 direction={"vertical"}
                                 modules={[Virtual, Mousewheel, SwiperPagination]}

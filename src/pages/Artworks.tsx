@@ -19,7 +19,7 @@ const Artworks = () => {
             <ul>
                 {
                     artworks ?
-                        artworks.map((el: any) => <li key={el.id}><Link to={`/artworks/${params.artworkpage}/${el.id}`} onClick={e => handleClick(e, el.id)}>{el.title}</Link></li>)
+                        artworks.map((el: any) => <li key={el.id}><Link to={`/artworks/${params.artworkspage}/${el.id}`} onClick={e => handleClick(e, el.id)}>{el.title}</Link></li>)
                         : null
                 }
             </ul>
