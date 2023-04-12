@@ -3,6 +3,7 @@ header .toolbar .toolbar-options {
   align-items: center;
   justify-content: space-between;
   height: 5rem;
+  margin-top: 1rem;
 }
 header .toolbar .toolbar-options .container {
   display: flex;
@@ -19,12 +20,12 @@ header .toolbar .toolbar-options button {
   margin-right: 1.5rem;
 }
 header .toolbar .toolbar-helper {
-  position: absolute;
   z-index: 4;
   height: 3px;
   width: 100vw;
   background-color: #fff;
-  opacity: 0.4;
+  opacity: 0.3;
+  margin-top: 1rem;
 }
 
 nav {
@@ -42,8 +43,9 @@ nav::before {
   top: 0;
   left: 0;
   content: "";
-  height: 5rem;
+  height: 7rem;
   width: 100vw;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
 }
 nav.shown {
   left: 0;

@@ -7,6 +7,7 @@ header {
       align-items: center;
       justify-content: space-between;
       height: 5rem;
+      margin-top: 1rem;
 
       .container {
         display: flex;
@@ -27,12 +28,13 @@ header {
     }
 
     .toolbar-helper {
-      position: absolute;
+      // position: absolute;
       z-index: 4;
       height: shared.$column-helper-width;
       width: 100vw;
       background-color: shared.$basic-color;
       opacity: shared.$column-opac;
+      margin-top: 1rem;
     }
   }
 }
@@ -54,8 +56,9 @@ nav {
 
     content: "";
 
-    height: 5rem;
+    height: 7rem;
     width: 100vw;
+    border-bottom: shared.$column-helper-width solid rgba(255, 255, 255, 0.3);
   }
 
   &.shown {
