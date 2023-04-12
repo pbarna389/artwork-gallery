@@ -1,16 +1,20 @@
 import { useContext } from "react";
+
 import { Link, useParams } from "react-router-dom";
+
 import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
+
 import { Interweave } from "interweave";
-
-import Pagination from "../components/Pagination";
-import FavouriteButton from "../components/FavouriteButton";
-
-import "../styles/pages/Artist.css"
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Virtual, Mousewheel, Pagination as SwiperPagination } from "swiper";
+
+import Pagination from "../components/Pagination";
+import FavouriteButton from "../components/FavouriteButton";
+import ImagePlaceholder from "../components/ImagePlaceholder";
+
+import "../styles/pages/Artist.css"
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -70,7 +74,12 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                     actualArtistArtworksURLS ?
                                         actualArtistArtworksURLS.map((el: any, idx: number) =>
                                             <SwiperSlide key={el.id} virtualIndex={idx} >
-                                                <img src={`${el.url}/full/200,/0/default.jpg`} alt="" />
+                                                {
+                                                    el.url !== "https://www.artic.edu/iiif/2/null" ?
+                                                        <img src={`${el.url}/full/200,/0/default.jpg`} alt="" loading="lazy" placeholder="loading..." />
+                                                        :
+                                                        <ImagePlaceholder />
+                                                }
                                                 <Link
                                                     to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/artist/${params.personid}/${params.artworkpage}/${el.id}`}`}
                                                     onClick={e => handleClick(e, el.id)}

@@ -9,13 +9,14 @@
 }
 .artwork-wrapper .artwork-image-wrapper {
   width: 45vw;
-  border-left: 3px solid rgba(255, 255, 255, 0.4);
   height: 84vh;
+  border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 .artwork-wrapper img {
   width: 100%;
   height: 65vh;
-  padding: 2rem 1rem;
+  margin: 1rem;
+  padding-right: 1rem;
 }
 .artwork-wrapper h2 {
   padding-left: 1rem;

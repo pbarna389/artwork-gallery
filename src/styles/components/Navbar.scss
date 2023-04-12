@@ -19,6 +19,8 @@ header {
           font-weight: 500;
           font-size: 24px;
           width: 10rem;
+
+          cursor: default;
         }
       }
 
@@ -58,7 +60,7 @@ nav {
 
     height: 7rem;
     width: 100vw;
-    border-bottom: shared.$column-helper-width solid rgba(255, 255, 255, 0.3);
+    border-bottom: shared.$column-helper-width solid rgba(255, 255, 255, 0.2);
   }
 
   &.shown {
@@ -82,7 +84,7 @@ nav {
       width: 3px;
       height: inherit;
       background-color: #fff;
-      opacity: 0.4;
+      opacity: shared.$column-opac;
     }
   }
 
@@ -110,7 +112,7 @@ nav {
 
     img {
       position: absolute;
-      top: 5rem;
+      top: 7rem;
       left: 0;
       width: 75rem;
       height: 75rem;

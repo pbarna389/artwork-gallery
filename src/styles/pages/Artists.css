@@ -1,35 +1,35 @@
 .artists-wrapper {
   position: absolute;
-  top: 5rem;
+  top: 8rem;
   display: flex;
   flex-direction: column;
-  width: 99vw;
+  width: 100vw;
   justify-content: center;
   align-items: center;
   z-index: 0;
+  height: 75vh;
 }
 .artists-wrapper .mySwiper {
-  height: 45rem;
+  height: 20rem;
+  width: 100vw;
 }
 .artists-wrapper .mySwiper .swiper-slide {
-  background-position: center;
-  background-size: cover;
   width: 15rem;
-  height: 15rem !important;
+  height: 20rem !important;
+}
+.artists-wrapper .mySwiper .swiper-slide .swiper-wrapper {
+  justify-content: center;
+  align-items: center;
 }
 .artists-wrapper .mySwiper .swiper-slide a {
+  background-repeat: none;
+  background-size: 100% 100%;
   height: inherit;
   display: block;
   text-decoration: none;
-  background-repeat: none;
-  background-size: cover;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-}
-.artists-wrapper .mySwiper .swiper-wrapper {
-  justify-content: center;
-  align-items: center;
 }
 .artists-wrapper .mySwiper .swiper-pagination-fraction {
   top: 0;

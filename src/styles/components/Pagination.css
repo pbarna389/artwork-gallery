@@ -1,3 +1,9 @@
 .pag-wrapper {
   margin-top: 2rem;
+}
+.pag-wrapper span {
+  margin-right: 1rem;
+}
+.pag-wrapper a {
+  margin-right: 1rem;
 }/*# sourceMappingURL=Pagination.css.map */

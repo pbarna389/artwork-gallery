@@ -1,0 +1,62 @@
+@use "../shared/shared.scss";
+
+.swiper-slide {
+  .image-placeholder {
+    position: relative;
+    background-size: cover;
+    height: 90rem;
+    width: 20rem;
+
+    .blur-filter {
+      height: 16.5rem;
+      width: inherit;
+      position: absolute;
+      top: 0;
+      left: 0;
+      backdrop-filter: blur(5px);
+    }
+
+    &::after {
+      content: "Unavailable";
+      position: absolute;
+      translate: -50%;
+      top: 45%;
+      left: 52%;
+      letter-spacing: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.artwork-wrapper {
+  .image-placeholder {
+    position: relative;
+    background-size: cover;
+    background-repeat: none;
+
+    width: 98%;
+    height: 65vh;
+    margin: 1rem;
+
+    border-left: shared.$column-helper-width solid rgba(255, 255, 255, 0.4);
+
+    .blur-filter {
+      height: inherit;
+      width: inherit;
+      position: absolute;
+      top: 0;
+      left: 0;
+      backdrop-filter: blur(5px);
+    }
+
+    &::after {
+      content: "Unavailable";
+      position: absolute;
+      translate: -50%;
+      top: 45%;
+      left: 52%;
+      letter-spacing: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+}

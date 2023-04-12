@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <main className="home-wrapper">
             {/* <Background /> */}
-            <Columns />
+            {/* <Columns /> */}
             {/* <div className="column">
                 <div className="helper"></div>
             </div>

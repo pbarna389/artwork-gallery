@@ -4,6 +4,8 @@ import { artworkContext } from "../context/ArtworkContext";
 import FavouriteButton from "../components/FavouriteButton";
 import { useParams } from "react-router-dom";
 
+import ImagePlaceholder from "../components/ImagePlaceholder";
+
 import "../styles/pages/Artwork.css"
 
 const Artwork = () => {
@@ -18,14 +20,20 @@ const Artwork = () => {
             {
                 actual_artwork ?
                     <>
-                        {
-                            actual_artwork_id && actual_artwork_url ?
-                                <div className="artwork-image-wrapper">
-                                    <img src={`${actual_artwork_url}/${actual_artwork_id}/full/843,/0/default.jpg`} />
-                                    <h2>{actual_artwork.title}</h2>
-                                </div>
-                                : <p>Loading...</p>
-                        }
+                        <div className="artwork-image-wrapper">
+                            {
+                                actual_artwork_id && actual_artwork_url ?
+                                    <>
+                                        <img src={`${actual_artwork_url}/${actual_artwork_id}/full/843,/0/default.jpg`} />
+                                        <h2>{actual_artwork.title}</h2>
+                                    </>
+                                    :
+                                    <>
+                                        <ImagePlaceholder />
+                                        <h2>{actual_artwork.title}</h2>
+                                    </>
+                            }
+                        </div>
                         <div className="artwork-details-wrapper">
                             <FavouriteButton type="Artwork" />
                             <h2>Title: {actual_artwork.title} ({actual_artwork.date_start}, {actual_artwork.date_end})</h2>

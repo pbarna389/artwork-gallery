@@ -42,12 +42,12 @@ const Artists = () => {
     return (
         <div>
             {/* <Background /> */}
-            <Columns />
+            {/* <Columns /> */}
             <div className="artists-wrapper">
                 <div>Current page: {params.page}</div>
 
                 <Swiper
-                    direction={"vertical"}
+                    direction={"horizontal"}
                     modules={[Virtual, Mousewheel, SwiperPagination]}
                     grabCursor={true}
                     mousewheel={true}
@@ -55,7 +55,7 @@ const Artists = () => {
                         type: "fraction"
                     }}
                     centeredSlides={true}
-                    slidesPerView={3}
+                    slidesPerView={5}
                     spaceBetween={30}
                     className="mySwiper"
                     virtual
