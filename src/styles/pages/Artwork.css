@@ -12,6 +12,19 @@
   height: 84vh;
   border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
+.artwork-wrapper .artwork-image-wrapper .title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.artwork-wrapper .artwork-image-wrapper .title-wrapper h2 {
+  font-size: 2rem;
+}
+.artwork-wrapper .artwork-image-wrapper .title-wrapper .icon-prov {
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+}
 .artwork-wrapper img {
   width: 100%;
   height: 65vh;

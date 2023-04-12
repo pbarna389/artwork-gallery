@@ -15,11 +15,6 @@ header .toolbar .toolbar-options .btn-logout {
 header .toolbar .toolbar-options .btn-logout .icon-prov {
   height: 3rem;
   width: 3rem;
-  opacity: 0.5;
-  transition: opacity 0.3s ease-in;
-}
-header .toolbar .toolbar-options .btn-logout .icon-prov:hover {
-  opacity: 1;
 }
 header .toolbar .toolbar-options .container {
   display: flex;

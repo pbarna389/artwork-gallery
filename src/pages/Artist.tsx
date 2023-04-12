@@ -13,6 +13,7 @@ import Pagination from "../components/Pagination";
 import FavouriteButton from "../components/FavouriteButton";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import SwiperWrapper from "../components/SwiperWrapper";
+import NavigateIcon from "../components/NavigateIcon";
 
 import "../styles/pages/Artist.css"
 
@@ -36,8 +37,10 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                 !loading && actual_artist ?
                     <>
                         <div className="artist-info-wrapper">
-                            <FavouriteButton type="Artist" />
-                            <h2>{actual_artist.title}</h2>
+                            <div className="title-wrapper">
+                                <h2>{actual_artist.title}</h2>
+                                <FavouriteButton type="Artist" />
+                            </div>
                             <p>{actual_artist.birth_date} - {actual_artist.death_date}</p>
                             <div>
                                 {
@@ -50,29 +53,32 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                             </div>
                         </div>
                         <div className="artist-artwork-wrapper">
-                            <p>Current page: {params.artworkpage}</p>
-                            <SwiperWrapper direction="vertical" slideNumber={3}>
-                                {
-                                    actualArtistArtworksURLS ?
-                                        actualArtistArtworksURLS.map((el: any, idx: number) =>
-                                            <SwiperSlide key={el.id} virtualIndex={idx} >
-                                                {
-                                                    el.url !== "https://www.artic.edu/iiif/2/null" ?
-                                                        <img src={`${el.url}/full/200,/0/default.jpg`} alt="" loading="lazy" placeholder="loading..." />
-                                                        :
-                                                        <ImagePlaceholder />
-                                                }
-                                                <Link
-                                                    to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/artist/${params.personid}/${params.artworkpage}/${el.id}`}`}
-                                                    onClick={e => handleClick(e, el.id)}
-                                                >
-                                                    {el.title}
-                                                </Link>
-                                            </SwiperSlide>)
-                                        : null
-                                }
-                            </SwiperWrapper>
-                            <Pagination pageNumMax={artistArtworkMaxPage} setPagination={setArtistArtworkPag} related={"related_list"} />
+                            <NavigateIcon parent={`${type === "browse" ? "Artist" : "Profile"}`} />
+                            <div className="artist-swiper-with-pagination">
+                                <SwiperWrapper direction="vertical" slideNumber={3}>
+                                    {
+                                        actualArtistArtworksURLS ?
+                                            actualArtistArtworksURLS.map((el: any, idx: number) =>
+                                                <SwiperSlide key={el.id} virtualIndex={idx} >
+                                                    {
+                                                        el.url !== "https://www.artic.edu/iiif/2/null" ?
+                                                            <img src={`${el.url}/full/200,/0/default.jpg`} alt="" loading="lazy" placeholder="loading..." />
+                                                            :
+                                                            <ImagePlaceholder />
+                                                    }
+                                                    <Link
+                                                        to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/artist/${params.personid}/${params.artworkpage}/${el.id}`}`}
+                                                        onClick={e => handleClick(e, el.id)}
+                                                    >
+                                                        {el.title}
+                                                    </Link>
+                                                </SwiperSlide>)
+                                            : null
+                                    }
+                                </SwiperWrapper>
+                                <p>Current page: {params.artworkpage}</p>
+                                <Pagination pageNumMax={artistArtworkMaxPage} setPagination={setArtistArtworkPag} related={"related_list"} />
+                            </div>
                         </div>
                     </>
                     : <div>Loading...</div>

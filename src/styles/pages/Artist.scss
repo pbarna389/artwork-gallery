@@ -5,11 +5,40 @@
 
   .artist-info-wrapper {
     width: 45vw;
+
+    .title-wrapper {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .icon-prov {
+        height: 3rem;
+        width: 3rem;
+      }
+    }
   }
 
   .artist-artwork-wrapper {
     width: 45vw;
     z-index: 0;
+    display: flex;
+    align-items: center;
+
+    .artist-swiper-with-pagination {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        margin: 0;
+      }
+
+      .pag-wrapper {
+        margin: 0;
+      }
+    }
 
     .mySwiper {
       height: 45rem;

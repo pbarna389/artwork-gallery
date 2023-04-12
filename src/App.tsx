@@ -44,7 +44,7 @@ function App() {
 										<Route path=":personid">
 											<Route path=":artworkpage">
 												<Route index element={<Artist type="browse" />} />
-												<Route path=":artworkid" element={<Artwork />} />
+												<Route path=":artworkid" element={<Artwork parent="Artist" />} />
 											</Route>
 										</Route>
 									</Route>
@@ -52,7 +52,7 @@ function App() {
 								<Route path="/artworks">
 									<Route path=":artworkspage">
 										<Route index element={< Artworks />} />
-										<Route path=":artworkid" element={<Artwork />} />
+										<Route path=":artworkid" element={<Artwork parent="Artwork" />} />
 									</Route>
 								</Route>
 								<Route path="/profile">
@@ -61,12 +61,12 @@ function App() {
 										<Route path=":personid">
 											<Route path=":artworkpage">
 												<Route index element={<Artist type="profile" />} />
-												<Route path=":artworkid" element={<Artwork />} />
+												<Route path=":artworkid" element={<Artwork parent="Profile_Artist" />} />
 											</Route>
 										</Route>
 									</Route>
 									<Route path="/profile/artwork">
-										<Route path=":artworkid" element={<Artwork />} />
+										<Route path=":artworkid" element={<Artwork parent="Profile" />} />
 									</Route>
 								</Route>
 							</Routes>

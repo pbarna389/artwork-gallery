@@ -6,9 +6,34 @@
 .artist-wrapper .artist-info-wrapper {
   width: 45vw;
 }
+.artist-wrapper .artist-info-wrapper .title-wrapper {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.artist-wrapper .artist-info-wrapper .title-wrapper .icon-prov {
+  height: 3rem;
+  width: 3rem;
+}
 .artist-wrapper .artist-artwork-wrapper {
   width: 45vw;
   z-index: 0;
+  display: flex;
+  align-items: center;
+}
+.artist-wrapper .artist-artwork-wrapper .artist-swiper-with-pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.artist-wrapper .artist-artwork-wrapper .artist-swiper-with-pagination p {
+  margin: 0;
+}
+.artist-wrapper .artist-artwork-wrapper .artist-swiper-with-pagination .pag-wrapper {
+  margin: 0;
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper {
   height: 45rem;
