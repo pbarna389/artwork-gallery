@@ -61,12 +61,12 @@ const Login: React.FC = (): JSX.Element => {
                         <input required placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
                     </InputWrapper>
                     <button className="basic-button" type="submit">Sign-in</button>
+                    <OAuth />
                 </form>
                 <div className="auth-wrapper">
                     <Link to="/registration">
                         <button className="basic-button">Registration</button>
                     </Link>
-                    <OAuth />
                 </div>
             </Form>
         </div>

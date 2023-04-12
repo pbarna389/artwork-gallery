@@ -4,6 +4,20 @@ header .toolbar .toolbar-options {
   justify-content: space-between;
   height: 5rem;
 }
+header .toolbar .toolbar-options .container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+header .toolbar .toolbar-options .container .logo-name {
+  font-family: "Vidaloka", serif;
+  font-weight: 500;
+  font-size: 24px;
+  width: 10rem;
+}
+header .toolbar .toolbar-options button {
+  margin-right: 1.5rem;
+}
 header .toolbar .toolbar-helper {
   position: absolute;
   z-index: 4;

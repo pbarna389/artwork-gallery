@@ -17,6 +17,7 @@
     &::after {
       top: 2.5rem;
       rotate: -45deg;
+      height: 3px;
     }
   }
 
@@ -39,5 +40,6 @@
   &::after {
     bottom: 2rem;
     left: 0.5rem;
+    height: 2px;
   }
 }

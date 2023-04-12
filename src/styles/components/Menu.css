@@ -13,6 +13,7 @@
 .hamburger-menu.active::after {
   top: 2.5rem;
   rotate: -45deg;
+  height: 3px;
 }
 .hamburger-menu::before, .hamburger-menu::after {
   content: "";
@@ -30,4 +31,5 @@
 .hamburger-menu::after {
   bottom: 2rem;
   left: 0.5rem;
+  height: 2px;
 }/*# sourceMappingURL=Menu.css.map */

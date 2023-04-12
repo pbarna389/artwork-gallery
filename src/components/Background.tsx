@@ -11,7 +11,7 @@ const Background = () => {
     useEffect(() => {
         const id = setTimeout(() => {
             rotateArray(backgrounds)
-        }, 19800);
+        }, 20000);
 
         setBackgroundsRotateTimeout(id);
 

@@ -19,7 +19,7 @@
   top: 0;
   z-index: -1;
   opacity: 1;
-  animation: moving-bg 20s linear infinite;
+  animation: moving-bg 20.2s linear infinite;
   width: 150vw;
   height: 150vh;
 }
@@ -33,12 +33,19 @@
 
 @keyframes moving-bg {
   0% {
+    opacity: 0;
     top: -15rem;
     left: -10rem;
+  }
+  10% {
+    opacity: 1;
   }
   25% {
     top: -20rem;
     left: 0rem;
+  }
+  40% {
+    opacity: 1;
   }
   50% {
     top: -25rem;
@@ -47,9 +54,12 @@
   75% {
     top: -20rem;
     right: 0rem;
-    opacity: 0.6;
+  }
+  90% {
+    opacity: 0;
   }
   100% {
+    opacity: 0;
     top: -15rem;
     left: -10rem;
   }

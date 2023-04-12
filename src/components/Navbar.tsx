@@ -32,9 +32,12 @@ const Navbar = () => {
         <header>
             <div className="toolbar">
                 <div className="toolbar-options">
-                    <Menu />
-                    <Logo />
-                    <Searchbar />
+                    <div className="container">
+                        <Menu />
+                        <Logo />
+                        <p className="logo-name">Art Institute of Chicago</p>
+                    </div>
+                    {/* <Searchbar /> */}
                     <button onClick={logout}>Logout</button>
                 </div>
                 <div className="toolbar-helper"></div>

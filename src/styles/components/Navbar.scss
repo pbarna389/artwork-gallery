@@ -7,6 +7,23 @@ header {
       align-items: center;
       justify-content: space-between;
       height: 5rem;
+
+      .container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .logo-name {
+          font-family: shared.$vidaloka-font;
+          font-weight: 500;
+          font-size: 24px;
+          width: 10rem;
+        }
+      }
+
+      button {
+        margin-right: 1.5rem;
+      }
     }
 
     .toolbar-helper {

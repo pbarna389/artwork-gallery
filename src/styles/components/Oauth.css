@@ -4,12 +4,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
   margin-top: 1.5rem;
 }
 .oauth-wrapper img {
-  height: inherit;
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-left: 0.5rem;
 }
 .oauth-wrapper span {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }/*# sourceMappingURL=Oauth.css.map */

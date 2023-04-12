@@ -43,10 +43,10 @@ const OAuth = () => {
     };
 
     return (
-        <div className="oauth-wrapper" onClick={signInWithGoogle}>
+        <button className="oauth-wrapper basic-button" onClick={signInWithGoogle}>
+            <span>Sign-{location.pathname === "/" ? "in" : "up"} with </span>
             <img src={googlePic} alt="google icon" />
-            <span>Sign {location.pathname === "/" ? "in" : "up"} with Google</span>
-        </div>
+        </button>
     )
 }
 
