@@ -47,27 +47,25 @@ const Login: React.FC = (): JSX.Element => {
             {/* <Background /> */}
             <Form>
                 <LoginTitle text="Login" />
-                <form onSubmit={e => signIn(e)}>
-                    <InputWrapper>
-                        <IconContext.Provider value={{ className: "icon-prov" }}>
+                <IconContext.Provider value={{ className: "icon-prov" }}>
+                    <form onSubmit={e => signIn(e)}>
+                        <InputWrapper>
                             <RiMailLockFill />
-                        </IconContext.Provider>
-                        <input required placeholder="Email..." type="email" onChange={(e) => setEmail(e.target.value)} />
-                    </InputWrapper>
-                    <InputWrapper>
-                        <IconContext.Provider value={{ className: "icon-prov" }}>
+                            <input required placeholder="Email..." type="email" onChange={(e) => setEmail(e.target.value)} />
+                        </InputWrapper>
+                        <InputWrapper>
                             <RiLockFill />
-                        </IconContext.Provider>
-                        <input required placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
-                    </InputWrapper>
-                    <button className="basic-button" type="submit">Sign-in</button>
-                    <OAuth />
-                </form>
-                <div className="auth-wrapper">
-                    <Link to="/registration">
-                        <button className="basic-button">Registration</button>
-                    </Link>
-                </div>
+                            <input required placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
+                        </InputWrapper>
+                        <button className="basic-button" type="submit">Sign-in</button>
+                        <OAuth />
+                    </form>
+                    <div className="auth-wrapper">
+                        <Link to="/registration">
+                            <button className="basic-button">Registration</button>
+                        </Link>
+                    </div>
+                </IconContext.Provider>
             </Form>
         </div>
     )

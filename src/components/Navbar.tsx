@@ -4,6 +4,9 @@ import { IArtworkContext } from '../@types/artwork';
 
 import { useNavigate } from "react-router-dom";
 
+import { IconContext } from 'react-icons/lib';
+import { RiLogoutCircleRLine } from "react-icons/ri";
+
 import { auth } from '../config/firebase-config';
 import { signOut } from 'firebase/auth';
 
@@ -38,7 +41,9 @@ const Navbar = () => {
                         <p className="logo-name">Art Institute of Chicago</p>
                     </div>
                     {/* <Searchbar /> */}
-                    <button onClick={logout}>Logout</button>
+                    <IconContext.Provider value={{ className: "icon-prov" }}>
+                        <button className="btn-logout" onClick={logout}><RiLogoutCircleRLine /></button>
+                    </IconContext.Provider>
                 </div>
                 <div className="toolbar-helper"></div>
             </div>

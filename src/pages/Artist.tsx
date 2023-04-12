@@ -7,19 +7,14 @@ import { IArtworkContext } from "../@types/artwork";
 
 import { Interweave } from "interweave";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Virtual, Mousewheel, Pagination as SwiperPagination } from "swiper";
+import { SwiperSlide } from "swiper/react";
 
 import Pagination from "../components/Pagination";
 import FavouriteButton from "../components/FavouriteButton";
 import ImagePlaceholder from "../components/ImagePlaceholder";
+import SwiperWrapper from "../components/SwiperWrapper";
 
 import "../styles/pages/Artist.css"
-
-import "swiper/css";
-import "swiper/css/pagination";
-
-SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
 interface IArtist {
     type: "profile" | "browse"
@@ -56,20 +51,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                         </div>
                         <div className="artist-artwork-wrapper">
                             <p>Current page: {params.artworkpage}</p>
-                            <Swiper
-                                direction={"vertical"}
-                                modules={[Virtual, Mousewheel, SwiperPagination]}
-                                grabCursor={true}
-                                mousewheel={true}
-                                pagination={{
-                                    type: "fraction"
-                                }}
-                                centeredSlides={true}
-                                slidesPerView={3}
-                                spaceBetween={30}
-                                className="mySwiper"
-                                virtual
-                            >
+                            <SwiperWrapper direction="vertical" slideNumber={3}>
                                 {
                                     actualArtistArtworksURLS ?
                                         actualArtistArtworksURLS.map((el: any, idx: number) =>
@@ -89,7 +71,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                             </SwiperSlide>)
                                         : null
                                 }
-                            </Swiper>
+                            </SwiperWrapper>
                             <Pagination pageNumMax={artistArtworkMaxPage} setPagination={setArtistArtworkPag} related={"related_list"} />
                         </div>
                     </>

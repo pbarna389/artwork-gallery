@@ -1,25 +1,17 @@
-import { useState, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { Link, useParams } from "react-router-dom";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Virtual, Mousewheel, Pagination as SwiperPagination } from "swiper";
+import { SwiperSlide } from "swiper/react";
 
 import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from "../@types/artwork";
 import Pagination from '../components/Pagination';
-import Background from '../components/Background';
-import Columns from '../components/Columns';
+import SwiperWrapper from '../components/SwiperWrapper';
 
 import "../styles/pages/Artists.css";
 
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import 'swiper/css/navigation';
-
 import Picture from "../assets/prof-pic.png";
-
-SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
 const Artists = () => {
     const { artists, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag } = useContext(artworkContext) as IArtworkContext;
@@ -46,20 +38,7 @@ const Artists = () => {
             <div className="artists-wrapper">
                 <div>Current page: {params.page}</div>
 
-                <Swiper
-                    direction={"horizontal"}
-                    modules={[Virtual, Mousewheel, SwiperPagination]}
-                    grabCursor={true}
-                    mousewheel={true}
-                    pagination={{
-                        type: "fraction"
-                    }}
-                    centeredSlides={true}
-                    slidesPerView={5}
-                    spaceBetween={30}
-                    className="mySwiper"
-                    virtual
-                >
+                <SwiperWrapper direction='horizontal' slideNumber={5}>
                     {
                         artists ?
                             artists.map((el: any, index: number) =>
@@ -72,7 +51,7 @@ const Artists = () => {
                                 </SwiperSlide>)
                             : null
                     }
-                </Swiper>
+                </SwiperWrapper>
                 <Pagination pageNumMax={artistMaxPage} setPagination={setArtistPagination} related={"artist_list"} />
             </div>
         </div>
