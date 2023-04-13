@@ -1,0 +1,13 @@
+.artworks-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .swiper-wrapper {
+    width: 100vw;
+  }
+  .mySwiper {
+    height: 25rem;
+  }
+}

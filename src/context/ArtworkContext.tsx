@@ -186,6 +186,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     }, [artworkID]);
 
     useEffect(() => {
+        dataDispatch({ type: "loading", payload: true })
         const fetchData = async () => {
             try {
                 const response = await fetch(`${ARTWORKS_SITE}${artworksPagination}`);
@@ -195,14 +196,40 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                 };
 
                 const data = await response.json();
-                console.log(data);
-                dataDispatch({
-                    type: "set_artworks", payload: data.data.sort((a: any, b: any) => {
-                        const actElement = a.title.charAt(0) + a.title.slice(1);
-                        const nextElement = b.title.charAt(0) + b.title.slice(1);
-                        return (actElement < nextElement) ? -1 : (actElement > nextElement) ? 1 : 0
-                    })
-                });
+
+                const newData: any[] = [];
+
+                // Object.values(data.data).forEach((el: any) => newData.push(Object.assign({ iiif_url: data.config.iiif_url }, el)));
+
+                Object.values(data.data).forEach((el: any, idx: number) => {
+                    {
+                        const fetchAPI = async () => {
+                            try {
+                                const response = await fetch(`${el.api_link}`);
+                                const imgdata = await response.json();
+
+                                newData.push(Object.assign({ iiif_url: imgdata.config.iiif_url }, imgdata.data))
+
+                                if (newData.length === data.data.length) {
+
+                                    dataDispatch({
+                                        type: "set_artworks", payload: newData.sort((a: any, b: any) => {
+                                            const actElement = a.title.charAt(0) + a.title.slice(1);
+                                            const nextElement = b.title.charAt(0) + b.title.slice(1);
+                                            return (actElement < nextElement) ? -1 : (actElement > nextElement) ? 1 : 0
+                                        })
+                                    });
+
+                                    dataDispatch({ type: "loading", payload: false })
+                                }
+                            } catch (error) {
+                                console.log(error)
+                            }
+
+                        }
+                        fetchAPI();
+                    }
+                })
 
                 dataDispatch({
                     type: "set_artworks_max_page_num", payload: data.pagination.total_pages

@@ -76,18 +76,23 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                             <h6 className="detail-header">Catalogue: </h6>
                             <p className="detail-paragraph">
                                 {
-                                    <p>
-                                        {
-                                            actual_artwork.catalogue_display.split("<p>").join("").split("</p>").join(" / ")
-                                        }
-                                    </p>
+                                    actual_artwork.catalogue_display ?
+                                        <p>
+                                            {
+                                                actual_artwork.catalogue_display.split("<p>").join("").split("</p>").join(" / ")
+                                            }
+                                        </p>
+                                        :
+                                        <p>
+                                            Not catalogized yet
+                                        </p>
                                 }
                             </p>
                         </div>
                     </>
                     : null
             }
-        </div>
+        </div >
     )
 }
 
