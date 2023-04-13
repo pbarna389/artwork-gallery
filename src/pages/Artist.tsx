@@ -81,12 +81,12 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                 <Pagination pageNumMax={artistArtworkMaxPage} setPagination={setArtistArtworkPag} related={"related_list"} />
                             </div>
                         </div>
+                        <div className="button-wrapper">
+                            <NavigateIcon parent={`${type === "browse" ? "Artist" : "Profile"}`} />
+                        </div>
                     </>
                     : <div>Loading...</div>
             }
-            <div className="button-wrapper">
-                <NavigateIcon parent={`${type === "browse" ? "Artist" : "Profile"}`} />
-            </div>
         </div>
     )
 }
