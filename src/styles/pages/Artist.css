@@ -3,6 +3,11 @@
   flex-direction: row-reverse;
   justify-content: center;
 }
+.artist-wrapper .button-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 10%;
+}
 .artist-wrapper .artist-info-wrapper {
   width: 45vw;
 }

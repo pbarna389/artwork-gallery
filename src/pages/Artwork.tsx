@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { IArtworkContext } from "../@types/artwork";
 import { artworkContext } from "../context/ArtworkContext";
+
 import { useParams } from "react-router-dom";
 
 import FavouriteButton from "../components/FavouriteButton";
@@ -21,7 +22,9 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
 
     return (
         <div className="artwork-wrapper">
-            <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} />
+            <div className="button-wrapper">
+                <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} />
+            </div>
             {
                 actual_artwork ?
                     <>
@@ -29,11 +32,14 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                             {
                                 actual_artwork_id && actual_artwork_url ?
                                     <>
-                                        <div className="title-wrapper">
-                                            <h2>{actual_artwork.title}</h2>
+                                        <div className="img-wrap">
+                                            <img src={`${actual_artwork_url}/${actual_artwork_id}/full/843,/0/default.jpg`} loading="lazy" placeholder="loading" />
                                             <FavouriteButton type="Artwork" />
                                         </div>
-                                        <img src={`${actual_artwork_url}/${actual_artwork_id}/full/843,/0/default.jpg`} />
+                                        <div className="title-wrapper">
+                                            <h2>{actual_artwork.title}</h2>
+                                            <p>{actual_artwork.medium_display}</p>
+                                        </div>
                                     </>
                                     :
                                     <>
@@ -46,10 +52,37 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                             }
                         </div>
                         <div className="artwork-details-wrapper">
-                            <h2>Title: {actual_artwork.title} ({actual_artwork.date_start}, {actual_artwork.date_end})</h2>
-                            <h3>Artist: {actual_artwork.artist_title}</h3>
-                            <h4>Department: {actual_artwork.department_title}</h4>
-                            <h5>Artwork type: {actual_artwork.artwork_type_title}</h5>
+                            <h6 className="detail-header">{actual_artwork.title}</h6>
+                            <p className="detail-paragraph">{actual_artwork.artist_title}</p>
+                            <h6 className="detail-header">Geography: </h6>
+                            <p className="detail-paragraph">{actual_artwork.place_of_origin}</p>
+                            <h6 className="detail-header">Date: </h6>
+                            <p className="detail-paragraph">
+                                {
+                                    actual_artwork.date_start === actual_artwork.date_end ?
+                                        actual_artwork.date_start
+                                        :
+                                        `${actual_artwork.date_start} - ${actual_artwork.date_end}`
+                                }
+                            </p>
+                            <h6 className="detail-header">Medium: </h6>
+                            <p className="detail-paragraph">{actual_artwork.artwork_type_title}</p>
+                            <h6 className="detail-header">Department: </h6>
+                            <p className="detail-paragraph">{actual_artwork.department_title}</p>
+                            <h6 className="detail-header">Dimensions: </h6>
+                            <p className="detail-paragraph">{actual_artwork.dimensions}</p>
+                            <h6 className="detail-header">Credit Line: </h6>
+                            <p className="detail-paragraph">{actual_artwork.credit_line}</p>
+                            <h6 className="detail-header">Catalogue: </h6>
+                            <p className="detail-paragraph">
+                                {
+                                    <p>
+                                        {
+                                            actual_artwork.catalogue_display.split("<p>").join("").split("</p>").join(" / ")
+                                        }
+                                    </p>
+                                }
+                            </p>
                         </div>
                     </>
                     : null

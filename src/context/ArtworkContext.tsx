@@ -93,11 +93,12 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                                 try {
                                     const response = await fetch(`${el.api_link}`);
                                     const imgdata = await response.json();
+                                    console.log(`Imagedata:`, imgdata)
                                     imageSites.push({
                                         url: `${imgdata.config.iiif_url}/${imgdata.data.image_id}`,
                                         title: `${el.title}`,
                                         id: `${el.id}`,
-                                        lqip: `${el.thumbnail?.lqip}`
+                                        lqip: `${imgdata.data.thumbnail?.lqip}`
                                     });
                                     if (imageSites.length === data.data.length) {
                                         dataDispatch({ type: "actual_artist_artworks_URLS", payload: imageSites })

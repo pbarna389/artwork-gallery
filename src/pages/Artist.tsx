@@ -25,7 +25,9 @@ const Artist: React.FC<IArtist> = ({ type }) => {
     const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading } = useContext(artworkContext) as IArtworkContext;
     const params = useParams();
     console.log(params);
-    if (actual_artist && artistArtworks) console.log(artistArtworks)
+    if (actual_artist && artistArtworks) console.log(artistArtworks);
+
+    console.log(actualArtistArtworksURLS)
 
     const handleClick = (e: any, id: number): void => {
         setArtworkID(id)
@@ -53,7 +55,6 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                             </div>
                         </div>
                         <div className="artist-artwork-wrapper">
-                            <NavigateIcon parent={`${type === "browse" ? "Artist" : "Profile"}`} />
                             <div className="artist-swiper-with-pagination">
                                 <SwiperWrapper direction="vertical" slideNumber={3}>
                                     {
@@ -62,7 +63,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                                 <SwiperSlide key={el.id} virtualIndex={idx} >
                                                     {
                                                         el.url !== "https://www.artic.edu/iiif/2/null" ?
-                                                            <img src={`${el.url}/full/200,/0/default.jpg`} alt="" loading="lazy" placeholder="loading..." />
+                                                            <img src={`${el.url}/full/200,/0/default.jpg`} alt="" loading="lazy" placeholder={`${el.lqip}`} />
                                                             :
                                                             <ImagePlaceholder />
                                                     }
@@ -83,7 +84,9 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                     </>
                     : <div>Loading...</div>
             }
-
+            <div className="button-wrapper">
+                <NavigateIcon parent={`${type === "browse" ? "Artist" : "Profile"}`} />
+            </div>
         </div>
     )
 }
