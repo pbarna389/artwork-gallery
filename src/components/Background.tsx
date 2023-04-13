@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import picture01 from "../assets/The_Taking_of_Christ-Caravaggio.jpg";
 import picture02 from "../assets/Judith-and-Holofernes.jpg";
+import picture03 from "../assets/Calling-of-St-Matthew.jpg";
+import picture04 from "../assets/caravaggio_-_supper_at_emmaus.jpg";
 
 import "../styles/components/Background.css"
 
 const Background = () => {
     const [showBg, setShowBg] = useState<boolean>(true);
     const [showBgTimeout, setShowBgTimeout] = useState<NodeJS.Timeout>();
-    const [backgrounds, setBackgrounds] = useState([picture01, picture02]);
+    const [backgrounds, setBackgrounds] = useState<string[]>([picture01, picture02, picture03, picture04]);
     const [backgroundsRotateTimeout, setBackgroundsRotateTimeout] = useState<NodeJS.Timeout>();
 
     useEffect(() => {
