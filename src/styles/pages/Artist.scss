@@ -1,3 +1,5 @@
+@use "../shared/shared.scss";
+
 .artist-wrapper {
   display: flex;
   flex-direction: row-reverse;
@@ -10,7 +12,8 @@
   }
 
   .artist-info-wrapper {
-    width: 45vw;
+    width: 55vw;
+    margin-right: 5%;
 
     .title-wrapper {
       width: fit-content;
@@ -36,6 +39,12 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      width: 100%;
+      margin-right: 1rem;
+      border-left: shared.$column-helper-width solid
+        rgba(255, 255, 255, shared.$column-opac);
+      border-right: shared.$column-helper-width solid
+        rgba(255, 255, 255, shared.$column-opac);
 
       p {
         margin: 0;
@@ -47,7 +56,7 @@
     }
 
     .mySwiper {
-      height: 45rem;
+      height: 51rem;
 
       .swiper-wrapper {
         justify-content: center;
