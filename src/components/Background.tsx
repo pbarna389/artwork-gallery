@@ -5,18 +5,29 @@ import picture02 from "../assets/Judith-and-Holofernes.jpg";
 import "../styles/components/Background.css"
 
 const Background = () => {
+    const [showBg, setShowBg] = useState<boolean>(true);
+    const [showBgTimeout, setShowBgTimeout] = useState<NodeJS.Timeout>();
     const [backgrounds, setBackgrounds] = useState([picture01, picture02]);
     const [backgroundsRotateTimeout, setBackgroundsRotateTimeout] = useState<NodeJS.Timeout>();
 
     useEffect(() => {
-        const id = setTimeout(() => {
+        setShowBg(true);
+        const showBgId = setTimeout(() => {
+            setShowBg(false);
+        }, 18500);
+
+        const rotateBgId = setTimeout(() => {
             rotateArray(backgrounds)
-        }, 20000);
+        }, 18700);
 
-        setBackgroundsRotateTimeout(id);
+        setBackgroundsRotateTimeout(rotateBgId);
+        setShowBgTimeout(showBgId);
 
-        return () => clearTimeout(backgroundsRotateTimeout)
-    }, [backgrounds])
+        return () => {
+            clearTimeout(showBgTimeout);
+            clearTimeout(backgroundsRotateTimeout);
+        }
+    }, [backgrounds]);
 
     const rotateArray = (arr: any[]) => {
         const originalArr: any[] = [];
@@ -29,7 +40,7 @@ const Background = () => {
     }
 
     return (
-        <div className="background">
+        <div className={`background ${showBg ? "show" : "hidden"}`}>
             <div className={`picture`} style={{ backgroundImage: `url(${backgrounds[0]})` }}></div>
         </div>
     )
