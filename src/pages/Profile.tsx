@@ -31,10 +31,6 @@ const Profile = () => {
         setArtistName(target.innerText.split(" ").slice(-1).join(""));
     };
 
-    const handleClickArtwork = (e: any, id: number): void => {
-        setArtworkID(id)
-    }
-
     return (
         <div className="profile-wrapper">
             <div className="artist-wrapper">
