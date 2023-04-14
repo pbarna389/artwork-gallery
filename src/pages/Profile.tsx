@@ -24,11 +24,13 @@ const Profile = () => {
     }, []);
 
 
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: number): void => {
-        const target = e.target as unknown as HTMLAnchorElement;
-        console.log(target.innerText);
-        setArtistID(id);
-        setArtistName(target.innerText.split(" ").slice(-1).join(""));
+    const handleClick = (id: number, name: string, type: "Artist" | "Artwork"): void => {
+        if (type === "Artist") {
+            setArtistID(id);
+            setArtistName(name.split(" ").slice(-1).join(""));
+        } else {
+            setArtworkID(id)
+        }
     };
 
     return (
@@ -40,11 +42,15 @@ const Profile = () => {
                         userState.favouriteArtists ?
                             userState.favouriteArtists.map((el: any, idx: number) =>
                                 <SwiperSlide key={el.title} virtualIndex={idx}>
-                                    <Link key={el.id} to={`/profile/artist/${el.id}/${artistArtworkPag}`} onClick={e => handleClick(e, el.id)} style={{ backgroundImage: `url(${Picture})` }}>
-                                        <div className="artist-name">
-                                            {el.title}
-                                        </div>
-                                    </Link>
+                                    <div className="img-wrapper">
+                                        <img src={Picture} alt="" loading="lazy" placeholder={`${el.lqip}`} />
+                                    </div>
+                                    <div className="link-wrapper">
+                                        <span>{el.title}</span>
+                                        <Link key={el.id} to={`/profile/artist/${el.id}/${artistArtworkPag}`} onClick={() => handleClick(el.id, el.title, "Artist")}>
+                                            <NavigateForward />
+                                        </Link>
+                                    </div>
                                 </SwiperSlide>)
                             : null
                     }
@@ -67,7 +73,7 @@ const Profile = () => {
                                     </div>
                                     <div className="link-wrapper">
                                         <span>{el.title}</span>
-                                        <Link to={`/profile/artwork/${el.id}`} onClick={e => handleClick(e, el.id)}>
+                                        <Link to={`/profile/artwork/${el.id}`} onClick={() => handleClick(el.id, el.title, "Artwork")}>
                                             <NavigateForward />
                                         </Link>
                                     </div>

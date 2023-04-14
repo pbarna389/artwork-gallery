@@ -15,6 +15,7 @@
 .profile-wrapper .artist-wrapper h3,
 .profile-wrapper .artworks-wrapper h3 {
   margin: 0;
+  align-self: flex-start;
 }
 .profile-wrapper .artist-wrapper .mySwiper,
 .profile-wrapper .artworks-wrapper .mySwiper {
@@ -23,10 +24,24 @@
 }
 .profile-wrapper .artist-wrapper .mySwiper .swiper-slide,
 .profile-wrapper .artworks-wrapper .mySwiper .swiper-slide {
-  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem !important;
   height: 20rem !important;
   opacity: 0.5;
   transition: opacity 0.3s ease-in;
+}
+.profile-wrapper .artist-wrapper .mySwiper .swiper-slide .img-wrapper,
+.profile-wrapper .artworks-wrapper .mySwiper .swiper-slide .img-wrapper {
+  width: inherit;
+  height: inherit;
+}
+.profile-wrapper .artist-wrapper .mySwiper .swiper-slide .img-wrapper img,
+.profile-wrapper .artworks-wrapper .mySwiper .swiper-slide .img-wrapper img {
+  width: inherit;
+  height: inherit;
 }
 .profile-wrapper .artist-wrapper .mySwiper .swiper-slide:hover,
 .profile-wrapper .artworks-wrapper .mySwiper .swiper-slide:hover {
@@ -36,6 +51,11 @@
 .profile-wrapper .artworks-wrapper .mySwiper .swiper-slide .swiper-wrapper {
   justify-content: center;
   align-items: center;
+}
+.profile-wrapper .artist-wrapper .mySwiper .swiper-slide .swiper-wrapper img,
+.profile-wrapper .artworks-wrapper .mySwiper .swiper-slide .swiper-wrapper img {
+  width: inherit;
+  height: inherit;
 }
 .profile-wrapper .artist-wrapper .mySwiper .swiper-slide a,
 .profile-wrapper .artworks-wrapper .mySwiper .swiper-slide a {
