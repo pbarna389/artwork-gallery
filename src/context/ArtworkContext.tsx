@@ -211,6 +211,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                                 newData.push(Object.assign({ iiif_url: imgdata.config.iiif_url }, imgdata.data))
 
                                 if (newData.length === data.data.length) {
+                                    console.log(newData);
 
                                     dataDispatch({
                                         type: "set_artworks", payload: newData.sort((a: any, b: any) => {

@@ -11,14 +11,15 @@ SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
 interface ISwiperWrapper extends IChildren {
     direction: "horizontal" | "vertical";
-    slideNumber: 3 | 5;
+    slideNumber: number;
+    virtual: boolean
 }
 
-const SwiperWrapper: React.FC<ISwiperWrapper> = ({ children, direction, slideNumber }) => {
+const SwiperWrapper: React.FC<ISwiperWrapper> = ({ children, direction, slideNumber, virtual }) => {
     return (
         <Swiper
             direction={direction}
-            modules={[Virtual, Mousewheel, SwiperPagination]}
+            modules={virtual ? [Mousewheel, SwiperPagination, Virtual] : [Mousewheel, SwiperPagination]}
             grabCursor={true}
             mousewheel={true}
             pagination={{
@@ -28,7 +29,7 @@ const SwiperWrapper: React.FC<ISwiperWrapper> = ({ children, direction, slideNum
             slidesPerView={slideNumber}
             spaceBetween={30}
             className="mySwiper"
-            virtual
+        // virtual
         >
             {children}
         </Swiper>

@@ -8,5 +8,39 @@
   width: 100vw;
 }
 .artworks-wrapper .mySwiper {
-  height: 25rem;
+  height: 50rem;
+}
+.artworks-wrapper .mySwiper .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40rem !important;
+  height: 48rem !important;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in;
+}
+.artworks-wrapper .mySwiper .swiper-slide:nth-child(even) {
+  width: 20rem !important;
+  height: 20rem !important;
+}
+.artworks-wrapper .mySwiper .swiper-slide:hover {
+  opacity: 1;
+}
+.artworks-wrapper .mySwiper .swiper-slide .img-wrapper {
+  width: inherit;
+  height: inherit;
+}
+.artworks-wrapper .mySwiper .swiper-slide .img-wrapper img {
+  width: inherit;
+  height: inherit;
+}
+.artworks-wrapper .mySwiper .swiper-slide .img-wrapper .image-placeholder {
+  width: inherit;
+  height: inherit;
+}
+.artworks-wrapper .mySwiper .swiper-slide a {
+  height: inherit;
+  display: block;
+  text-decoration: none;
 }/*# sourceMappingURL=Artworks.css.map */

@@ -35,3 +35,24 @@
   background-color: rgb(157, 27, 49);
   cursor: pointer;
 }
+
+.link-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: 2rem;
+}
+
+.link-wrapper > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link-wrapper > a > .icon-prov {
+  width: 3rem;
+  height: 2rem;
+  margin: 0;
+}

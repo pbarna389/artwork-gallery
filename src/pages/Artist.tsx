@@ -56,14 +56,14 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                         </div>
                         <div className="artist-artwork-wrapper">
                             <div className="artist-swiper-with-pagination">
-                                <SwiperWrapper direction="vertical" slideNumber={3}>
+                                <SwiperWrapper direction="vertical" slideNumber={3} virtual={true}>
                                     {
                                         actualArtistArtworksURLS ?
                                             actualArtistArtworksURLS.map((el: any, idx: number) =>
                                                 <SwiperSlide key={el.id} virtualIndex={idx} >
                                                     {
                                                         el.url !== "https://www.artic.edu/iiif/2/null" ?
-                                                            <img src={`${el.url}/full/200,/0/default.jpg`} alt="" loading="lazy" placeholder={`${el.lqip}`} />
+                                                            <img src={`${el.url}/full/843,/0/default.jpg`} alt="" loading="lazy" placeholder={`${el.lqip}`} />
                                                             :
                                                             <ImagePlaceholder />
                                                     }

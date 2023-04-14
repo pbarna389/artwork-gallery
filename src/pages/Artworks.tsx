@@ -8,6 +8,7 @@ import { SwiperSlide } from "swiper/react";
 import Pagination from "../components/Pagination";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import SwiperWrapper from "../components/SwiperWrapper";
+import NavigateForward from "../components/NavigateForward";
 
 import "../styles/pages/Artworks.css";
 
@@ -27,20 +28,27 @@ const Artworks = () => {
                     <div>Loading...</div>
                     :
                     <>
-                        <SwiperWrapper direction="horizontal" slideNumber={5}>
+                        <SwiperWrapper direction="horizontal" slideNumber={6} virtual={true}>
                             {
-                                artworks.map((el: any, index: number) =>
-                                    <SwiperSlide key={el.id} virtualIndex={index}>
-                                        {
-                                            el.image_id !== null ?
-                                                <img src={`${el.iiif_url}/${el.image_id}/full/200,/0/default.jpg`} alt="" loading="lazy" placeholder={`${el.lqip}`} />
-                                                :
-                                                <ImagePlaceholder />
-                                        }
-                                        <Link to={`/artworks/${params.artworkspage}/${el.id}`} onClick={e => handleClick(e, el.id)}>
-                                            {el.title}
-                                        </Link>
-                                    </SwiperSlide>)
+                                artworks ?
+                                    artworks.map((el: any, index: number) =>
+                                        <SwiperSlide key={el.id} virtualIndex={index}>
+                                            <div className="img-wrapper">
+                                                {
+                                                    el.image_id !== null ?
+                                                        <img src={`${el.iiif_url}/${el.image_id}/full/843,/0/default.jpg`} alt="" loading="lazy" placeholder={`${el.lqip}`} />
+                                                        :
+                                                        <ImagePlaceholder />
+                                                }
+                                            </div>
+                                            <div className="link-wrapper">
+                                                <span>{el.title}</span>
+                                                <Link to={`/artworks/${params.artworkspage}/${el.id}`} onClick={e => handleClick(e, el.id)}>
+                                                    <NavigateForward />
+                                                </Link>
+                                            </div>
+                                        </SwiperSlide>)
+                                    : null
                             }
 
                         </SwiperWrapper>
