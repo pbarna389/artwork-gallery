@@ -4,14 +4,14 @@ import { artworkContext } from "../context/ArtworkContext";
 
 import { Link, useParams } from "react-router-dom";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Virtual, Mousewheel, Pagination as SwiperPagination } from "swiper";
+import { SwiperSlide } from "swiper/react";
 
+import SwiperWrapper from "../components/SwiperWrapper";
 import Picture from "../assets/prof-pic.png";
+import ImagePlaceholder from "../components/ImagePlaceholder";
+import NavigateForward from "../components/NavigateForward";
 
 import "../styles/pages/Profile.css";
-
-SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
 const Profile = () => {
     const { userState, setArtistPagination, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, setArtworkID } = useContext(artworkContext) as IArtworkContext;
@@ -37,22 +37,9 @@ const Profile = () => {
 
     return (
         <div className="profile-wrapper">
-            <div>
+            <div className="artist-wrapper">
                 <h3>Artists: </h3>
-                <Swiper
-                    direction={"horizontal"}
-                    modules={[Virtual, Mousewheel, SwiperPagination]}
-                    grabCursor={true}
-                    mousewheel={true}
-                    pagination={{
-                        type: "fraction"
-                    }}
-                    centeredSlides={true}
-                    slidesPerView={3}
-                    spaceBetween={30}
-                    className="mySwiper"
-                    virtual
-                >
+                <SwiperWrapper key="swiper-artist" direction="horizontal" slideNumber={5} virtual={true}>
                     {
                         userState.favouriteArtists ?
                             userState.favouriteArtists.map((el: any, idx: number) =>
@@ -65,37 +52,33 @@ const Profile = () => {
                                 </SwiperSlide>)
                             : null
                     }
-                </Swiper>
+                </SwiperWrapper>
             </div>
-            <div>
+            <div className="artworks-wrapper">
                 <h3>Artworks: </h3>
-                <Swiper
-                    direction={"horizontal"}
-                    modules={[Virtual, Mousewheel, SwiperPagination]}
-                    grabCursor={true}
-                    mousewheel={true}
-                    pagination={{
-                        type: "fraction"
-                    }}
-                    centeredSlides={true}
-                    slidesPerView={3}
-                    spaceBetween={30}
-                    className="mySwiper"
-                    virtual
-                >
+                <SwiperWrapper key="swiper-artwork" direction="horizontal" slideNumber={5} virtual={true}>
                     {
                         userState.favouriteArtworks ?
                             userState.favouriteArtworks.map((el: any, idx: number) =>
-                                <SwiperSlide key={el.title} virtualIndex={idx}>
-                                    <Link key={el.id} to={`/profile/artwork/${el.id}`} onClick={e => handleClickArtwork(e, el.id)} style={{ backgroundImage: `url(${Picture})` }}>
-                                        <div className="artist-name">
-                                            {el.title}
-                                        </div>
-                                    </Link>
+                                <SwiperSlide key={`slide/${el.id}`} virtualIndex={idx}>
+                                    <div className="img-wrapper">
+                                        {
+                                            el.image !== null ?
+                                                <img src={el.image} alt="" loading="lazy" placeholder={`${el.lqip}`} />
+                                                :
+                                                <ImagePlaceholder />
+                                        }
+                                    </div>
+                                    <div className="link-wrapper">
+                                        <span>{el.title}</span>
+                                        <Link to={`/profile/artwork/${el.id}`} onClick={e => handleClick(e, el.id)}>
+                                            <NavigateForward />
+                                        </Link>
+                                    </div>
                                 </SwiperSlide>)
                             : null
                     }
-                </Swiper>
+                </SwiperWrapper>
             </div>
         </div>
     )

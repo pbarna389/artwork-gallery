@@ -1,0 +1,60 @@
+.profile-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .artist-wrapper,
+  .artworks-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    // align-items: center;
+    z-index: 0;
+    height: 45vh;
+
+    h3 {
+      margin: 0;
+    }
+
+    .mySwiper {
+      height: 20rem;
+      width: 100vw;
+
+      .swiper-slide {
+        width: 15rem;
+        height: 20rem !important;
+        opacity: 0.5;
+        transition: opacity 0.3s ease-in;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        .swiper-wrapper {
+          justify-content: center;
+          align-items: center;
+        }
+
+        a {
+          background-repeat: none;
+          background-size: 100% 100%;
+          height: inherit;
+          display: block;
+          text-decoration: none;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+        }
+      }
+
+      .swiper-pagination-fraction {
+        top: 0;
+        height: 1rem;
+      }
+    }
+  }
+
+  .artworks-wrapper {
+  }
+}

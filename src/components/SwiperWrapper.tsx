@@ -7,6 +7,8 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import 'swiper/css/navigation';
 
+import "../styles/components/SwiperWrapper.css"
+
 SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
 
 interface ISwiperWrapper extends IChildren {

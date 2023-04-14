@@ -1,1 +1,55 @@
-/*# sourceMappingURL=Profile.css.map */
+.profile-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.profile-wrapper .artist-wrapper,
+.profile-wrapper .artworks-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  justify-content: center;
+  z-index: 0;
+  height: 45vh;
+}
+.profile-wrapper .artist-wrapper h3,
+.profile-wrapper .artworks-wrapper h3 {
+  margin: 0;
+}
+.profile-wrapper .artist-wrapper .mySwiper,
+.profile-wrapper .artworks-wrapper .mySwiper {
+  height: 20rem;
+  width: 100vw;
+}
+.profile-wrapper .artist-wrapper .mySwiper .swiper-slide,
+.profile-wrapper .artworks-wrapper .mySwiper .swiper-slide {
+  width: 15rem;
+  height: 20rem !important;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in;
+}
+.profile-wrapper .artist-wrapper .mySwiper .swiper-slide:hover,
+.profile-wrapper .artworks-wrapper .mySwiper .swiper-slide:hover {
+  opacity: 1;
+}
+.profile-wrapper .artist-wrapper .mySwiper .swiper-slide .swiper-wrapper,
+.profile-wrapper .artworks-wrapper .mySwiper .swiper-slide .swiper-wrapper {
+  justify-content: center;
+  align-items: center;
+}
+.profile-wrapper .artist-wrapper .mySwiper .swiper-slide a,
+.profile-wrapper .artworks-wrapper .mySwiper .swiper-slide a {
+  background-repeat: none;
+  background-size: 100% 100%;
+  height: inherit;
+  display: block;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.profile-wrapper .artist-wrapper .mySwiper .swiper-pagination-fraction,
+.profile-wrapper .artworks-wrapper .mySwiper .swiper-pagination-fraction {
+  top: 0;
+  height: 1rem;
+}/*# sourceMappingURL=Profile.css.map */

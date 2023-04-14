@@ -69,6 +69,7 @@ nav.not-shown {
 }
 nav .link-wrapper {
   display: flex;
+  justify-content: flex-start;
   margin: 0;
   width: 100vw;
   height: 100vh;

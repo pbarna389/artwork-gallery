@@ -38,11 +38,11 @@ const Artists = () => {
             <div className="artists-wrapper">
                 <div>Current page: {params.page}</div>
 
-                <SwiperWrapper direction='horizontal' slideNumber={5}>
+                <SwiperWrapper direction='horizontal' slideNumber={5} virtual={true}>
                     {
                         artists ?
                             artists.map((el: any, index: number) =>
-                                <SwiperSlide key={el.title} virtualIndex={index}>
+                                <SwiperSlide key={`slide/${el.id}`} virtualIndex={index}>
                                     <Link key={el.id} to={`/artists/${params.page}/${el.id}/${artistArtworkPag}`} onClick={e => handleClick(e, el.id)} style={{ backgroundImage: `url(${Picture})` }}>
                                         <div className="artist-name">
                                             {el.title}

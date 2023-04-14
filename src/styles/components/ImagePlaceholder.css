@@ -5,7 +5,7 @@
   width: 20rem;
 }
 .swiper-slide .image-placeholder .blur-filter {
-  height: 16.5rem;
+  height: inherit;
   width: inherit;
   position: absolute;
   top: 0;
