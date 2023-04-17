@@ -6,6 +6,10 @@
   // justify-content: center;
   gap: 1rem;
 
+  @include shared.mobiles {
+    flex-direction: column;
+  }
+
   .placeholder {
     height: 84vh;
   }
@@ -14,6 +18,10 @@
     display: flex;
     justify-content: center;
     width: 10%;
+
+    @include shared.mobiles {
+      margin: 1rem 0;
+    }
   }
 
   .artwork-image-wrapper {
@@ -26,6 +34,12 @@
 
     border-left: shared.$column-helper-width solid rgba(255, 255, 255, 0.2);
 
+    @include shared.mobiles {
+      border-left: none;
+      width: 100vw;
+      flex-direction: column-reverse;
+    }
+
     .img-wrap {
       position: relative;
       width: 100%;
@@ -36,6 +50,11 @@
         height: inherit;
         margin: 1rem;
         padding-right: 1rem;
+
+        @include shared.mobiles {
+          margin: 0;
+          padding: 0;
+        }
       }
 
       .icon-prov {
@@ -59,10 +78,19 @@
       margin-top: 2rem;
       margin-left: 2rem;
 
+      @include shared.mobiles {
+        margin: 0;
+        padding: 0;
+      }
+
       h2 {
         font-size: 2rem;
         margin: 0;
         padding: 0;
+
+        @include shared.mobiles {
+          text-align: center;
+        }
       }
     }
   }
@@ -79,6 +107,12 @@
     width: 35vw;
     overflow: hidden;
     border-left: shared.$column-helper-width solid rgba(255, 255, 255, 0.2);
+
+    @include shared.mobiles {
+      border-left: none;
+      height: auto;
+      width: fit-content;
+    }
 
     .detail-header {
       position: relative;

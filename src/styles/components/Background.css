@@ -9,11 +9,6 @@
   background-color: black;
   opacity: 0.2;
 }
-@media (min-width: 319px) and (max-width: 640px) {
-  .background {
-    opacity: 1;
-  }
-}
 .background.show {
   display: block;
 }

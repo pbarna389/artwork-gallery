@@ -1,9 +1,18 @@
+header .toolbar {
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1rem;
+}
 header .toolbar .toolbar-options {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 5rem;
   margin-top: 1rem;
+}
+@media (min-width: 319px) and (max-width: 640px) {
+  header .toolbar .toolbar-options {
+    justify-content: center;
+  }
 }
 header .toolbar .toolbar-options .btn-logout {
   background: none;

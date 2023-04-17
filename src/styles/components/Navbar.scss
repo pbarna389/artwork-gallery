@@ -2,12 +2,19 @@
 
 header {
   .toolbar {
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 1rem;
+
     .toolbar-options {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 5rem;
       margin-top: 1rem;
+
+      @include shared.mobiles {
+        justify-content: center;
+      }
 
       .btn-logout {
         background: none;

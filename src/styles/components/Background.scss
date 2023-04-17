@@ -11,9 +11,9 @@
   background-color: black;
   opacity: 0.2;
 
-  @include shared.mobiles {
-    opacity: 1;
-  }
+  // @include shared.mobiles {
+  //   opacity: 1;
+  // }
 
   &.show {
     display: block;

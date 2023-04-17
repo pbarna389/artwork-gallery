@@ -45,7 +45,6 @@ const Navbar = () => {
                         <button className="btn-logout" onClick={logout}><RiLogoutCircleRLine /></button>
                     </IconContext.Provider>
                 </div>
-                <div className="toolbar-helper"></div>
             </div>
             <Navigation />
         </header>
