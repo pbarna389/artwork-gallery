@@ -16,7 +16,7 @@ h1 {
   border-top-right-radius: 2rem;
   border-top-left-radius: 2rem;
 }
-@media (min-width: 320px) and (max-width: 640px) {
+@media (min-width: 319px) and (max-width: 640px) {
   h1 {
     width: 100vw;
     border-radius: 0rem;

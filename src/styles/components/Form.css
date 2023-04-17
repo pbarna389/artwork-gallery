@@ -14,7 +14,7 @@
   background-color: rgba(33, 33, 33, 0.365);
   gap: 1rem;
 }
-@media (min-width: 320px) and (max-width: 640px) {
+@media (min-width: 319px) and (max-width: 640px) {
   .form-wrapper {
     width: 100%;
     border: none;
@@ -22,7 +22,7 @@
     border-radius: 0rem;
   }
 }
-@media (min-width: 320px) and (max-width: 640px) {
+@media (min-width: 319px) and (max-width: 640px) {
   .form-wrapper {
     position: static;
   }
