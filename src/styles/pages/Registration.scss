@@ -1,3 +1,5 @@
+@use "../shared/shared.scss";
+
 .registration-wrapper {
   display: flex;
   flex-direction: column;
@@ -6,18 +8,11 @@
   height: 100vh;
   margin: 0;
 
-  // form {
-  //   display: inherit;
-  //   flex-direction: inherit;
-  //   justify-content: inherit;
-  //   align-items: inherit;
-
-  //   input {
-  //     color: black;
-  //   }
-
-  //   button {
-  //     color: black;
-  //   }
-  // }
+  .form-wrapper {
+    h1 {
+      @include shared.mobiles {
+        font-size: 2.5rem;
+      }
+    }
+  }
 }

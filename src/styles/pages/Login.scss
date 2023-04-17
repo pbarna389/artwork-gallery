@@ -1,14 +1,30 @@
 @use "../shared/shared.scss";
 
 .login-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
   z-index: 10;
   height: 100vh;
   margin: 0;
+
+  @include shared.mobiles {
+    position: static;
+  }
+
+  @include shared.tablets {
+    position: relative;
+  }
+
+  @include shared.desktops {
+    position: relative;
+  }
+
+  @include shared.uhd-desktops {
+    position: relative;
+  }
 
   a {
     color: black;

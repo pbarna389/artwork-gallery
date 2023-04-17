@@ -8,6 +8,29 @@
   justify-content: center;
   flex-direction: column;
 
+  @include shared.mobiles {
+    width: 100%;
+    border: none;
+    height: 100%;
+    border-radius: 0rem;
+  }
+
+  @include shared.mobiles {
+    position: static;
+  }
+
+  @include shared.tablets {
+    position: relative;
+  }
+
+  @include shared.desktops {
+    position: relative;
+  }
+
+  @include shared.uhd-desktops {
+    position: relative;
+  }
+
   height: 50rem;
   width: 50rem;
 

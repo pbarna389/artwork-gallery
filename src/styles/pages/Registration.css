@@ -5,4 +5,9 @@
   justify-content: center;
   height: 100vh;
   margin: 0;
+}
+@media (min-width: 320px) and (max-width: 640px) {
+  .registration-wrapper .form-wrapper h1 {
+    font-size: 2.5rem;
+  }
 }/*# sourceMappingURL=Registration.css.map */

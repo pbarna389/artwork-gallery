@@ -14,6 +14,34 @@
   background-color: rgba(33, 33, 33, 0.365);
   gap: 1rem;
 }
+@media (min-width: 320px) and (max-width: 640px) {
+  .form-wrapper {
+    width: 100%;
+    border: none;
+    height: 100%;
+    border-radius: 0rem;
+  }
+}
+@media (min-width: 320px) and (max-width: 640px) {
+  .form-wrapper {
+    position: static;
+  }
+}
+@media (min-width: tablet-width) and (max-width: 1280px) {
+  .form-wrapper {
+    position: relative;
+  }
+}
+@media (min-width: hd-width) and (max-width: 1920px) {
+  .form-wrapper {
+    position: relative;
+  }
+}
+@media (min-width: 1920px) {
+  .form-wrapper {
+    position: relative;
+  }
+}
 .form-wrapper h1 {
   margin: 0rem;
   text-transform: uppercase;

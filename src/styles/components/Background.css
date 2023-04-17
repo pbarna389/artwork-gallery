@@ -9,6 +9,11 @@
   background-color: black;
   opacity: 0.2;
 }
+@media (min-width: 320px) and (max-width: 640px) {
+  .background {
+    opacity: 1;
+  }
+}
 .background.show {
   display: block;
 }
@@ -16,13 +21,13 @@
   display: none;
 }
 .background .picture {
+  position: absolute;
+  top: 0;
   height: 100vh;
   width: inherit;
   background-position: top;
   background-size: cover;
   transition: all 1s ease-in;
-  position: absolute;
-  top: 0;
   z-index: -1;
   opacity: 1;
   animation: moving-bg 19s linear infinite;

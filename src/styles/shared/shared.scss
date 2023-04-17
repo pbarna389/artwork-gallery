@@ -11,3 +11,32 @@ $vidaloka-size: 40px;
 $heebo-font: "Heebo", sans-serif;
 $heebo-font-01: 14px;
 $heebo-font-02: 16px;
+
+$mobile-width: 320px;
+$tablet-width: 640px;
+$hd-width: 1280px;
+$uhd-width: 1920px;
+
+@mixin mobiles {
+  @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin tablets {
+  @media (min-width: #{tablet-width}) and (max-width: #{$hd-width}) {
+    @content;
+  }
+}
+
+@mixin desktops {
+  @media (min-width: #{hd-width}) and (max-width: #{$uhd-width}) {
+    @content;
+  }
+}
+
+@mixin uhd-desktops {
+  @media (min-width: #{$uhd-width}) {
+    @content;
+  }
+}
