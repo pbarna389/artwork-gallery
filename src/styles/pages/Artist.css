@@ -99,7 +99,6 @@
   }
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-wrapper {
-  justify-content: center;
   align-items: center;
 }
 @media (min-width: 319px) and (max-width: 640px) {
