@@ -15,8 +15,9 @@
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .artist-wrapper .button-wrapper {
+    margin-top: 1rem;
     width: 100%;
-    margin: 0.5rem 0;
+    order: -1;
   }
 }
 .artist-wrapper .artist-info-wrapper {
@@ -39,6 +40,9 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+.artist-wrapper .artist-info-wrapper .title-wrapper h2 {
+  margin: 0;
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .artist-wrapper .artist-info-wrapper .title-wrapper {
