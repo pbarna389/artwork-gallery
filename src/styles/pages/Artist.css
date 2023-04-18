@@ -3,14 +3,35 @@
   flex-direction: row-reverse;
   justify-content: center;
 }
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper {
+    flex-direction: column;
+  }
+}
 .artist-wrapper .button-wrapper {
   display: flex;
   justify-content: center;
   width: 10%;
 }
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper .button-wrapper {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
 .artist-wrapper .artist-info-wrapper {
   width: 55vw;
   margin-right: 5%;
+}
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper .artist-info-wrapper {
+    width: 100%;
+  }
+}
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper .artist-info-wrapper .birth-paragraph {
+    text-align: center;
+  }
 }
 .artist-wrapper .artist-info-wrapper .title-wrapper {
   width: -moz-fit-content;
@@ -18,6 +39,12 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper .artist-info-wrapper .title-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
 }
 .artist-wrapper .artist-info-wrapper .title-wrapper .icon-prov {
   height: 3rem;
@@ -29,6 +56,11 @@
   display: flex;
   align-items: center;
 }
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper .artist-artwork-wrapper {
+    width: 100vw;
+  }
+}
 .artist-wrapper .artist-artwork-wrapper .artist-swiper-with-pagination {
   display: flex;
   flex-direction: column;
@@ -39,6 +71,11 @@
   border-left: 3px solid rgba(255, 255, 255, 0.2);
   border-right: 3px solid rgba(255, 255, 255, 0.2);
 }
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper .artist-artwork-wrapper .artist-swiper-with-pagination {
+    border: none;
+  }
+}
 .artist-wrapper .artist-artwork-wrapper .artist-swiper-with-pagination p {
   margin: 0;
 }
@@ -48,9 +85,23 @@
 .artist-wrapper .artist-artwork-wrapper .mySwiper {
   height: 51rem;
 }
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper .artist-artwork-wrapper .mySwiper {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 100vw;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-wrapper {
   justify-content: center;
   align-items: center;
+}
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-wrapper {
+    justify-content: flex-start;
+  }
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide {
   display: flex;
@@ -75,6 +126,6 @@
   text-decoration: none;
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-pagination-fraction {
-  top: 0;
-  height: 1rem;
+  margin-top: 0.5rem;
+  text-align: center;
 }/*# sourceMappingURL=Artist.css.map */

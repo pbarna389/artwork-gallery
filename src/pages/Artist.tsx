@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { Link, useParams } from "react-router-dom";
 
@@ -17,17 +17,42 @@ import NavigateIcon from "../components/NavigateIcon";
 
 import "../styles/pages/Artist.css"
 
+const getWindowDimensions = () => {
+    const { innerWidth: width } = window;
+    return {
+        width
+    }
+};
+
 interface IArtist {
     type: "profile" | "browse"
 };
 
+interface IWindowWidth {
+    width: number
+};
+
 const Artist: React.FC<IArtist> = ({ type }) => {
     const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading } = useContext(artworkContext) as IArtworkContext;
-    const params = useParams();
-    console.log(params);
-    if (actual_artist && artistArtworks) console.log(artistArtworks);
 
-    console.log(actualArtistArtworksURLS)
+    const [windowWidth, setWindowWidth] = useState<IWindowWidth>(getWindowDimensions());
+    const [mobileView, setMobileView] = useState<boolean>(false);
+
+    const params = useParams();
+
+    useEffect(() => {
+        const handleResize = (): void => {
+            setWindowWidth(getWindowDimensions())
+        };
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize)
+    }, [windowWidth])
+
+    useEffect(() => {
+        if (windowWidth.width > 319 && windowWidth.width < 640) setMobileView(true);
+        else setMobileView(false);
+    }, [windowWidth]);
 
     const handleClick = (e: any, id: number): void => {
         setArtworkID(id)
@@ -43,7 +68,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                 <h2>{actual_artist.title}</h2>
                                 <FavouriteButton type="Artist" />
                             </div>
-                            <p>{actual_artist.birth_date} - {actual_artist.death_date}</p>
+                            <p className="birth-paragraph">{actual_artist.birth_date} - {actual_artist.death_date}</p>
                             <div>
                                 {
                                     actual_artist.description ?
@@ -56,7 +81,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                         </div>
                         <div className="artist-artwork-wrapper">
                             <div className="artist-swiper-with-pagination">
-                                <SwiperWrapper direction="vertical" slideNumber={3} virtual={true}>
+                                <SwiperWrapper direction={mobileView ? "horizontal" : "vertical"} slideNumber={mobileView ? 1 : 3} virtual={false}>
                                     {
                                         actualArtistArtworksURLS ?
                                             actualArtistArtworksURLS.map((el: any, idx: number) =>

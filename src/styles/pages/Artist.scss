@@ -5,21 +5,45 @@
   flex-direction: row-reverse;
   justify-content: center;
 
+  @include shared.mobiles {
+    flex-direction: column;
+  }
+
   .button-wrapper {
     display: flex;
     justify-content: center;
     width: 10%;
+
+    @include shared.mobiles {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
   }
 
   .artist-info-wrapper {
     width: 55vw;
     margin-right: 5%;
 
+    @include shared.mobiles {
+      width: 100%;
+    }
+
+    .birth-paragraph {
+      @include shared.mobiles {
+        text-align: center;
+      }
+    }
+
     .title-wrapper {
       width: fit-content;
       display: flex;
       align-items: center;
       gap: 1rem;
+
+      @include shared.mobiles {
+        width: 100%;
+        justify-content: center;
+      }
 
       .icon-prov {
         height: 3rem;
@@ -34,6 +58,10 @@
     display: flex;
     align-items: center;
 
+    @include shared.mobiles {
+      width: 100vw;
+    }
+
     .artist-swiper-with-pagination {
       display: flex;
       flex-direction: column;
@@ -45,6 +73,10 @@
         rgba(255, 255, 255, shared.$column-opac);
       border-right: shared.$column-helper-width solid
         rgba(255, 255, 255, shared.$column-opac);
+
+      @include shared.mobiles {
+        border: none;
+      }
 
       p {
         margin: 0;
@@ -58,9 +90,20 @@
     .mySwiper {
       height: 51rem;
 
+      @include shared.mobiles {
+        height: fit-content;
+        width: 100vw;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
       .swiper-wrapper {
         justify-content: center;
         align-items: center;
+
+        @include shared.mobiles {
+          justify-content: flex-start;
+        }
       }
 
       .swiper-slide {
@@ -90,8 +133,8 @@
       }
 
       .swiper-pagination-fraction {
-        top: 0;
-        height: 1rem;
+        margin-top: 0.5rem;
+        text-align: center;
       }
     }
   }

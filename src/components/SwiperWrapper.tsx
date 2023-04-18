@@ -1,11 +1,14 @@
+import { useEffect, useState } from "react";
+
 import { IChildren } from "../@types/artwork";
 
 import { Swiper } from "swiper/react";
-import SwiperCore, { Virtual, Mousewheel, Pagination as SwiperPagination } from "swiper";
+import SwiperCore, { Virtual, Mousewheel, Pagination as SwiperPagination, Lazy } from "swiper";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import 'swiper/css/navigation';
+import "swiper/css/scrollbar"
 
 import "../styles/components/SwiperWrapper.css"
 
@@ -21,9 +24,10 @@ const SwiperWrapper: React.FC<ISwiperWrapper> = ({ children, direction, slideNum
     return (
         <Swiper
             direction={direction}
-            modules={virtual ? [Mousewheel, SwiperPagination, Virtual] : [Mousewheel, SwiperPagination]}
+            modules={virtual ? [Virtual, Mousewheel, SwiperPagination] : [Mousewheel, SwiperPagination]}
             grabCursor={true}
             mousewheel={true}
+            // scrollbar={{ hide: false }}
             pagination={{
                 type: "fraction"
             }}
@@ -31,7 +35,7 @@ const SwiperWrapper: React.FC<ISwiperWrapper> = ({ children, direction, slideNum
             slidesPerView={slideNumber}
             spaceBetween={30}
             className="mySwiper"
-        // virtual
+            virtual
         >
             {children}
         </Swiper>
