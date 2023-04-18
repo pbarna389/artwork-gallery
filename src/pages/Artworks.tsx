@@ -28,7 +28,7 @@ const Artworks = () => {
                     <div>Loading...</div>
                     :
                     <>
-                        <SwiperWrapper direction="horizontal" slideNumber={6} virtual={true}>
+                        <SwiperWrapper direction="horizontal" slideNumber={6} virtual={false}>
                             {
                                 artworks ?
                                     artworks.map((el: any, index: number) =>

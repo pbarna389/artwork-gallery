@@ -22,23 +22,47 @@ interface ISwiperWrapper extends IChildren {
 
 const SwiperWrapper: React.FC<ISwiperWrapper> = ({ children, direction, slideNumber, virtual }) => {
     return (
-        <Swiper
-            direction={direction}
-            modules={virtual ? [Virtual, Mousewheel, SwiperPagination] : [Mousewheel, SwiperPagination]}
-            grabCursor={true}
-            mousewheel={true}
-            // scrollbar={{ hide: false }}
-            pagination={{
-                type: "fraction"
-            }}
-            centeredSlides={true}
-            slidesPerView={slideNumber}
-            spaceBetween={30}
-            className="mySwiper"
-            virtual
-        >
-            {children}
-        </Swiper>
+        <>
+            {
+                virtual ?
+                    <Swiper
+                        direction={direction}
+                        modules={[Virtual, Mousewheel, SwiperPagination]}
+                        grabCursor={true}
+                        mousewheel={true}
+                        // scrollbar={{ hide: false }}
+                        pagination={{
+                            type: "fraction"
+                        }
+                        }
+                        centeredSlides={true}
+                        slidesPerView={slideNumber}
+                        spaceBetween={30}
+                        className="mySwiper"
+                        virtual
+                    >
+                        {children}
+                    </Swiper >
+                    :
+                    <Swiper
+                        direction={direction}
+                        modules={[Mousewheel, SwiperPagination]}
+                        grabCursor={true}
+                        mousewheel={true}
+                        // scrollbar={{ hide: false }}
+                        pagination={{
+                            type: "fraction"
+                        }}
+                        centeredSlides={true}
+                        slidesPerView={slideNumber}
+                        spaceBetween={30}
+                        className="mySwiper"
+                    >
+                        {children}
+                    </Swiper>
+            }
+        </>
+
     )
 }
 
