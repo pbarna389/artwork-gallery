@@ -137,15 +137,9 @@
           }
         }
 
-        a {
-          height: inherit;
-          display: block;
-          text-decoration: none;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          width: 70%;
-          text-align: center;
+        .link-wrapper {
+          width: 50%;
+          justify-content: center;
         }
       }
       .swiper-pagination {

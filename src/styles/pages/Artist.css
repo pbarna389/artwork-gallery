@@ -131,15 +131,9 @@
     height: 16rem;
   }
 }
-.artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide a {
-  height: inherit;
-  display: block;
-  text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 70%;
-  text-align: center;
+.artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide .link-wrapper {
+  width: 50%;
+  justify-content: center;
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-pagination {
   margin-top: 0.5rem;

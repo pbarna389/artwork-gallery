@@ -67,12 +67,15 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                                             :
                                                             <ImagePlaceholder />
                                                     }
-                                                    <Link
-                                                        to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/artist/${params.personid}/${params.artworkpage}/${el.id}`}`}
-                                                        onClick={e => handleClick(e, el.id)}
-                                                    >
-                                                        {el.title}
-                                                    </Link>
+                                                    <div className="link-wrapper">
+                                                        <span className="link-title">{el.title}</span>
+                                                        <Link
+                                                            to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/artist/${params.personid}/${params.artworkpage}/${el.id}`}`}
+                                                            onClick={e => handleClick(e, el.id)}
+                                                        >
+                                                            <NavigateForward />
+                                                        </Link>
+                                                    </div>
                                                 </SwiperSlide>)
                                             : null
                                     }
