@@ -1,3 +1,5 @@
+@use "../shared/shared.scss";
+
 .profile-wrapper {
   display: flex;
   flex-direction: column;
@@ -11,7 +13,7 @@
     justify-content: flex-start;
     // align-items: center;
     z-index: 0;
-    height: 45vh;
+    // height: 45vh;
 
     h3 {
       margin: 0;
@@ -19,8 +21,8 @@
     }
 
     .mySwiper {
-      height: 25rem;
       width: 100vw;
+      height: 20rem;
 
       .swiper-slide {
         display: flex;
@@ -28,17 +30,32 @@
         justify-content: center;
         align-items: center;
         width: 20rem !important;
-        height: 20rem !important;
+        height: 18rem !important;
         opacity: 0.5;
         transition: opacity 0.3s ease-in;
 
+        @include shared.mobiles {
+          width: 100% !important;
+          height: 18rem !important;
+        }
+
+        @include shared.mobile-height {
+          height: 14rem !important;
+        }
+
         .img-wrapper {
+          display: flex;
+          justify-content: center;
           width: inherit;
           height: inherit;
 
           img {
             width: inherit;
             height: inherit;
+
+            @include shared.mobiles {
+              width: 65%;
+            }
           }
         }
 

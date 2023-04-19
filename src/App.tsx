@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Registration";
 import Profile from "./pages/Profile";
 import Background from "./components/Background";
+import Footer from "./components/Footer";
 
 import './App.css';
 
@@ -70,6 +71,7 @@ function App() {
 									</Route>
 								</Route>
 							</Routes>
+							<Footer />
 						</BrowserRouter>
 					</div>
 			}

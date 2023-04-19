@@ -17,8 +17,18 @@ $tablet-width: 640px;
 $hd-width: 1280px;
 $uhd-width: 1920px;
 
+$mobile-height: 400px;
+$tablet-height: 799px;
+$hd-height: 1100px;
+
 @mixin mobiles {
   @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin mobile-height {
+  @media (min-height: #{$mobile-height}) and (max-height: #{$tablet-height}) {
     @content;
   }
 }

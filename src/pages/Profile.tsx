@@ -14,7 +14,7 @@ import NavigateForward from "../components/NavigateForward";
 import "../styles/pages/Profile.css";
 
 const Profile = () => {
-    const { userState, setArtistPagination, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, setArtworkID } = useContext(artworkContext) as IArtworkContext;
+    const { userState, setArtistPagination, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, setArtworkID, mobileView } = useContext(artworkContext) as IArtworkContext;
     const params = useParams();
     console.log(userState.favouriteArtists, userState.favouriteArtworks)
 
@@ -37,7 +37,7 @@ const Profile = () => {
         <div className="profile-wrapper">
             <div className="artist-wrapper">
                 <h3>Artists: </h3>
-                <SwiperWrapper key="swiper-artist" direction="horizontal" slideNumber={5} virtual={true}>
+                <SwiperWrapper key="swiper-artist" direction="horizontal" slideNumber={mobileView ? 1 : 5} virtual={true}>
                     {
                         userState.favouriteArtists ?
                             userState.favouriteArtists.map((el: any, idx: number) =>
@@ -58,7 +58,7 @@ const Profile = () => {
             </div>
             <div className="artworks-wrapper">
                 <h3>Artworks: </h3>
-                <SwiperWrapper key="swiper-artwork" direction="horizontal" slideNumber={5} virtual={true}>
+                <SwiperWrapper key="swiper-artwork" direction="horizontal" slideNumber={mobileView ? 1 : 5} virtual={true}>
                     {
                         userState.favouriteArtworks ?
                             userState.favouriteArtworks.map((el: any, idx: number) =>
