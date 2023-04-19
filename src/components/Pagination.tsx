@@ -21,8 +21,8 @@ const Pagination: React.FC<IPaginationProps> = ({ related, pageNumMax, setPagina
     const currentPage: number = related === "artist_list" ? Number(params.page) : related === "artwork_list" ? Number(params.artworkspage) : Number(params.artworkpage);
     // const pageLinks = Array.from({ length: pageNumMax }, (_, i) => i + 1);
     const pageLinks =
-        pageNumMax < 5 ? Array.from({ length: pageNumMax }, (_, i) => i + 1)
-            : currentPage < 5 ? [1, 2, 3, 4, 5, "...", pageNumMax]
+        pageNumMax < 4 ? Array.from({ length: pageNumMax }, (_, i) => i + 1)
+            : currentPage < 3 ? [1, 2, 3, "...", pageNumMax]
                 : currentPage === pageNumMax - 1 || currentPage === pageNumMax ? [1, "...", pageNumMax - 2, pageNumMax - 1, pageNumMax]
                     : [1, "...", currentPage - 1, currentPage, currentPage + 1, "...", pageNumMax];
 
@@ -35,11 +35,11 @@ const Pagination: React.FC<IPaginationProps> = ({ related, pageNumMax, setPagina
             {
                 pageNumMax && pagType ?
                     pagType === "artist_list" ?
-                        pageLinks.map(el => typeof el === "string" ? <span>{el}</span> : <Link key={el} to={`/artists/${el}`} onClick={e => handleClick(e, el)}>{el}</Link>)
+                        pageLinks.map(el => typeof el === "string" ? <span>{el}</span> : <Link className={el === currentPage ? "active" : ""} key={el} to={`/artists/${el}`} onClick={e => handleClick(e, el)}>{el}</Link>)
                         : pagType === "artwork_list" ?
-                            pageLinks.map(el => typeof el === "string" ? <span>{el}</span> : <Link key={el} to={`/artworks/${el}`} onClick={e => handleClick(e, el)}>{el}</Link>)
+                            pageLinks.map(el => typeof el === "string" ? <span>{el}</span> : <Link className={el === currentPage ? "active" : ""} key={el} to={`/artworks/${el}`} onClick={e => handleClick(e, el)}>{el}</Link>)
                             :
-                            pageLinks.map(el => typeof el === "string" ? <span>{el}</span> : <Link key={el} to={`/artists/${params.page}/${params.personid}/${el}`} onClick={e => handleClick(e, el)}>{el}</Link>)
+                            pageLinks.map(el => typeof el === "string" ? <span>{el}</span> : <Link className={el === currentPage ? "active" : ""} key={el} to={`/artists/${params.page}/${params.personid}/${el}`} onClick={e => handleClick(e, el)}>{el}</Link>)
                     : null
             }
         </div>

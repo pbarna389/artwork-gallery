@@ -1,1 +1,1 @@
-{"version":3,"sources":["Pagination.scss","Pagination.css"],"names":[],"mappings":"AAEA;EACE,gBAAA;ACDF;ADGE;EACE,kBAAA;ACDJ;ADIE;EACE,kBAAA;ACFJ","file":"Pagination.css"}
+{"version":3,"sources":["Pagination.scss","Pagination.css"],"names":[],"mappings":"AAEA;EACE,gBAAA;ACDF;ADGE;EACE,kBAAA;ACDJ;ADIE;EACE,kBAAA;EACA,qBAAA;ACFJ;ADII;EACE,iBAAA;EACA,0BAAA;ACFN","file":"Pagination.css"}

@@ -6,4 +6,9 @@
 }
 .pag-wrapper a {
   margin-right: 1rem;
+  text-decoration: none;
+}
+.pag-wrapper a.active {
+  font-size: 1.5rem;
+  text-decoration: underline;
 }/*# sourceMappingURL=Pagination.css.map */
