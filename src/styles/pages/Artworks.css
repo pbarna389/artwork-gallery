@@ -28,16 +28,19 @@
 @media (min-width: 319px) and (max-width: 640px) {
   .artworks-wrapper .mySwiper .swiper-slide {
     height: 26rem !important;
-    width: 26rem !important;
+    width: inherit !important;
   }
 }
 .artworks-wrapper .mySwiper .swiper-slide:nth-child(even) {
   width: 20rem !important;
   height: 20rem !important;
 }
+.artworks-wrapper .mySwiper .swiper-slide:nth-child(even) .img-wrapper img {
+  width: 15rem !important;
+}
 @media (min-width: 319px) and (max-width: 640px) {
   .artworks-wrapper .mySwiper .swiper-slide:nth-child(even) {
-    width: 15rem !important;
+    width: inherit !important;
     height: 15rem !important;
   }
 }
@@ -48,9 +51,22 @@
   width: inherit;
   height: inherit;
 }
+@media (min-width: 319px) and (max-width: 640px) {
+  .artworks-wrapper .mySwiper .swiper-slide .img-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 .artworks-wrapper .mySwiper .swiper-slide .img-wrapper img {
   width: inherit;
   height: inherit;
+}
+@media (min-width: 319px) and (max-width: 640px) {
+  .artworks-wrapper .mySwiper .swiper-slide .img-wrapper img {
+    width: 30rem !important;
+    margin: 0 auto;
+  }
 }
 .artworks-wrapper .mySwiper .swiper-slide .img-wrapper .image-placeholder {
   width: inherit;

@@ -22,12 +22,12 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
 
     return (
         <div className="artwork-wrapper">
-            <div className="button-wrapper">
-                <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} />
-            </div>
             {
                 actual_artwork && !loading ?
                     <>
+                        <div className="button-wrapper">
+                            <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} />
+                        </div>
                         <div className="artwork-image-wrapper">
                             {
                                 actual_artwork_id && actual_artwork_url ?

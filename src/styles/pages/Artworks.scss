@@ -28,15 +28,21 @@
 
       @include shared.mobiles {
         height: 26rem !important;
-        width: 26rem !important;
+        width: inherit !important;
       }
 
       &:nth-child(even) {
         width: 20rem !important;
         height: 20rem !important;
 
+        .img-wrapper {
+          img {
+            width: 15rem !important;
+          }
+        }
+
         @include shared.mobiles {
-          width: 15rem !important;
+          width: inherit !important;
           height: 15rem !important;
         }
       }
@@ -49,9 +55,20 @@
         width: inherit;
         height: inherit;
 
+        @include shared.mobiles {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
         img {
           width: inherit;
           height: inherit;
+
+          @include shared.mobiles {
+            width: 30rem !important;
+            margin: 0 auto;
+          }
         }
 
         .image-placeholder {
