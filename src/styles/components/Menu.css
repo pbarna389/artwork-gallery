@@ -32,9 +32,10 @@
 .hamburger-menu::before {
   top: 2rem;
   left: 0.5rem;
+  height: 2.5px;
 }
 .hamburger-menu::after {
   bottom: 2rem;
   left: 0.5rem;
-  height: 3px;
+  height: 2.5px;
 }/*# sourceMappingURL=Menu.css.map */

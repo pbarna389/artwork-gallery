@@ -8,13 +8,14 @@ import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from "../@types/artwork";
 import Pagination from '../components/Pagination';
 import SwiperWrapper from '../components/SwiperWrapper';
+import NavigateForward from '../components/NavigateForward';
 
 import "../styles/pages/Artists.css";
 
 import Picture from "../assets/prof-pic.png";
 
 const Artists = () => {
-    const { artists, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag } = useContext(artworkContext) as IArtworkContext;
+    const { artists, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, mobileView } = useContext(artworkContext) as IArtworkContext;
 
     const params = useParams();
     console.log(params);
@@ -24,30 +25,30 @@ const Artists = () => {
         setArtistArtworkPag(1)
     }, []);
 
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: number): void => {
-        const target = e.target as unknown as HTMLAnchorElement;
-        console.log(target.innerText);
+    const handleClick = (name: string, id: number): void => {
         setArtistID(id);
-        setArtistName(target.innerText.split(" ").slice(-1).join(""));
+        setArtistName(name.split(" ").slice(-1).join("+"));
     };
 
     return (
         <div>
-            {/* <Background /> */}
-            {/* <Columns /> */}
             <div className="artists-wrapper">
                 <div>Current page: {params.page}</div>
 
-                <SwiperWrapper direction='horizontal' slideNumber={5} virtual={true}>
+                <SwiperWrapper direction='horizontal' slideNumber={mobileView ? 1 : 5} virtual={true}>
                     {
                         artists ?
                             artists.map((el: any, index: number) =>
                                 <SwiperSlide key={`slide/${el.id}`} virtualIndex={index}>
-                                    <Link key={el.id} to={`/artists/${params.page}/${el.id}/${artistArtworkPag}`} onClick={e => handleClick(e, el.id)} style={{ backgroundImage: `url(${Picture})` }}>
-                                        <div className="artist-name">
-                                            {el.title}
-                                        </div>
-                                    </Link>
+                                    <div className="img-wrapper">
+                                        <img src={Picture} alt="" loading="lazy" placeholder={`${el.lqip}`} />
+                                    </div>
+                                    <div className="link-wrapper">
+                                        <span>{el.title}</span>
+                                        <Link key={el.id} to={`/artists/${params.page}/${el.id}/${artistArtworkPag}`} onClick={e => handleClick(el.title, el.id)}>
+                                            <NavigateForward />
+                                        </Link>
+                                    </div>
                                 </SwiperSlide>)
                             : null
                     }

@@ -17,42 +17,15 @@ import NavigateIcon from "../components/NavigateIcon";
 
 import "../styles/pages/Artist.css"
 
-const getWindowDimensions = () => {
-    const { innerWidth: width } = window;
-    return {
-        width
-    }
-};
 
 interface IArtist {
     type: "profile" | "browse"
 };
 
-interface IWindowWidth {
-    width: number
-};
-
 const Artist: React.FC<IArtist> = ({ type }) => {
-    const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading } = useContext(artworkContext) as IArtworkContext;
-
-    const [windowWidth, setWindowWidth] = useState<IWindowWidth>(getWindowDimensions());
-    const [mobileView, setMobileView] = useState<boolean>(false);
+    const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading, mobileView } = useContext(artworkContext) as IArtworkContext;
 
     const params = useParams();
-
-    useEffect(() => {
-        const handleResize = (): void => {
-            setWindowWidth(getWindowDimensions())
-        };
-        window.addEventListener('resize', handleResize);
-
-        return () => window.removeEventListener('resize', handleResize)
-    }, [windowWidth])
-
-    useEffect(() => {
-        if (windowWidth.width > 319 && windowWidth.width < 640) setMobileView(true);
-        else setMobileView(false);
-    }, [windowWidth]);
 
     const handleClick = (e: any, id: number): void => {
         setArtworkID(id)
@@ -86,9 +59,10 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                         actualArtistArtworksURLS ?
                                             actualArtistArtworksURLS.map((el: any, idx: number) =>
                                                 <SwiperSlide key={el.id} virtualIndex={idx} >
+
                                                     {
                                                         el.url !== "https://www.artic.edu/iiif/2/null" ?
-                                                            <img src={`${el.url}/full/843,/0/default.jpg`} alt="" loading="lazy" placeholder={`${el.lqip}`} />
+                                                            <img src={`${el.url}/full/843,/0/default.jpg`} alt="" loading="lazy" style={{ backgroundImage: `url(${el.lqip})` }} />
                                                             :
                                                             <ImagePlaceholder />
                                                     }

@@ -28,6 +28,7 @@ export interface IuserState {
 }
 
 export interface IArtworkContext {
+  mobileView: boolean;
   artists: any;
   artistPagination: number;
   artistMaxPage: number;

@@ -122,6 +122,9 @@
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide img {
   width: 20rem;
   height: 20rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide a {
   height: inherit;

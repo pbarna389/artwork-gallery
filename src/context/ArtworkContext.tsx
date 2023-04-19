@@ -16,17 +16,30 @@ const ARTWORKS_SITE = import.meta.env.VITE_GET_ARTWORKS;
 
 export const artworkContext = createContext<IArtworkContext | null>(null);
 
+const getWindowDimensions = () => {
+    const { innerWidth: width } = window;
+    return {
+        width
+    }
+};
+
+interface IWindowWidth {
+    width: number
+};
+
 const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) => {
     const [navShown, setNavShown] = useState<boolean>(false);
 
     const [artworksPagination, setArtworksPagination] = useState<number>(1);
-    const [artworksPictures, setArtworksPictures] = useState<string[]>();
 
     const [artistPagination, setArtistPagination] = useState<number>(1);
     const [artistID, setArtistID] = useState<number>();
     const [artistName, setArtistName] = useState<string>();
     const [artistArtworkPag, setArtistArtworkPag] = useState<number>(1);
     const [artworkID, setArtworkID] = useState<number>();
+
+    const [windowWidth, setWindowWidth] = useState<IWindowWidth>(getWindowDimensions());
+    const [mobileView, setMobileView] = useState<boolean>(false);
 
     const [artistState, dataDispatch] = useReducer(dataReducer, initialState);
     const [userState, userDispatch] = useReducer(userReducer, userInitialState);
@@ -37,6 +50,20 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
         userDispatch({ type: "setUpdate", payload: false });
         console.log("Updated")
     }, [userState.update])
+
+    useEffect(() => {
+        const handleResize = (): void => {
+            setWindowWidth(getWindowDimensions())
+        };
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize)
+    }, [windowWidth])
+
+    useEffect(() => {
+        if (windowWidth.width > 319 && windowWidth.width < 640) setMobileView(true);
+        else setMobileView(false);
+    }, [windowWidth]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -286,6 +313,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             userState: userState,
             userDispatch: userDispatch,
             fetchUserData: fetchUserData,
+            mobileView: mobileView,
         }}>
             {children}
         </artworkContext.Provider>

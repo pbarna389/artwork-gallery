@@ -50,6 +50,9 @@
         height: inherit;
         margin: 1rem;
         padding-right: 1rem;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
 
         @include shared.mobiles {
           margin: 0;

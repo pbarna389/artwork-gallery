@@ -28,7 +28,7 @@ const Artworks = () => {
                     <div>Loading...</div>
                     :
                     <>
-                        <SwiperWrapper direction="horizontal" slideNumber={6} virtual={false}>
+                        <SwiperWrapper direction="horizontal" slideNumber={2} virtual={false}>
                             {
                                 artworks ?
                                     artworks.map((el: any, index: number) =>
@@ -36,7 +36,7 @@ const Artworks = () => {
                                             <div className="img-wrapper">
                                                 {
                                                     el.image_id !== null ?
-                                                        <img src={`${el.iiif_url}/${el.image_id}/full/843,/0/default.jpg`} alt="" loading="lazy" placeholder={`${el.lqip}`} />
+                                                        <img src={`${el.iiif_url}/${el.image_id}/full/843,/0/default.jpg`} alt="" loading="lazy" style={{ backgroundImage: `${el.lqip}` }} />
                                                         :
                                                         <ImagePlaceholder />
                                                 }

@@ -8,7 +8,12 @@
   width: 100vw;
 }
 .artworks-wrapper .mySwiper {
-  height: 50rem;
+  height: 44rem;
+}
+@media (min-width: 319px) and (max-width: 640px) {
+  .artworks-wrapper .mySwiper {
+    height: 35rem;
+  }
 }
 .artworks-wrapper .mySwiper .swiper-slide {
   display: flex;
@@ -16,9 +21,15 @@
   justify-content: center;
   align-items: center;
   width: 40rem !important;
-  height: 48rem !important;
+  height: 38rem !important;
   opacity: 0.5;
   transition: all 0.3s ease-in;
+}
+@media (min-width: 319px) and (max-width: 640px) {
+  .artworks-wrapper .mySwiper .swiper-slide {
+    height: 32rem !important;
+    width: 35rem !important;
+  }
 }
 .artworks-wrapper .mySwiper .swiper-slide:nth-child(even) {
   width: 20rem !important;

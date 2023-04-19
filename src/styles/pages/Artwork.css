@@ -46,6 +46,9 @@
   height: inherit;
   margin: 1rem;
   padding-right: 1rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .artwork-wrapper .artwork-image-wrapper .img-wrap img {
