@@ -2,4 +2,7 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+.mySwiper .swiper-scrollbar {
+  background: rgba(255, 255, 255, 0.2);
 }/*# sourceMappingURL=SwiperWrapper.css.map */

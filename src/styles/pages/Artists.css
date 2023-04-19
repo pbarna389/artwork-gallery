@@ -64,7 +64,6 @@
   align-items: flex-end;
   justify-content: center;
 }
-.artists-wrapper .mySwiper .swiper-pagination-fraction {
-  top: 0;
-  height: 1rem;
+.artists-wrapper .mySwiper .swiper-pagination {
+  margin-top: -1.5rem;
 }/*# sourceMappingURL=Artists.css.map */

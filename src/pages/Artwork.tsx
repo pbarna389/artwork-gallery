@@ -15,7 +15,7 @@ interface IArtwork {
 }
 
 const Artwork: React.FC<IArtwork> = ({ parent }) => {
-    const { actual_artwork, actual_artwork_url, actual_artwork_id } = useContext(artworkContext) as IArtworkContext;
+    const { actual_artwork, actual_artwork_url, actual_artwork_id, loading } = useContext(artworkContext) as IArtworkContext;
     const params = useParams();
     if (actual_artwork) console.log(actual_artwork)
     console.log(params);
@@ -26,7 +26,7 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                 <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} />
             </div>
             {
-                actual_artwork ?
+                actual_artwork && !loading ?
                     <>
                         <div className="artwork-image-wrapper">
                             {
@@ -90,7 +90,7 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                             </p>
                         </div>
                     </>
-                    : null
+                    : <div>Loading...</div>
             }
         </div >
     )

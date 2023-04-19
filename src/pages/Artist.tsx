@@ -14,6 +14,7 @@ import FavouriteButton from "../components/FavouriteButton";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import SwiperWrapper from "../components/SwiperWrapper";
 import NavigateIcon from "../components/NavigateIcon";
+import NavigateForward from "../components/NavigateForward";
 
 import "../styles/pages/Artist.css"
 
@@ -54,7 +55,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                         </div>
                         <div className="artist-artwork-wrapper">
                             <div className="artist-swiper-with-pagination">
-                                <SwiperWrapper direction={mobileView ? "horizontal" : "vertical"} slideNumber={mobileView ? 1 : 3} virtual={false}>
+                                <SwiperWrapper direction={mobileView ? "horizontal" : "vertical"} slideNumber={mobileView ? 1 : 3} virtual={true}>
                                     {
                                         actualArtistArtworksURLS ?
                                             actualArtistArtworksURLS.map((el: any, idx: number) =>

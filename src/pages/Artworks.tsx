@@ -13,7 +13,7 @@ import NavigateForward from "../components/NavigateForward";
 import "../styles/pages/Artworks.css";
 
 const Artworks = () => {
-    const { artworks, artworksMaxPage, artworksPagination, setArtworksPagination, setArtworkID, loading } = useContext(artworkContext) as IArtworkContext;
+    const { artworks, artworksMaxPage, artworksPagination, setArtworksPagination, setArtworkID, loading, mobileView } = useContext(artworkContext) as IArtworkContext;
     const params = useParams();
     console.log(params)
 
@@ -28,7 +28,7 @@ const Artworks = () => {
                     <div>Loading...</div>
                     :
                     <>
-                        <SwiperWrapper direction="horizontal" slideNumber={2} virtual={false}>
+                        <SwiperWrapper direction="horizontal" slideNumber={mobileView ? 1.275 : 3.8} virtual={false}>
                             {
                                 artworks ?
                                     artworks.map((el: any, index: number) =>

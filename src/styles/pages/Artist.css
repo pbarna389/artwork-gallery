@@ -126,12 +126,22 @@
   background-position: center;
   background-size: cover;
 }
+@media (min-width: 319px) and (max-width: 640px) {
+  .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide img {
+    height: 16rem;
+  }
+}
 .artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-slide a {
   height: inherit;
   display: block;
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 70%;
+  text-align: center;
 }
-.artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-pagination-fraction {
+.artist-wrapper .artist-artwork-wrapper .mySwiper .swiper-pagination {
   margin-top: 0.5rem;
   text-align: center;
 }/*# sourceMappingURL=Artist.css.map */

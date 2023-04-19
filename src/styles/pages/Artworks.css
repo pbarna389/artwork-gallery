@@ -27,13 +27,19 @@
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .artworks-wrapper .mySwiper .swiper-slide {
-    height: 32rem !important;
-    width: 35rem !important;
+    height: 26rem !important;
+    width: 26rem !important;
   }
 }
 .artworks-wrapper .mySwiper .swiper-slide:nth-child(even) {
   width: 20rem !important;
   height: 20rem !important;
+}
+@media (min-width: 319px) and (max-width: 640px) {
+  .artworks-wrapper .mySwiper .swiper-slide:nth-child(even) {
+    width: 15rem !important;
+    height: 15rem !important;
+  }
 }
 .artworks-wrapper .mySwiper .swiper-slide:hover {
   opacity: 1;

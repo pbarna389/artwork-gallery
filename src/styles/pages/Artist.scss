@@ -131,16 +131,24 @@
           background-repeat: no-repeat;
           background-position: center;
           background-size: cover;
+
+          @include shared.mobiles {
+            height: 16rem;
+          }
         }
 
         a {
           height: inherit;
           display: block;
           text-decoration: none;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 70%;
+          text-align: center;
         }
       }
-
-      .swiper-pagination-fraction {
+      .swiper-pagination {
         margin-top: 0.5rem;
         text-align: center;
       }

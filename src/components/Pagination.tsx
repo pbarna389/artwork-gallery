@@ -21,8 +21,8 @@ const Pagination: React.FC<IPaginationProps> = ({ related, pageNumMax, setPagina
     const currentPage: number = related === "artist_list" ? Number(params.page) : related === "artwork_list" ? Number(params.artworkspage) : Number(params.artworkpage);
     // const pageLinks = Array.from({ length: pageNumMax }, (_, i) => i + 1);
     const pageLinks =
-        pageNumMax < 4 ? Array.from({ length: pageNumMax }, (_, i) => i + 1)
-            : currentPage < 3 ? [1, 2, 3, "...", pageNumMax]
+        pageNumMax < 5 ? Array.from({ length: pageNumMax }, (_, i) => i + 1)
+            : currentPage < 5 ? [1, 2, 3, 4, 5, "...", pageNumMax]
                 : currentPage === pageNumMax - 1 || currentPage === pageNumMax ? [1, "...", pageNumMax - 2, pageNumMax - 1, pageNumMax]
                     : [1, "...", currentPage - 1, currentPage, currentPage + 1, "...", pageNumMax];
 

@@ -27,13 +27,18 @@
       transition: all 0.3s ease-in;
 
       @include shared.mobiles {
-        height: 32rem !important;
-        width: 35rem !important;
+        height: 26rem !important;
+        width: 26rem !important;
       }
 
       &:nth-child(even) {
         width: 20rem !important;
         height: 20rem !important;
+
+        @include shared.mobiles {
+          width: 15rem !important;
+          height: 15rem !important;
+        }
       }
 
       &:hover {

@@ -1,5 +1,11 @@
+@use "../shared/shared.scss";
+
 .mySwiper {
   .swiper-slide {
     user-select: none;
+  }
+
+  .swiper-scrollbar {
+    background: rgba(255, 255, 255, shared.$column-opac);
   }
 }

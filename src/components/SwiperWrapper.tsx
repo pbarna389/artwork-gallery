@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 import { IChildren } from "../@types/artwork";
 
 import { Swiper } from "swiper/react";
-import SwiperCore, { Virtual, Mousewheel, Pagination as SwiperPagination, Lazy } from "swiper";
+import SwiperCore, { Virtual, Mousewheel, Scrollbar } from "swiper";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import 'swiper/css/navigation';
-import "swiper/css/scrollbar"
+import "swiper/css/scrollbar";
 
-import "../styles/components/SwiperWrapper.css"
+import "../styles/components/SwiperWrapper.css";
 
-SwiperCore.use([Virtual, Mousewheel, SwiperPagination]);
+SwiperCore.use([Virtual, Mousewheel, Scrollbar]);
 
 interface ISwiperWrapper extends IChildren {
     direction: "horizontal" | "vertical";
@@ -27,32 +27,31 @@ const SwiperWrapper: React.FC<ISwiperWrapper> = ({ children, direction, slideNum
                 virtual ?
                     <Swiper
                         direction={direction}
-                        modules={[Virtual, Mousewheel, SwiperPagination]}
+                        modules={[Virtual, Mousewheel, Scrollbar]}
                         grabCursor={true}
                         mousewheel={true}
-                        // scrollbar={{ hide: false }}
-                        pagination={{
-                            type: "fraction"
-                        }
-                        }
+                        scrollbar={{ draggable: true }}
                         centeredSlides={true}
                         slidesPerView={slideNumber}
                         spaceBetween={30}
                         className="mySwiper"
-                        virtual
+                        virtual={
+                            {
+                                slides: [Array.from({ length: slideNumber }, (_, i) => `Slide ${i + 1}`)],
+                                addSlidesBefore: 5,
+                                addSlidesAfter: 5,
+                            }
+                        }
                     >
                         {children}
                     </Swiper >
                     :
                     <Swiper
                         direction={direction}
-                        modules={[Mousewheel, SwiperPagination]}
+                        modules={[Mousewheel, Scrollbar]}
                         grabCursor={true}
                         mousewheel={true}
-                        // scrollbar={{ hide: false }}
-                        pagination={{
-                            type: "fraction"
-                        }}
+                        scrollbar={{ draggable: true }}
                         centeredSlides={true}
                         slidesPerView={slideNumber}
                         spaceBetween={30}
