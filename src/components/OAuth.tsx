@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { auth, googleProvider } from "../config/firebase-config";
@@ -13,8 +13,13 @@ import googlePic from "../assets/googleIcon.svg";
 
 import "../styles/components/Oauth.css";
 
-const OAuth = () => {
-    const { userDispatch, fetchUserData } = useContext(artworkContext) as IArtworkContext;
+interface IOauth {
+    setState: React.Dispatch<React.SetStateAction<boolean>>
+};
+
+const OAuth: React.FC<IOauth> = ({ setState }) => {
+    const { userDispatch, fetchUserData, handleTimeout } = useContext(artworkContext) as IArtworkContext;
+    const [authTimeout, setAuthTimeout] = useState<NodeJS.Timeout>();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -33,8 +38,15 @@ const OAuth = () => {
                 await setDoc(doc(db, 'users', user.uid), formData);
             }
 
-            navigate("/");
-            userDispatch({ type: "setLogin", payload: true });
+            setState(false);
+            const id = setTimeout(() => {
+                navigate("/");
+                userDispatch({ type: "setLogin", payload: true });
+            }, 600);
+
+            setAuthTimeout(id);
+            if (authTimeout) clearTimeout(authTimeout);
+
         } catch (error) {
             console.log(error)
         }

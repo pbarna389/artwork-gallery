@@ -6,7 +6,7 @@ import { IArtworkContext } from "../@types/artwork";
 import { auth } from "../config/firebase-config"
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import { IconContext } from "react-icons/lib";
 import { RiMailLockFill, RiLockFill } from "react-icons/ri";
@@ -27,7 +27,7 @@ const Login: React.FC = (): JSX.Element => {
     const [elementRef] = useInterSectionObserver(setVisible);
     const [loginTimeout, setLoginTimeout] = useState<NodeJS.Timeout>();
 
-    const { userDispatch, fetchUserData } = useContext(artworkContext) as IArtworkContext;
+    const { userDispatch, fetchUserData, handleTimeout } = useContext(artworkContext) as IArtworkContext;
     const navigate = useNavigate();
 
     console.log(auth)
@@ -56,13 +56,7 @@ const Login: React.FC = (): JSX.Element => {
     };
 
     const regForward = () => {
-        setVisible(false);
-        const id = setTimeout(() => {
-            navigate("/registration")
-        }, 600)
-
-        setLoginTimeout(id);
-        return () => clearTimeout(loginTimeout)
+        handleTimeout(setVisible, navigate, "/registration", loginTimeout, setLoginTimeout)
     }
 
     return (
@@ -80,7 +74,7 @@ const Login: React.FC = (): JSX.Element => {
                             <input required placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
                         </InputWrapper>
                         <button className="basic-button" type="submit">Sign-in</button>
-                        <OAuth />
+                        <OAuth setState={setVisible} />
                     </form>
                     <div className="auth-wrapper">
                         <button className="basic-button" onClick={() => regForward()}>Registration</button>

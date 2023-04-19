@@ -26,7 +26,7 @@ const Register = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
-    const { fetchUserData } = useContext(artworkContext) as IArtworkContext;
+    const { fetchUserData, handleTimeout } = useContext(artworkContext) as IArtworkContext;
 
     const [visible, setVisible] = useState<boolean>(false);
     const [registerTimeout, setRegisterTimeout] = useState<NodeJS.Timeout>();
@@ -51,13 +51,7 @@ const Register = () => {
 
             await setDoc(doc(db, "users", user.uid), formData);
 
-            setVisible(false);
-            const id = setTimeout(() => {
-                navigate("/")
-            }, 600);
-            setRegisterTimeout(id);
-
-            if (registerTimeout) clearTimeout(registerTimeout);
+            handleTimeout(setVisible, navigate, "/", registerTimeout, setRegisterTimeout);
 
         } catch (error) {
             console.log(error);
@@ -95,7 +89,7 @@ const Register = () => {
                     </InputWrapper>
                     <button className="basic-button" type="submit">Register</button>
                 </form>
-                <OAuth />
+                <OAuth setState={setVisible} />
             </Form>
         </div>
     )

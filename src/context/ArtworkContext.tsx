@@ -8,6 +8,7 @@ import { initialState } from "../reducers/dataReducer";
 import { userInitialState } from "../reducers/userReducer";
 import dataReducer from "../reducers/dataReducer";
 import userReducer from "../reducers/userReducer";
+import { NavigateFunction } from "react-router-dom";
 
 const ARTIST_SITE = import.meta.env.VITE_GET_ARTISTS;
 const ARTIST_DATA = import.meta.env.VITE_ARTIST_DATA;
@@ -288,6 +289,16 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             userDispatch({ type: "setFavouriteArtists", payload: userSnap.data()?.favArtist });
             userDispatch({ type: "setFavouriteArtworks", payload: userSnap.data()?.favArtworks });
         }
+    };
+
+    const handleTimeout = (setState: React.Dispatch<React.SetStateAction<boolean>>, navigate: NavigateFunction, destination: string, timeout: NodeJS.Timeout | undefined, timeoutSetter: React.Dispatch<React.SetStateAction<NodeJS.Timeout | undefined>>): void => {
+        setState(false);
+        const id = setTimeout(() => {
+            navigate(destination)
+        }, 600);
+
+        timeoutSetter(id)
+        if (timeout) clearTimeout(timeout)
     }
 
     return (
@@ -320,6 +331,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             userDispatch: userDispatch,
             fetchUserData: fetchUserData,
             mobileView: mobileView,
+            handleTimeout: handleTimeout,
         }}>
             {children}
         </artworkContext.Provider>

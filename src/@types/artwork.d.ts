@@ -56,6 +56,7 @@ export interface IArtworkContext {
   userState: any;
   userDispatch: React.Dispatch<React.ReducerAction<any>>;
   fetchUserData: Function;
+  handleTimeout: Function;
 }
 
 interface IChildren {
