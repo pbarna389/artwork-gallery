@@ -18,7 +18,7 @@ interface IOauth {
 };
 
 const OAuth: React.FC<IOauth> = ({ setState }) => {
-    const { userDispatch, fetchUserData, handleTimeout } = useContext(artworkContext) as IArtworkContext;
+    const { userDispatch, fetchUserData, handleInfoCard } = useContext(artworkContext) as IArtworkContext;
     const [authTimeout, setAuthTimeout] = useState<NodeJS.Timeout>();
     const location = useLocation();
     const navigate = useNavigate();
@@ -41,6 +41,7 @@ const OAuth: React.FC<IOauth> = ({ setState }) => {
             setState(false);
             const id = setTimeout(() => {
                 navigate("/");
+                handleInfoCard(`Welcome ${user.displayName}!`);
                 userDispatch({ type: "setLogin", payload: true });
             }, 600);
 

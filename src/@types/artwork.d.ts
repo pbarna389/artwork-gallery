@@ -27,6 +27,14 @@ export interface IuserState {
   favouriteArtworks: any;
 }
 
+export interface IInfoCardState {
+  infoCard: boolean;
+  infoCardText: string | null;
+  infoCardTimeoutID: number | null;
+  clickedAgain: boolean;
+  clickedAgainTimeoutID: number | undefined;
+}
+
 export interface IArtworkContext {
   mobileView: boolean;
   artists: any;
@@ -57,6 +65,8 @@ export interface IArtworkContext {
   userDispatch: React.Dispatch<React.ReducerAction<any>>;
   fetchUserData: Function;
   handleTimeout: Function;
+  handleInfoCard: Function;
+  infoCardState: any;
 }
 
 interface IChildren {

@@ -26,7 +26,7 @@ const Register = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
-    const { fetchUserData, handleTimeout } = useContext(artworkContext) as IArtworkContext;
+    const { fetchUserData, handleTimeout, handleInfoCard } = useContext(artworkContext) as IArtworkContext;
 
     const [visible, setVisible] = useState<boolean>(false);
     const [registerTimeout, setRegisterTimeout] = useState<NodeJS.Timeout>();
@@ -50,10 +50,11 @@ const Register = () => {
             const formData = { id: user.uid, name: name, email: email, timestamp: serverTimestamp(), favArtist: [], favArtworks: [] };
 
             await setDoc(doc(db, "users", user.uid), formData);
-
+            handleInfoCard("Successfull account creation!")
             handleTimeout(setVisible, navigate, "/", registerTimeout, setRegisterTimeout);
 
         } catch (error) {
+            handleInfoCard("Invalid creditentials!")
             console.log(error);
         }
 

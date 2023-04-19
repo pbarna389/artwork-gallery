@@ -6,7 +6,7 @@ import { IArtworkContext } from "../@types/artwork";
 import { auth } from "../config/firebase-config"
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { IconContext } from "react-icons/lib";
 import { RiMailLockFill, RiLockFill } from "react-icons/ri";
@@ -27,7 +27,7 @@ const Login: React.FC = (): JSX.Element => {
     const [elementRef] = useInterSectionObserver(setVisible);
     const [loginTimeout, setLoginTimeout] = useState<NodeJS.Timeout>();
 
-    const { userDispatch, fetchUserData, handleTimeout } = useContext(artworkContext) as IArtworkContext;
+    const { userDispatch, fetchUserData, handleTimeout, handleInfoCard } = useContext(artworkContext) as IArtworkContext;
     const navigate = useNavigate();
 
     console.log(auth)
@@ -46,9 +46,10 @@ const Login: React.FC = (): JSX.Element => {
                 userDispatch({ type: "setLogin", payload: true });
             }, 600);
             setLoginTimeout(id);
-
+            handleInfoCard("Welcome!")
             if (loginTimeout) clearTimeout(loginTimeout);
         } catch (error) {
+            handleInfoCard("Invalid username or password!")
             console.log(error);
         }
 

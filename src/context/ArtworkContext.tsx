@@ -1,14 +1,17 @@
 import { createContext, useState, useEffect, useReducer } from "react";
 import { IArtworkContext, IArtworkContextProps, IArtistData } from "../@types/artwork";
 
+import { NavigateFunction } from "react-router-dom";
+
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db, auth } from "../config/firebase-config";
 
-import { initialState } from "../reducers/dataReducer";
-import { userInitialState } from "../reducers/userReducer";
 import dataReducer from "../reducers/dataReducer";
 import userReducer from "../reducers/userReducer";
-import { NavigateFunction } from "react-router-dom";
+import InfoCardReducer from "../reducers/InfoCardReducer";
+import { initialState } from "../reducers/dataReducer";
+import { userInitialState } from "../reducers/userReducer";
+import { infoCardInitialState } from "../reducers/InfoCardReducer";
 
 const ARTIST_SITE = import.meta.env.VITE_GET_ARTISTS;
 const ARTIST_DATA = import.meta.env.VITE_ARTIST_DATA;
@@ -44,6 +47,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
 
     const [artistState, dataDispatch] = useReducer(dataReducer, initialState);
     const [userState, userDispatch] = useReducer(userReducer, userInitialState);
+    const [infoCardState, infoCardDispatch] = useReducer(InfoCardReducer, infoCardInitialState);
 
     useEffect(() => {
         console.log("Update sceduled");
@@ -291,6 +295,8 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
         }
     };
 
+    //Animation timeout handler
+
     const handleTimeout = (setState: React.Dispatch<React.SetStateAction<boolean>>, navigate: NavigateFunction, destination: string, timeout: NodeJS.Timeout | undefined, timeoutSetter: React.Dispatch<React.SetStateAction<NodeJS.Timeout | undefined>>): void => {
         setState(false);
         const id = setTimeout(() => {
@@ -300,6 +306,50 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
         timeoutSetter(id)
         if (timeout) clearTimeout(timeout)
     }
+
+    //InfoCard
+
+    const removeInfoCard = (): void => {
+        infoCardDispatch({ type: "setInfoCard", payload: true });
+
+        const id = setTimeout(() => {
+            infoCardDispatch({ type: "setInfoCard", payload: false })
+        }, 2000);
+
+        infoCardDispatch({ type: "setInfoCardTimeoutID", payload: id });
+    };
+
+    const infoCardTimeoutReset = (): void => {
+        if (infoCardState.infoCardTimeoutID) {
+            console.log(infoCardState.infoCardTimeoutID);
+            clearTimeout(infoCardState.infoCardTimeoutID);
+        }
+        removeInfoCard();
+    };
+
+    const handleClickedAgain = () => {
+        if (infoCardState.clickedAgain === true) {
+            infoCardDispatch({ type: "setClickedAgain", payload: false })
+            const id = setTimeout(() => {
+                infoCardDispatch({ type: "setClickedAgain", payload: true })
+            }, 10);
+            infoCardDispatch({ type: "setClickedAgainTimeoutID", payload: id })
+        } else {
+            infoCardDispatch({ type: "setClickedAgain", payload: true })
+            const id = setTimeout(() => {
+                infoCardDispatch({ type: "setClickedAgain", payload: false })
+            }, 10);
+            infoCardDispatch({ type: "setClickedAgainTimeoutID", payload: id })
+        }
+        clearTimeout(infoCardState.clickedAgainTimeoutID)
+    }
+
+    const handleInfoCard = (text: string): void => {
+        console.log("handleInfoCard fired");
+        handleClickedAgain();
+        infoCardDispatch({ type: "setInfoCardText", payload: text })
+        infoCardTimeoutReset()
+    };
 
     return (
         <artworkContext.Provider value={{
@@ -332,6 +382,8 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             fetchUserData: fetchUserData,
             mobileView: mobileView,
             handleTimeout: handleTimeout,
+            handleInfoCard: handleInfoCard,
+            infoCardState: infoCardState,
         }}>
             {children}
         </artworkContext.Provider>

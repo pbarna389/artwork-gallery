@@ -15,6 +15,7 @@ import Register from "./pages/Registration";
 import Profile from "./pages/Profile";
 import Background from "./components/Background";
 import Footer from "./components/Footer";
+import InfoCard from "./components/InfoCard";
 
 import './App.css';
 
@@ -25,6 +26,7 @@ function App() {
 	return (
 		<>
 			<Background />
+			<InfoCard />
 			{
 				!userState.login ?
 					<BrowserRouter>

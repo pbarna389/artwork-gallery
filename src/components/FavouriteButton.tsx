@@ -16,7 +16,7 @@ const FavouriteButton: React.FC<IFavouriteButton> = ({ type }): JSX.Element => {
     const [favouriteArtists, setFavouriteArtists] = useState<any>();
     const [favouriteArtworks, setFavouriteArtworks] = useState<any>();
 
-    const { actual_artist, actual_artwork_url, actual_artwork_id, actual_artwork, userState, userDispatch } = useContext(artworkContext) as IArtworkContext;
+    const { actual_artist, actual_artwork_url, actual_artwork_id, actual_artwork, userState, userDispatch, handleInfoCard } = useContext(artworkContext) as IArtworkContext;
 
     console.log(actual_artist, actual_artwork, userState)
 
@@ -76,8 +76,10 @@ const FavouriteButton: React.FC<IFavouriteButton> = ({ type }): JSX.Element => {
             const newFavs = prevFavs.filter((el: any) => el.id === actual_artist.id);
             if (newFavs.length === 0) {
                 setFavouriteArtists((prev: any) => [...prev, { title: actual_artist.title, api_link: actual_artist.api_link, id: actual_artist.id }])
+                handleInfoCard(`"${actual_artist.title}" is added to your favourite artists!`)
             } else {
                 setFavouriteArtists((prev: any) => [...prev].filter((el: any) => el.id !== actual_artist.id))
+                handleInfoCard(`"${actual_artist.title}" removed from your favourite artists!`)
             }
         } else {
             const prevFavs = [...favouriteArtworks];
@@ -85,8 +87,10 @@ const FavouriteButton: React.FC<IFavouriteButton> = ({ type }): JSX.Element => {
             console.log(actual_artwork)
             if (newFavs.length === 0) {
                 setFavouriteArtworks((prev: any) => [...prev, { title: actual_artwork.title, api_link: actual_artwork.api_link, id: actual_artwork.id, image: actual_artwork_id !== null ? `${actual_artwork_url}/${actual_artwork_id}/full/843,/0/default.jpg` : null }])
+                handleInfoCard(`"${actual_artwork.title}" added to your favourite artworks!`)
             } else {
                 setFavouriteArtworks((prev: any) => [...prev].filter((el: any) => el.id !== actual_artwork.id))
+                handleInfoCard(`"${actual_artwork.title}" removed from your favourite artworks!`)
             }
         };
     }

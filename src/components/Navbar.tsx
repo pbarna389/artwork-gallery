@@ -12,18 +12,18 @@ import { signOut } from 'firebase/auth';
 
 import Menu from './Menu';
 import Logo from './Logo';
-import Searchbar from './Searchbar';
 import Navigation from './Navigation';
 
 import "../styles/components/Navbar.css"
 
 const Navbar = () => {
-    const { userDispatch } = useContext(artworkContext) as IArtworkContext;
+    const { userDispatch, handleInfoCard } = useContext(artworkContext) as IArtworkContext;
     const navigate = useNavigate();
 
     const logout = async () => {
         try {
             await signOut(auth);
+            handleInfoCard("See you next time!");
             userDispatch({ type: "setLogin", payload: false });
             navigate("/");
         } catch (error) {

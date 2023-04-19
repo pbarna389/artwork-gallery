@@ -1,0 +1,43 @@
+.infoCard {
+  position: absolute;
+  top: 70%;
+  left: 82%;
+  transition: opacity 0.3s ease-in;
+  width: 15rem;
+  text-align: center;
+  opacity: 0;
+  background-color: rgba(157, 27, 49, 0.5);
+  z-index: 3;
+  font-size: 1.5rem;
+  overflow: hidden;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 1rem;
+}
+.infoCard.show {
+  opacity: 1;
+}
+.infoCard .load-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: white;
+  width: 100%;
+  animation: timerAnim 2.5s linear 1;
+}
+
+@keyframes timerAnim {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 50%;
+  }
+  80% {
+    width: 0%;
+  }
+  100% {
+    width: 0%;
+  }
+}/*# sourceMappingURL=InfoCard.css.map */
