@@ -9,6 +9,12 @@
   z-index: 10;
   height: 100vh;
   margin: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+
+  &.show {
+    opacity: 1;
+  }
 
   @include shared.mobiles {
     position: static;

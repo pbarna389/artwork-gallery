@@ -5,6 +5,11 @@
   justify-content: center;
   height: 100vh;
   margin: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+.registration-wrapper.show {
+  opacity: 1;
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .registration-wrapper .form-wrapper h1 {

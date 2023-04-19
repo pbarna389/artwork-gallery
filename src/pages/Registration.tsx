@@ -12,6 +12,8 @@ import { IconContext } from "react-icons/lib";
 import { RiMailLockFill, RiLockFill } from "react-icons/ri";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 
+import { useInterSectionObserver } from "../hooks/useIntersectionObserver";
+
 import LoginTitle from "../components/LoginTitle";
 import Form from "../components/Form";
 import InputWrapper from "../components/InputWrapper";
@@ -24,7 +26,12 @@ const Register = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
-    const { userDispatch, fetchUserData } = useContext(artworkContext) as IArtworkContext;
+    const { fetchUserData } = useContext(artworkContext) as IArtworkContext;
+
+    const [visible, setVisible] = useState<boolean>(false);
+    const [registerTimeout, setRegisterTimeout] = useState<NodeJS.Timeout>();
+    const [elementRef] = useInterSectionObserver(setVisible);
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -44,8 +51,14 @@ const Register = () => {
 
             await setDoc(doc(db, "users", user.uid), formData);
 
-            navigate("/")
-            userDispatch({ type: "setLogin", payload: true });
+            setVisible(false);
+            const id = setTimeout(() => {
+                navigate("/")
+            }, 600);
+            setRegisterTimeout(id);
+
+            if (registerTimeout) clearTimeout(registerTimeout);
+
         } catch (error) {
             console.log(error);
         }
@@ -58,7 +71,7 @@ const Register = () => {
     }
 
     return (
-        <div className="registration-wrapper">
+        <div ref={elementRef && elementRef} className={`registration-wrapper ${visible ? "show" : ""}`}>
             <Form>
                 <LoginTitle text="Registration" />
                 <form onSubmit={(e) => handleSubmit(e)}>
