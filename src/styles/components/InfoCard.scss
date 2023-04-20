@@ -9,18 +9,18 @@
   text-align: center;
   opacity: 0;
 
-  background-color: shared.$third-color;
+  background-color: shared.$third-color-opac;
 
   z-index: -1;
 
   font-size: 1.5rem;
   overflow: hidden;
 
-  border: 1px solid white;
   border-radius: 20px;
   padding: 1rem;
 
   @include shared.mobiles {
+    top: 84%;
     left: 20%;
   }
 

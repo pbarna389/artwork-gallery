@@ -2,8 +2,6 @@ import { useContext, useState, useEffect } from "react";
 import { IArtworkContext } from "../@types/artwork";
 import { artworkContext } from "../context/ArtworkContext";
 
-import { useParams } from "react-router-dom";
-
 import FavouriteButton from "../components/FavouriteButton";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import NavigateIcon from "../components/NavigateIcon";
