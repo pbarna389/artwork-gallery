@@ -1,4 +1,4 @@
-import { useState, useContext, FormEvent } from "react";
+import { useState, useContext, FormEvent, MutableRefObject, useRef } from "react";
 import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
 
@@ -30,7 +30,8 @@ const Register = () => {
 
     const [visible, setVisible] = useState<boolean>(false);
     const [registerTimeout, setRegisterTimeout] = useState<NodeJS.Timeout>();
-    const [elementRef] = useInterSectionObserver(setVisible);
+    const elementRef01: MutableRefObject<HTMLElement | undefined> = useRef();
+    const [elementRef] = useInterSectionObserver(setVisible, elementRef01);
 
     const navigate = useNavigate();
 
