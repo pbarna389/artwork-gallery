@@ -105,7 +105,7 @@ nav.shown {
   background-color: black;
 }
 nav.not-shown {
-  left: -150rem;
+  left: -500rem;
   opacity: 0;
 }
 nav .link-wrapper {
