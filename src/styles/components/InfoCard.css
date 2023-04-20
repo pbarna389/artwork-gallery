@@ -1,11 +1,12 @@
 .infoCard {
   position: absolute;
-  top: 70%;
-  left: 82%;
+  top: 5%;
+  left: 50%;
   transition: opacity 1s ease-in;
   width: 15rem;
   text-align: center;
   opacity: 0;
+  transform: translate(-50%, -50%);
   background-color: rgba(157, 27, 49, 0.5);
   z-index: -1;
   font-size: 1.5rem;

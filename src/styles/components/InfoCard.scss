@@ -2,12 +2,13 @@
 
 .infoCard {
   position: absolute;
-  top: 70%;
-  left: 82%;
+  top: 5%;
+  left: 50%;
   transition: opacity 1s ease-in;
   width: 15rem;
   text-align: center;
   opacity: 0;
+  transform: translate(-50%, -50%);
 
   background-color: shared.$third-color-opac;
 
