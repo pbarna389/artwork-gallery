@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef, MutableRefObject } from "react";
 
 import { Link, useParams } from "react-router-dom";
 
@@ -30,6 +30,8 @@ const Artist: React.FC<IArtist> = ({ type }) => {
     const { actual_artist, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading, mobileView, dataDispatch } = useContext(artworkContext) as IArtworkContext;
 
     const params = useParams();
+
+    const swiperRef: MutableRefObject<HTMLElement | undefined> = useRef();
 
     useEffect(() => {
         setVisible(false)
@@ -74,7 +76,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                         </div>
                         <div className="artist-artwork-wrapper">
                             <div className="artist-swiper-with-pagination">
-                                <SwiperWrapper direction={mobileView ? "horizontal" : "vertical"} slideNumber={mobileView ? 1 : 3} virtual={true}>
+                                <SwiperWrapper intersectionRef={swiperRef} direction={mobileView ? "horizontal" : "vertical"} slideNumber={mobileView ? 1 : 3} virtual={true}>
                                     {
                                         actualArtistArtworksURLS ?
                                             actualArtistArtworksURLS.map((el: any, idx: number) =>

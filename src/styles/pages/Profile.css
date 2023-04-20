@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+.profile-wrapper .artworks-wrapper {
+  opacity: 1;
+}
 .profile-wrapper .artist-wrapper,
 .profile-wrapper .artworks-wrapper {
   display: flex;
@@ -20,6 +23,12 @@
 .profile-wrapper .artworks-wrapper .mySwiper {
   width: 100vw;
   height: 20rem;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+.profile-wrapper .artist-wrapper .mySwiper.shown,
+.profile-wrapper .artworks-wrapper .mySwiper.shown {
+  opacity: 1;
 }
 .profile-wrapper .artist-wrapper .mySwiper .swiper-slide,
 .profile-wrapper .artworks-wrapper .mySwiper .swiper-slide {

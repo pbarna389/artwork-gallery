@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useRef, MutableRefObject } from "react";
 import { IArtworkContext } from "../@types/artwork";
 import { artworkContext } from "../context/ArtworkContext";
 
@@ -16,7 +16,9 @@ import "../styles/pages/Profile.css";
 const Profile = () => {
     const { userState, setArtistPagination, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, setArtworkID, mobileView } = useContext(artworkContext) as IArtworkContext;
     const params = useParams();
-    console.log(userState.favouriteArtists, userState.favouriteArtworks)
+
+    const swiper01Ref: MutableRefObject<HTMLElement | undefined> = useRef();
+    const swiper02Ref: MutableRefObject<HTMLElement | undefined> = useRef();
 
     useEffect(() => {
         if (params.page) setArtistPagination(Number(params.page))
@@ -37,7 +39,7 @@ const Profile = () => {
         <div className="profile-wrapper">
             <div className="artist-wrapper">
                 <h3>Artists: </h3>
-                <SwiperWrapper key="swiper-artist" direction="horizontal" slideNumber={mobileView ? 1 : 5} virtual={true}>
+                <SwiperWrapper intersectionRef={swiper01Ref} key="swiper-artist" direction="horizontal" slideNumber={mobileView ? 1 : 5} virtual={true}>
                     {
                         userState.favouriteArtists ?
                             userState.favouriteArtists.map((el: any, idx: number) =>
@@ -58,7 +60,7 @@ const Profile = () => {
             </div>
             <div className="artworks-wrapper">
                 <h3>Artworks: </h3>
-                <SwiperWrapper key="swiper-artwork" direction="horizontal" slideNumber={mobileView ? 1 : 5} virtual={true}>
+                <SwiperWrapper intersectionRef={swiper02Ref} key="swiper-artwork" direction="horizontal" slideNumber={mobileView ? 1 : 5} virtual={true}>
                     {
                         userState.favouriteArtworks ?
                             userState.favouriteArtworks.map((el: any, idx: number) =>

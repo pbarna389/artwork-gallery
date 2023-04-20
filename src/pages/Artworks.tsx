@@ -10,6 +10,7 @@ import Pagination from "../components/Pagination";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import SwiperWrapper from "../components/SwiperWrapper";
 import NavigateForward from "../components/NavigateForward";
+import Loader from "../components/Loader";
 
 import "../styles/pages/Artworks.css";
 
@@ -21,8 +22,9 @@ const Artworks = () => {
     const params = useParams();
 
     const elementRef: MutableRefObject<HTMLElement | undefined> = useRef();
-    const [wrapperRef] = useInterSectionObserver(setVisible, elementRef);
+    const swiperRef: MutableRefObject<HTMLElement | undefined> = useRef();
 
+    const [wrapperRef] = useInterSectionObserver(setVisible, elementRef);
 
     const handleClick = (e: any, id: number): void => {
         if (artworkId !== id) {
@@ -38,10 +40,10 @@ const Artworks = () => {
         <>
             {
                 loading && artworks ?
-                    <div>Loading...</div>
+                    <Loader />
                     :
                     <div ref={wrapperRef && wrapperRef} className={`artworks-wrapper ${visible ? "show" : ""}`}>
-                        <SwiperWrapper direction="horizontal" slideNumber={mobileView ? 1 : 3.8} virtual={false}>
+                        <SwiperWrapper intersectionRef={swiperRef} direction="horizontal" slideNumber={mobileView ? 1 : 3.8} virtual={false}>
                             {
                                 artworks ?
                                     artworks.map((el: any, index: number) =>

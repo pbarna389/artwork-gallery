@@ -20,7 +20,10 @@ import Picture from "../assets/prof-pic.png";
 const Artists = () => {
     const [visible, setVisible] = useState<boolean>(false);
     const { artists, artistId, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, mobileView, loading, dataDispatch } = useContext(artworkContext) as IArtworkContext;
+
     const elementRef01: MutableRefObject<HTMLElement | any> = useRef();
+    const swiperRef: MutableRefObject<HTMLElement | any> = useRef();
+
     const [wrapperRef] = useInterSectionObserver(setVisible, elementRef01);
 
     const params = useParams();
@@ -56,7 +59,7 @@ const Artists = () => {
                             <div>Current page: {params.page}</div>
                             <Pagination pageNumMax={artistMaxPage} setPagination={setArtistPagination} related={"artist_list"} />
 
-                            <SwiperWrapper direction='horizontal' slideNumber={mobileView ? 1 : 6} virtual={true}>
+                            <SwiperWrapper intersectionRef={swiperRef} direction='horizontal' slideNumber={mobileView ? 1 : 6} virtual={true}>
                                 {
                                     artists ?
                                         artists.map((el: any, index: number) =>

@@ -5,6 +5,7 @@ import { artworkContext } from "../context/ArtworkContext";
 import FavouriteButton from "../components/FavouriteButton";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import NavigateIcon from "../components/NavigateIcon";
+import Loader from "../components/Loader";
 
 import "../styles/pages/Artwork.css";
 
@@ -103,7 +104,7 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                             </div>
                         </div>
                     </>
-                    : <div>Loading...</div>
+                    : <Loader />
             }
         </div >
     )
