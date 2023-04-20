@@ -1,7 +1,5 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { IconContext } from "react-icons";
-import { IArtworkContext } from "../@types/artwork";
-import { artworkContext } from "../context/ArtworkContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { RiLogoutCircleLine } from "react-icons/ri";
 
@@ -25,7 +23,7 @@ const NavigateIcon: React.FC<INavigateIcon> = ({ parent, setState }) => {
             if (parent === "Artist") {
                 console.log("reseting actual artist")
             }
-        }, 1000)
+        }, 800)
         setNavTimeout(id);
         if (navTimeout) clearTimeout(navTimeout);
     };

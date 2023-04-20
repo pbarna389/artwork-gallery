@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { MutableRefObject, useContext, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IArtworkContext } from "../@types/artwork";
 import { artworkContext } from "../context/ArtworkContext";
 
 import { SwiperSlide } from "swiper/react";
+import { useInterSectionObserver } from "../hooks/useIntersectionObserver";
 
 import Pagination from "../components/Pagination";
 import ImagePlaceholder from "../components/ImagePlaceholder";
@@ -13,9 +14,15 @@ import NavigateForward from "../components/NavigateForward";
 import "../styles/pages/Artworks.css";
 
 const Artworks = () => {
+    const [visible, setVisible] = useState<boolean>(false);
+
     const { artworks, artworksMaxPage, artworksPagination, setArtworksPagination, setArtworkID, artworkId, loading, mobileView, dataDispatch } = useContext(artworkContext) as IArtworkContext;
+
     const params = useParams();
-    console.log(params)
+
+    const elementRef: MutableRefObject<HTMLElement | undefined> = useRef();
+    const [wrapperRef] = useInterSectionObserver(setVisible, elementRef);
+
 
     const handleClick = (e: any, id: number): void => {
         if (artworkId !== id) {
@@ -28,12 +35,12 @@ const Artworks = () => {
     }
 
     return (
-        <div className="artworks-wrapper">
+        <>
             {
                 loading && artworks ?
                     <div>Loading...</div>
                     :
-                    <>
+                    <div ref={wrapperRef && wrapperRef} className={`artworks-wrapper ${visible ? "show" : ""}`}>
                         <SwiperWrapper direction="horizontal" slideNumber={mobileView ? 1 : 3.8} virtual={false}>
                             {
                                 artworks ?
@@ -60,9 +67,9 @@ const Artworks = () => {
                         </SwiperWrapper>
                         <div>Current page: {artworksPagination}</div>
                         <Pagination related={"artwork_list"} pageNumMax={artworksMaxPage} setPagination={setArtworksPagination} />
-                    </>
+                    </div>
             }
-        </div>
+        </>
     )
 }
 

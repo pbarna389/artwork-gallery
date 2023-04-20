@@ -3,6 +3,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+.artworks-wrapper.show {
+  opacity: 1;
 }
 .artworks-wrapper .swiper-wrapper {
   width: 100vw;
@@ -23,7 +28,6 @@
   width: 40rem !important;
   height: 38rem !important;
   opacity: 0.5;
-  transition: all 0.3s ease-in;
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .artworks-wrapper .mySwiper .swiper-slide {

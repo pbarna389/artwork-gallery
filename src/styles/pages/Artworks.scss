@@ -5,6 +5,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+
+  &.show {
+    opacity: 1;
+  }
 
   .swiper-wrapper {
     width: 100vw;
@@ -24,7 +30,6 @@
       width: 40rem !important;
       height: 38rem !important;
       opacity: 0.5;
-      transition: all 0.3s ease-in;
 
       @include shared.mobiles {
         height: 26rem !important;
