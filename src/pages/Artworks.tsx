@@ -13,12 +13,18 @@ import NavigateForward from "../components/NavigateForward";
 import "../styles/pages/Artworks.css";
 
 const Artworks = () => {
-    const { artworks, artworksMaxPage, artworksPagination, setArtworksPagination, setArtworkID, loading, mobileView } = useContext(artworkContext) as IArtworkContext;
+    const { artworks, artworksMaxPage, artworksPagination, setArtworksPagination, setArtworkID, artworkId, loading, mobileView, dataDispatch } = useContext(artworkContext) as IArtworkContext;
     const params = useParams();
     console.log(params)
 
     const handleClick = (e: any, id: number): void => {
-        setArtworkID(id)
+        if (artworkId !== id) {
+            console.log("reseting artwork")
+            setArtworkID(id)
+            dataDispatch({ type: "set_actual_artwork", payload: undefined });
+            dataDispatch({ type: "set_actual_artwork_URL", payload: undefined });
+            dataDispatch({ type: "set_actual_artwork_ID", payload: undefined });
+        }
     }
 
     return (

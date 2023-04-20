@@ -18,9 +18,9 @@ const FavouriteButton: React.FC<IFavouriteButton> = ({ type }): JSX.Element => {
 
     const { actual_artist, actual_artwork_url, actual_artwork_id, actual_artwork, userState, userDispatch, handleInfoCard } = useContext(artworkContext) as IArtworkContext;
 
-    console.log(actual_artist, actual_artwork, userState)
+    // console.log(actual_artist, actual_artwork, userState)
 
-    console.log(auth.currentUser?.uid)
+    // console.log(auth.currentUser?.uid)
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -66,11 +66,11 @@ const FavouriteButton: React.FC<IFavouriteButton> = ({ type }): JSX.Element => {
 
         }
         fetchUserData();
-        console.log(favouriteArtists, favouriteArtworks)
+        // console.log(favouriteArtists, favouriteArtworks)
     }, [favouriteArtists, favouriteArtworks])
 
     const handleClick = () => {
-        console.log(type);
+        // console.log(type);
         if (type === "Artist") {
             const prevFavs = [...favouriteArtists];
             const newFavs = prevFavs.filter((el: any) => el.id === actual_artist.id);

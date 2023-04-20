@@ -1,4 +1,4 @@
-import { useContext, useState, useRef, MutableRefObject } from "react";
+import { useContext, useState, useEffect } from "react";
 import { IArtworkContext } from "../@types/artwork";
 import { artworkContext } from "../context/ArtworkContext";
 
@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 import FavouriteButton from "../components/FavouriteButton";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import NavigateIcon from "../components/NavigateIcon";
-import { useInterSectionObserver } from "../hooks/useIntersectionObserver";
 
 import "../styles/pages/Artwork.css";
 
@@ -16,21 +15,30 @@ interface IArtwork {
 }
 
 const Artwork: React.FC<IArtwork> = ({ parent }) => {
-    const { actual_artwork, actual_artwork_url, actual_artwork_id, loading } = useContext(artworkContext) as IArtworkContext;
     const [visible, setVisible] = useState<boolean>(false);
+    const [visibleTimeout, setVisibleTimeout] = useState<NodeJS.Timeout>();
+    const { actual_artwork, actual_artwork_url, actual_artwork_id, loading, dataDispatch } = useContext(artworkContext) as IArtworkContext;
 
-    const elementRef01: MutableRefObject<HTMLElement | any> = useRef();
+    useEffect(() => {
+        setVisible(false)
+    }, []);
 
-    const [elementWrap] = useInterSectionObserver(setVisible, elementRef01);
+    useEffect(() => {
+        if (!loading && actual_artwork) {
+            const id = setTimeout(() => {
+                setVisible(true);
+                dataDispatch({ type: "loading", payload: false })
+            }, 200)
+            setVisibleTimeout(id)
+        }
 
-    const params = useParams();
-    // if (actual_artwork) console.log(actual_artwork)
-    // console.log(params);
+        clearTimeout(visibleTimeout)
+    }, [!loading && actual_artwork && actual_artwork_url]);
 
     return (
-        <div ref={elementWrap && elementWrap} className={`artwork-wrapper ${visible ? "show" : ""}`}>
+        <div className={`artwork-wrapper ${visible ? "show" : ""}`}>
             {
-                actual_artwork && !loading ?
+                actual_artwork && !loading && actual_artwork_url ?
                     <>
                         <div className={`button-wrapper ${visible ? "show" : ""}`}>
                             <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} setState={setVisible} />

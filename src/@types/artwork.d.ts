@@ -60,6 +60,7 @@ export interface IArtworkContext {
   setArtistPagination: React.Dispatch<React.SetStateAction<number>>;
   message: string;
   artistId: number | undefined;
+  artworkId: number | undefined;
   setArtistID: React.Dispatch<React.SetStateAction<number | undefined>>;
   actual_artist: any;
   setArtistName: React.Dispatch<React.SetStateAction<string | undefined>>;

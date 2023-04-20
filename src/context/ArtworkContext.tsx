@@ -50,10 +50,10 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     const [infoCardState, infoCardDispatch] = useReducer(InfoCardReducer, infoCardInitialState);
 
     useEffect(() => {
-        console.log("Update sceduled");
+        // console.log("Update sceduled");
         fetchUserData();
         userDispatch({ type: "setUpdate", payload: false });
-        console.log("Updated")
+        // console.log("Updated")
     }, [userState.update])
 
     useEffect(() => {
@@ -202,9 +202,6 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     useEffect(() => {
         console.log("set loading to true by artworkID")
         dataDispatch({ type: "loading", payload: true });
-        dataDispatch({ type: "set_actual_artwork", payload: undefined });
-        dataDispatch({ type: "set_actual_artwork_URL", payload: undefined });
-        dataDispatch({ type: "set_actual_artwork_ID", payload: undefined });
         if (artworkID) {
 
             const fetchData = async () => {
@@ -395,7 +392,8 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             handleInfoCard: handleInfoCard,
             infoCardState: infoCardState,
             dataDispatch: dataDispatch,
-            artistId: artistID
+            artistId: artistID,
+            artworkId: artworkID,
         }}>
             {children}
         </artworkContext.Provider>

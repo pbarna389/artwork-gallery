@@ -6,9 +6,9 @@ export const useInterSectionObserver = (
 ) => {
   const [observerTimeout, setObserverTimeout] = useState<NodeJS.Timeout>();
   const callbackForObserver = (entries: any) => {
-    console.log(entries);
+    // console.log(entries);
     const [entry] = entries;
-    console.log(entry);
+    // console.log(entry);
     if (entry.isIntersecting) {
       setState(entry.isIntersecting);
     } else return;

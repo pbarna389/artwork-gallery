@@ -14,10 +14,9 @@ interface INavigateIcon {
 
 const NavigateIcon: React.FC<INavigateIcon> = ({ parent, setState }) => {
     const [navTimeout, setNavTimeout] = useState<NodeJS.Timeout>();
-    const { dataDispatch } = useContext(artworkContext) as IArtworkContext;
     const navigate = useNavigate();
     const params = useParams();
-    console.log(parent)
+    // console.log(parent)
 
     const handleClick = (): void => {
         setState(false);
