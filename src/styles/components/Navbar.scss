@@ -49,6 +49,7 @@ header {
         font-family: shared.$vidaloka-font;
         letter-spacing: 0.25rem;
         cursor: pointer;
+        z-index: 1;
         .icon-prov {
           height: 3rem;
           width: 3rem;

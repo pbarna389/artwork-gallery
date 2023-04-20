@@ -47,6 +47,7 @@ header .toolbar .toolbar-options .btn-logout {
   font-family: "Vidaloka", serif;
   letter-spacing: 0.25rem;
   cursor: pointer;
+  z-index: 1;
 }
 header .toolbar .toolbar-options .btn-logout .icon-prov {
   height: 3rem;
