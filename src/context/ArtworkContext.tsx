@@ -110,6 +110,9 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             // dataDispatch({
             //     type: "actual_artist_artwork_max_page_num", payload: undefined
             // })
+            dataDispatch({
+                type: "loading", payload: true
+            })
             const fetchData = async () => {
                 try {
                     const response = await fetch(`${ARTIST_ARTWORKS}search?size=100&from=${(artistArtworkPag * 100) - 100}&q=${artistName}`);

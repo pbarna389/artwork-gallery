@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react';
 
 import { Link, useParams } from "react-router-dom";
 
@@ -6,16 +6,22 @@ import { SwiperSlide } from "swiper/react";
 
 import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from "../@types/artwork";
+
+import { useInterSectionObserver } from '../hooks/useIntersectionObserver';
 import Pagination from '../components/Pagination';
 import SwiperWrapper from '../components/SwiperWrapper';
 import NavigateForward from '../components/NavigateForward';
+import Loader from '../components/Loader';
 
 import "../styles/pages/Artists.css";
 
 import Picture from "../assets/prof-pic.png";
 
 const Artists = () => {
+    const [visible, setVisible] = useState<boolean>(false);
     const { artists, artistId, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, mobileView, loading, dataDispatch } = useContext(artworkContext) as IArtworkContext;
+    const elementRef01: MutableRefObject<HTMLElement | any> = useRef();
+    const [wrapperRef] = useInterSectionObserver(setVisible, elementRef01);
 
     const params = useParams();
     console.log(params);
@@ -41,12 +47,12 @@ const Artists = () => {
     };
 
     return (
-        <div>
+        <>
             {
                 loading ?
-                    <div>Loading...</div>
+                    <Loader />
                     : !loading && artists ?
-                        <div className="artists-wrapper">
+                        <div ref={wrapperRef && wrapperRef} className={`artists-wrapper ${visible ? "show" : ""}`}>
                             <div>Current page: {params.page}</div>
                             <Pagination pageNumMax={artistMaxPage} setPagination={setArtistPagination} related={"artist_list"} />
 
@@ -71,7 +77,7 @@ const Artists = () => {
                         </div>
                         : null
             }
-        </div>
+        </>
     )
 }
 

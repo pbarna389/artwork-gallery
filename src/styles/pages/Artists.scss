@@ -10,6 +10,27 @@
   align-items: center;
   z-index: 0;
   height: 75vh;
+  opacity: 1;
+
+  &::after {
+    content: "";
+    width: inherit;
+    height: 100vh;
+    position: absolute;
+    top: -8rem;
+    left: 0;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    z-index: 101;
+    transition: all 0.5s ease-in;
+  }
+
+  &.show {
+    &::after {
+      backdrop-filter: none;
+      z-index: -1;
+    }
+  }
 
   .mySwiper {
     height: 22rem;

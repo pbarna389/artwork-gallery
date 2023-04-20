@@ -26,6 +26,7 @@
 @media (min-width: 319px) and (max-width: 640px) {
   .artwork-wrapper .button-wrapper {
     margin: 1rem 0;
+    height: inherit;
   }
 }
 .artwork-wrapper .artwork-image-wrapper {

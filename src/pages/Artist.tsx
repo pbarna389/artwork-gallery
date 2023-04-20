@@ -33,7 +33,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
 
     useEffect(() => {
         setVisible(false)
-    }, []);
+    }, [loading]);
 
     useEffect(() => {
         if (!loading && actual_artist) {

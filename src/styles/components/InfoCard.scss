@@ -9,7 +9,7 @@
   text-align: center;
   opacity: 0;
 
-  background-color: shared.$third-color-opac;
+  background-color: shared.$third-color;
 
   z-index: -1;
 
@@ -19,6 +19,10 @@
   border: 1px solid white;
   border-radius: 20px;
   padding: 1rem;
+
+  @include shared.mobiles {
+    left: 20%;
+  }
 
   &.show {
     opacity: 1;

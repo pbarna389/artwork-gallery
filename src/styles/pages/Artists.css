@@ -8,6 +8,25 @@
   align-items: center;
   z-index: 0;
   height: 75vh;
+  opacity: 1;
+}
+.artists-wrapper::after {
+  content: "";
+  width: inherit;
+  height: 100vh;
+  position: absolute;
+  top: -8rem;
+  left: 0;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  z-index: 101;
+  transition: all 0.5s ease-in;
+}
+.artists-wrapper.show::after {
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+  z-index: -1;
 }
 .artists-wrapper .mySwiper {
   height: 22rem;
