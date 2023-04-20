@@ -15,7 +15,7 @@ import "../styles/pages/Artists.css";
 import Picture from "../assets/prof-pic.png";
 
 const Artists = () => {
-    const { artists, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, mobileView, loading } = useContext(artworkContext) as IArtworkContext;
+    const { artists, artistId, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, mobileView, loading, dataDispatch } = useContext(artworkContext) as IArtworkContext;
 
     const params = useParams();
     console.log(params);
@@ -26,8 +26,18 @@ const Artists = () => {
     }, []);
 
     const handleClick = (name: string, id: number): void => {
-        setArtistID(id);
-        setArtistName(name.split(" ").slice(-1).join("+"));
+        if (artistId !== id) {
+            dataDispatch({ type: "set_actual_artist", payload: undefined });
+            dataDispatch({ type: "actual_artist_artworks_URLS", payload: undefined })
+            dataDispatch({
+                type: "actual_artist_related_artworks", payload: undefined
+            });
+            dataDispatch({
+                type: "actual_artist_artwork_max_page_num", payload: undefined
+            })
+            setArtistID(id);
+            setArtistName(name.split(" ").slice(-1).join("+"));
+        }
     };
 
     return (
@@ -40,7 +50,7 @@ const Artists = () => {
                             <div>Current page: {params.page}</div>
                             <Pagination pageNumMax={artistMaxPage} setPagination={setArtistPagination} related={"artist_list"} />
 
-                            <SwiperWrapper direction='horizontal' slideNumber={mobileView ? 1 : 5} virtual={true}>
+                            <SwiperWrapper direction='horizontal' slideNumber={mobileView ? 1 : 6} virtual={true}>
                                 {
                                     artists ?
                                         artists.map((el: any, index: number) =>

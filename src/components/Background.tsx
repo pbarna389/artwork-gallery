@@ -37,7 +37,6 @@ const Background = () => {
         const firstElement = originalArr.shift();
         const newArr: any = [...originalArr]
         newArr.push(firstElement);
-        console.log(firstElement, originalArr, newArr)
         setBackgrounds(newArr)
     }
 

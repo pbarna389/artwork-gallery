@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
-  opacity: 0;
   transition: opacity 0.5s ease-in;
+}
+.artist-wrapper.not-show {
+  opacity: 0;
 }
 .artist-wrapper.show {
   opacity: 1;

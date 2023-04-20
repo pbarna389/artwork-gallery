@@ -3,7 +3,7 @@ import { IArtworkContext, IArtworkContextProps, IArtistData } from "../@types/ar
 
 import { NavigateFunction } from "react-router-dom";
 
-import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../config/firebase-config";
 
 import dataReducer from "../reducers/dataReducer";
@@ -72,7 +72,6 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
 
     useEffect(() => {
         dataDispatch({ type: "set_artists", payload: undefined })
-        dataDispatch({ type: "loading", payload: true })
         const fetchData = async () => {
             try {
                 const response = await fetch(`${ARTIST_SITE}${artistPagination}`);
@@ -90,7 +89,6 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                         return (actElement < nextElement) ? -1 : (actElement > nextElement) ? 1 : 0
                     })
                 });
-                dataDispatch({ type: "loading", payload: false })
                 dataDispatch({
                     type: "set_artist_max_page_num", payload: data.pagination.total_pages
                 })
@@ -105,8 +103,13 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
 
     useEffect(() => {
         if (artistName) {
-            dataDispatch({ type: "actual_artist_artworks_URLS", payload: undefined })
-            dataDispatch({ type: "loading", payload: true })
+            // dataDispatch({ type: "actual_artist_artworks_URLS", payload: undefined })
+            // dataDispatch({
+            //     type: "actual_artist_related_artworks", payload: undefined
+            // });
+            // dataDispatch({
+            //     type: "actual_artist_artwork_max_page_num", payload: undefined
+            // })
             const fetchData = async () => {
                 try {
                     const response = await fetch(`${ARTIST_ARTWORKS}search?size=100&from=${(artistArtworkPag * 100) - 100}&q=${artistName}`);
@@ -127,6 +130,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                                 try {
                                     const response = await fetch(`${el.api_link}`);
                                     const imgdata = await response.json();
+                                    dataDispatch({ type: "loading", payload: true })
                                     console.log(`Imagedata:`, imgdata)
                                     imageSites.push({
                                         url: `${imgdata.config.iiif_url}/${imgdata.data.image_id}`,
@@ -136,7 +140,9 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                                     });
                                     if (imageSites.length === data.data.length) {
                                         dataDispatch({ type: "actual_artist_artworks_URLS", payload: imageSites })
-                                        dataDispatch({ type: "loading", payload: false })
+                                        dataDispatch({
+                                            type: "loading", payload: false
+                                        })
                                     }
                                 } catch (error) {
                                     console.log(error)
@@ -194,6 +200,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     }, [artistID]);
 
     useEffect(() => {
+        console.log("set loading to true by artworkID")
         dataDispatch({ type: "loading", payload: true });
         dataDispatch({ type: "set_actual_artwork", payload: undefined });
         dataDispatch({ type: "set_actual_artwork_URL", payload: undefined });
@@ -214,6 +221,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                     dataDispatch({ type: "set_actual_artwork_URL", payload: data.config.iiif_url });
                     dataDispatch({ type: "set_actual_artwork_ID", payload: data.data.image_id })
                     dataDispatch({ type: "loading", payload: false });
+                    console.log("set loading to false by artworkID")
                 } catch (error) {
                     console.log(error)
                 }
@@ -224,6 +232,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     }, [artworkID]);
 
     useEffect(() => {
+        console.log("set loading to true by artworks")
         dataDispatch({ type: "loading", payload: true })
         const fetchData = async () => {
             try {
@@ -260,6 +269,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                                     });
 
                                     dataDispatch({ type: "loading", payload: false })
+                                    console.log("set loading to false by artworks")
                                 }
                             } catch (error) {
                                 console.log(error)
@@ -384,6 +394,8 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             handleTimeout: handleTimeout,
             handleInfoCard: handleInfoCard,
             infoCardState: infoCardState,
+            dataDispatch: dataDispatch,
+            artistId: artistID
         }}>
             {children}
         </artworkContext.Provider>

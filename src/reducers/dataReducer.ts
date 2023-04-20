@@ -1,3 +1,5 @@
+import { dataActionType } from "../@types/artwork";
+
 export const initialState = {
   loading: false,
   artists: undefined,
@@ -11,23 +13,6 @@ export const initialState = {
   actual_artwork_ID: undefined,
   artworks: undefined,
   artworks_max_page_num: undefined,
-};
-
-type dataActionType = {
-  type:
-    | "loading"
-    | "set_artists"
-    | "set_artist_max_page_num"
-    | "set_actual_artist"
-    | "actual_artist_related_artworks"
-    | "actual_artist_artworks_URLS"
-    | "actual_artist_artwork_max_page_num"
-    | "set_actual_artwork"
-    | "set_actual_artwork_URL"
-    | "set_actual_artwork_ID"
-    | "set_artworks"
-    | "set_artworks_max_page_num";
-  payload: any;
 };
 
 const dataReducer = (dataState: any, dataAction: dataActionType) => {

@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useRef, MutableRefObject } from "react";
 import { useInterSectionObserver } from "../hooks/useIntersectionObserver";
 
 import "../styles/components/Footer.css";
 const Footer = () => {
     const [visible, setVisible] = useState<boolean>(false);
-    const [elementRef] = useInterSectionObserver(setVisible)
+    // const elementRef01: MutableRefObject<HTMLElement | any> = useRef();
+    // const [footerRef] = useInterSectionObserver(setVisible, elementRef01)
 
     return (
-        <footer ref={elementRef && elementRef} className={`${visible ? "show" : ""}`}>
+        <footer>
             <span>©2023 Barnabás Papp </span>
-        </footer>)
+        </footer >)
 }
 
 export default Footer;

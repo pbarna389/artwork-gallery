@@ -35,6 +35,23 @@ export interface IInfoCardState {
   clickedAgainTimeoutID: number | undefined;
 }
 
+export type dataActionType = {
+  type:
+    | "loading"
+    | "set_artists"
+    | "set_artist_max_page_num"
+    | "set_actual_artist"
+    | "actual_artist_related_artworks"
+    | "actual_artist_artworks_URLS"
+    | "actual_artist_artwork_max_page_num"
+    | "set_actual_artwork"
+    | "set_actual_artwork_URL"
+    | "set_actual_artwork_ID"
+    | "set_artworks"
+    | "set_artworks_max_page_num";
+  payload: any;
+};
+
 export interface IArtworkContext {
   mobileView: boolean;
   artists: any;
@@ -42,6 +59,7 @@ export interface IArtworkContext {
   artistMaxPage: number;
   setArtistPagination: React.Dispatch<React.SetStateAction<number>>;
   message: string;
+  artistId: number | undefined;
   setArtistID: React.Dispatch<React.SetStateAction<number | undefined>>;
   actual_artist: any;
   setArtistName: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -63,6 +81,7 @@ export interface IArtworkContext {
   loading: boolean;
   userState: any;
   userDispatch: React.Dispatch<React.ReducerAction<any>>;
+  dataDispatch: any;
   fetchUserData: Function;
   handleTimeout: Function;
   handleInfoCard: Function;

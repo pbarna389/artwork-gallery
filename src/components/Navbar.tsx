@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { MutableRefObject, useContext, useRef, useState } from 'react';
 import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from '../@types/artwork';
 
@@ -21,7 +21,8 @@ import "../styles/components/Navbar.css"
 const Navbar = () => {
     const { userDispatch, handleInfoCard } = useContext(artworkContext) as IArtworkContext;
     const [visible, setVisible] = useState<boolean>(false);
-    const [elementRef] = useInterSectionObserver(setVisible);
+    const elementRef01: MutableRefObject<HTMLElement | any> = useRef();
+    const [navbarRef] = useInterSectionObserver(setVisible, elementRef01);
     const navigate = useNavigate();
 
 
@@ -38,7 +39,7 @@ const Navbar = () => {
 
     return (
         <header className={`${visible ? "show" : ""}`}>
-            <div ref={elementRef && elementRef} className={"toolbar"}>
+            <div ref={navbarRef && navbarRef} className={"toolbar"}>
                 <div className="toolbar-options">
                     <div className="container">
                         <Menu />

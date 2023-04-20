@@ -9,14 +9,13 @@ import { Interweave } from "interweave";
 
 import { SwiperSlide } from "swiper/react";
 
-import { useInterSectionObserver } from "../hooks/useIntersectionObserver";
-
 import Pagination from "../components/Pagination";
 import FavouriteButton from "../components/FavouriteButton";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import SwiperWrapper from "../components/SwiperWrapper";
 import NavigateIcon from "../components/NavigateIcon";
 import NavigateForward from "../components/NavigateForward";
+import Loader from "../components/Loader";
 
 import "../styles/pages/Artist.css"
 
@@ -27,20 +26,36 @@ interface IArtist {
 
 const Artist: React.FC<IArtist> = ({ type }) => {
     const [visible, setVisible] = useState<boolean>(false);
-    const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading, mobileView } = useContext(artworkContext) as IArtworkContext;
-    const [elementRef] = useInterSectionObserver(setVisible);
+    const [visibleTimeout, setVisibleTimeout] = useState<NodeJS.Timeout>();
+    const { actual_artist, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading, mobileView, dataDispatch } = useContext(artworkContext) as IArtworkContext;
 
     const params = useParams();
+
+    useEffect(() => {
+        setVisible(false)
+    }, []);
+
+    useEffect(() => {
+        if (!loading && actual_artist) {
+            const id = setTimeout(() => {
+                setVisible(true);
+                dataDispatch({ type: "loading", payload: false })
+            }, 200)
+            setVisibleTimeout(id)
+        }
+
+        clearTimeout(visibleTimeout)
+    }, [!loading && actual_artist && actualArtistArtworksURLS]);
 
     const handleClick = (e: any, id: number): void => {
         setArtworkID(id)
     };
 
     return (
-        <div ref={elementRef && elementRef} className={`artist-wrapper ${visible ? "show" : ""}`}>
+        <>
             {
-                !loading && actual_artist ?
-                    <>
+                !loading && actual_artist && actualArtistArtworksURLS ?
+                    <div className={`artist-wrapper ${visible ? "show" : "not-show"}`}>
                         <div className="artist-info-wrapper">
                             <div className="title-wrapper">
                                 <h2>{actual_artist.title}</h2>
@@ -91,10 +106,10 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                         <div className="button-wrapper">
                             <NavigateIcon parent={`${type === "browse" ? "Artist" : "Profile"}`} setState={setVisible} />
                         </div>
-                    </>
-                    : <div>Loading...</div>
+                    </div>
+                    : <Loader />
             }
-        </div>
+        </>
     )
 }
 

@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, MutableRefObject } from "react";
 
 export const useInterSectionObserver = (
-  setState: React.Dispatch<React.SetStateAction<boolean>>
+  setState: React.Dispatch<React.SetStateAction<boolean>>,
+  ref: MutableRefObject<HTMLElement | any>
 ) => {
-  const elementRef: MutableRefObject<HTMLElement | any> = useRef();
-
+  const [observerTimeout, setObserverTimeout] = useState<NodeJS.Timeout>();
   const callbackForObserver = (entries: any) => {
     console.log(entries);
     const [entry] = entries;
@@ -16,8 +16,14 @@ export const useInterSectionObserver = (
 
   useEffect(() => {
     const observer = new IntersectionObserver(callbackForObserver);
-    if (elementRef) observer.observe(elementRef.current);
-  }, [elementRef]);
+    if (ref) {
+      const id = setTimeout(() => {
+        observer.observe(ref.current);
+      }, 10);
+      setObserverTimeout(id);
+    }
+    clearTimeout(observerTimeout);
+  }, [ref]);
 
-  return [elementRef];
+  return [ref];
 };

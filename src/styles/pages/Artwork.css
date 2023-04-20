@@ -3,7 +3,7 @@
   align-items: center;
   gap: 1rem;
   opacity: 0;
-  transition: opacity 1s ease-in;
+  transition: opacity 0.3s ease-in;
 }
 .artwork-wrapper.show {
   opacity: 1;
@@ -17,9 +17,11 @@
   height: 84vh;
 }
 .artwork-wrapper .button-wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
   width: 10%;
+  height: 100%;
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .artwork-wrapper .button-wrapper {
@@ -30,9 +32,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0;
+  transition: opacity 2s ease-in;
   width: 60vw;
   height: 84vh;
   border-left: 3px solid rgba(255, 255, 255, 0.2);
+}
+.artwork-wrapper .artwork-image-wrapper.show {
+  opacity: 1;
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .artwork-wrapper .artwork-image-wrapper {
@@ -106,6 +113,11 @@
   overflow: hidden;
   border-left: 3px solid rgba(255, 255, 255, 0.2);
 }
+.artwork-wrapper .artwork-details-wrapper.show .detail-header,
+.artwork-wrapper .artwork-details-wrapper.show .detail-paragraph {
+  margin-left: 0rem;
+  opacity: 1;
+}
 @media (min-width: 319px) and (max-width: 640px) {
   .artwork-wrapper .artwork-details-wrapper {
     border-left: none;
@@ -114,6 +126,11 @@
     width: fit-content;
   }
 }
+.artwork-wrapper .artwork-details-wrapper .detail-paragraph {
+  margin-left: 10rem;
+  opacity: 0;
+  transition: all 2s ease-in;
+}
 .artwork-wrapper .artwork-details-wrapper .detail-header {
   position: relative;
   font-family: "Vidaloka", serif;
@@ -121,7 +138,10 @@
   font-style: italic;
   font-size: 16px;
   margin: 0;
+  margin-left: 5rem;
+  opacity: 0;
   padding-left: 0;
+  transition: all 1.5s ease-in;
 }
 .artwork-wrapper .artwork-details-wrapper .detail-header::after {
   position: absolute;

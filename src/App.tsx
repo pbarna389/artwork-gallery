@@ -21,7 +21,6 @@ import './App.css';
 
 function App() {
 	const { userState } = useContext(artworkContext) as IArtworkContext;
-	console.log(auth?.currentUser)
 
 	return (
 		<>

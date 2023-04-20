@@ -1,4 +1,4 @@
-import { useState, useContext, FormEvent } from "react";
+import { useState, useContext, FormEvent, useRef, MutableRefObject } from "react";
 
 import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
@@ -24,14 +24,15 @@ const Login: React.FC = (): JSX.Element => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [visible, setVisible] = useState<boolean>(false);
-    const [elementRef] = useInterSectionObserver(setVisible);
+
+    const elementRef01: MutableRefObject<HTMLElement | any> = useRef();
+
+    const [elementRefWrap] = useInterSectionObserver(setVisible, elementRef01);
+
     const [loginTimeout, setLoginTimeout] = useState<NodeJS.Timeout>();
 
     const { userDispatch, fetchUserData, handleTimeout, handleInfoCard } = useContext(artworkContext) as IArtworkContext;
     const navigate = useNavigate();
-
-    console.log(auth)
-    console.log(auth?.currentUser);
 
     const signIn = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -61,7 +62,7 @@ const Login: React.FC = (): JSX.Element => {
     }
 
     return (
-        <div ref={elementRef && elementRef} className={`login-wrapper ${visible ? "show" : ""}`}>
+        <div ref={elementRefWrap && elementRefWrap} className={`login-wrapper ${visible ? "show" : ""}`}>
             <Form>
                 <LoginTitle text="Login" />
                 <IconContext.Provider value={{ className: "icon-prov" }}>
@@ -78,7 +79,7 @@ const Login: React.FC = (): JSX.Element => {
                         <OAuth setState={setVisible} />
                     </form>
                     <div className="auth-wrapper">
-                        <button className="basic-button" onClick={() => regForward()}>Registration</button>
+                        <button className={`basic-button`} onClick={() => regForward()}>Registration</button>
                     </div>
                 </IconContext.Provider>
             </Form>

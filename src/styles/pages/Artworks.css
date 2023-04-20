@@ -8,7 +8,7 @@
   width: 100vw;
 }
 .artworks-wrapper .mySwiper {
-  height: 44rem;
+  height: 43rem;
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .artworks-wrapper .mySwiper {

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, MutableRefObject } from "react";
 import { IArtworkContext } from "../@types/artwork";
 import { artworkContext } from "../context/ArtworkContext";
 
@@ -18,21 +18,24 @@ interface IArtwork {
 const Artwork: React.FC<IArtwork> = ({ parent }) => {
     const { actual_artwork, actual_artwork_url, actual_artwork_id, loading } = useContext(artworkContext) as IArtworkContext;
     const [visible, setVisible] = useState<boolean>(false);
-    const [elementRef] = useInterSectionObserver(setVisible);
+
+    const elementRef01: MutableRefObject<HTMLElement | any> = useRef();
+
+    const [elementWrap] = useInterSectionObserver(setVisible, elementRef01);
 
     const params = useParams();
     // if (actual_artwork) console.log(actual_artwork)
     // console.log(params);
 
     return (
-        <div ref={elementRef && elementRef} className={`artwork-wrapper ${visible ? "show" : ""}`}>
+        <div ref={elementWrap && elementWrap} className={`artwork-wrapper ${visible ? "show" : ""}`}>
             {
                 actual_artwork && !loading ?
                     <>
-                        <div className="button-wrapper">
+                        <div className={`button-wrapper ${visible ? "show" : ""}`}>
                             <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} setState={setVisible} />
                         </div>
-                        <div className="artwork-image-wrapper">
+                        <div className={`artwork-image-wrapper ${visible ? "show" : ""}`}>
                             {
                                 actual_artwork_id && actual_artwork_url ?
                                     <>
@@ -55,7 +58,7 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                                     </>
                             }
                         </div>
-                        <div className="artwork-details-wrapper">
+                        <div className={`artwork-details-wrapper ${visible ? "show" : ""}`}>
                             <h6 className="detail-header">{actual_artwork.title}</h6>
                             <p className="detail-paragraph">{actual_artwork.artist_title}</p>
                             <h6 className="detail-header">Geography: </h6>
