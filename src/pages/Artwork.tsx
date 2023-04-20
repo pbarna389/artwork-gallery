@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IArtworkContext } from "../@types/artwork";
 import { artworkContext } from "../context/ArtworkContext";
 
@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import FavouriteButton from "../components/FavouriteButton";
 import ImagePlaceholder from "../components/ImagePlaceholder";
 import NavigateIcon from "../components/NavigateIcon";
+import { useInterSectionObserver } from "../hooks/useIntersectionObserver";
 
 import "../styles/pages/Artwork.css";
 
@@ -16,17 +17,20 @@ interface IArtwork {
 
 const Artwork: React.FC<IArtwork> = ({ parent }) => {
     const { actual_artwork, actual_artwork_url, actual_artwork_id, loading } = useContext(artworkContext) as IArtworkContext;
+    const [visible, setVisible] = useState<boolean>(false);
+    const [elementRef] = useInterSectionObserver(setVisible);
+
     const params = useParams();
-    if (actual_artwork) console.log(actual_artwork)
-    console.log(params);
+    // if (actual_artwork) console.log(actual_artwork)
+    // console.log(params);
 
     return (
-        <div className="artwork-wrapper">
+        <div ref={elementRef && elementRef} className={`artwork-wrapper ${visible ? "show" : ""}`}>
             {
                 actual_artwork && !loading ?
                     <>
                         <div className="button-wrapper">
-                            <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} />
+                            <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} setState={setVisible} />
                         </div>
                         <div className="artwork-image-wrapper">
                             {
@@ -74,7 +78,7 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                             <h6 className="detail-header">Credit Line: </h6>
                             <p className="detail-paragraph">{actual_artwork.credit_line}</p>
                             <h6 className="detail-header">Catalogue: </h6>
-                            <p className="detail-paragraph">
+                            <div className="detail-paragraph">
                                 {
                                     actual_artwork.catalogue_display ?
                                         <p>
@@ -87,7 +91,7 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                                             Not catalogized yet
                                         </p>
                                 }
-                            </p>
+                            </div>
                         </div>
                     </>
                     : <div>Loading...</div>

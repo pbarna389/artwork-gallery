@@ -9,6 +9,8 @@ import { Interweave } from "interweave";
 
 import { SwiperSlide } from "swiper/react";
 
+import { useInterSectionObserver } from "../hooks/useIntersectionObserver";
+
 import Pagination from "../components/Pagination";
 import FavouriteButton from "../components/FavouriteButton";
 import ImagePlaceholder from "../components/ImagePlaceholder";
@@ -24,7 +26,9 @@ interface IArtist {
 };
 
 const Artist: React.FC<IArtist> = ({ type }) => {
+    const [visible, setVisible] = useState<boolean>(false);
     const { actual_artist, artistArtworks, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading, mobileView } = useContext(artworkContext) as IArtworkContext;
+    const [elementRef] = useInterSectionObserver(setVisible);
 
     const params = useParams();
 
@@ -33,7 +37,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
     };
 
     return (
-        <div className="artist-wrapper">
+        <div ref={elementRef && elementRef} className={`artist-wrapper ${visible ? "show" : ""}`}>
             {
                 !loading && actual_artist ?
                     <>
@@ -85,7 +89,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                             </div>
                         </div>
                         <div className="button-wrapper">
-                            <NavigateIcon parent={`${type === "browse" ? "Artist" : "Profile"}`} />
+                            <NavigateIcon parent={`${type === "browse" ? "Artist" : "Profile"}`} setState={setVisible} />
                         </div>
                     </>
                     : <div>Loading...</div>

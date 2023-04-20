@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+.artist-wrapper.show {
+  opacity: 1;
 }
 @media (min-width: 319px) and (max-width: 640px) {
   .artist-wrapper {

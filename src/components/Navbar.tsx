@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { artworkContext } from '../context/ArtworkContext';
 import { IArtworkContext } from '../@types/artwork';
 
@@ -10,6 +10,8 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { auth } from '../config/firebase-config';
 import { signOut } from 'firebase/auth';
 
+import { useInterSectionObserver } from '../hooks/useIntersectionObserver';
+
 import Menu from './Menu';
 import Logo from './Logo';
 import Navigation from './Navigation';
@@ -18,7 +20,10 @@ import "../styles/components/Navbar.css"
 
 const Navbar = () => {
     const { userDispatch, handleInfoCard } = useContext(artworkContext) as IArtworkContext;
+    const [visible, setVisible] = useState<boolean>(false);
+    const [elementRef] = useInterSectionObserver(setVisible);
     const navigate = useNavigate();
+
 
     const logout = async () => {
         try {
@@ -32,8 +37,8 @@ const Navbar = () => {
     };
 
     return (
-        <header>
-            <div className="toolbar">
+        <header className={`${visible ? "show" : ""}`}>
+            <div ref={elementRef && elementRef} className={"toolbar"}>
                 <div className="toolbar-options">
                     <div className="container">
                         <Menu />
