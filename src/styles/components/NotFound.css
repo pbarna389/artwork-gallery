@@ -1,0 +1,37 @@
+.not-found {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  text-align: center;
+}
+.not-found h3 {
+  font-size: 1.75rem;
+  position: relative;
+}
+.not-found h3 :first-child {
+  animation: dotAnim 1s ease-in infinite;
+}
+.not-found h3 :nth-child(2n) {
+  animation: dotAnim 1s ease-in infinite;
+  animation-delay: 0.2s;
+}
+.not-found h3 :nth-child(3) {
+  animation: dotAnim 1s ease-in infinite;
+  animation-delay: 0.4s;
+}
+.not-found span {
+  font-size: 2rem;
+}
+
+@keyframes dotAnim {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}/*# sourceMappingURL=NotFound.css.map */

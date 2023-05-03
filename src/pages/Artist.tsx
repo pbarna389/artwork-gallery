@@ -76,7 +76,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                         </div>
                         <div className="artist-artwork-wrapper">
                             <div className="artist-swiper-with-pagination">
-                                <SwiperWrapper intersectionRef={swiperRef} direction={mobileView ? "horizontal" : "vertical"} slideNumber={mobileView ? 1 : 3} virtual={true}>
+                                <SwiperWrapper intersectionRef={swiperRef} direction={mobileView ? "horizontal" : "vertical"} slideNumber={mobileView ? 1 : 2.5} virtual={true}>
                                     {
                                         actualArtistArtworksURLS ?
                                             actualArtistArtworksURLS.map((el: any, idx: number) =>

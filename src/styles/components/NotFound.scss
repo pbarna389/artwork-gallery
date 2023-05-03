@@ -1,0 +1,42 @@
+.not-found {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  text-align: center;
+
+  h3 {
+    font-size: 1.75rem;
+    position: relative;
+
+    :first-child {
+      animation: dotAnim 1s ease-in infinite;
+    }
+
+    :nth-child(2n) {
+      animation: dotAnim 1s ease-in infinite;
+      animation-delay: 0.2s;
+    }
+
+    :nth-child(3) {
+      animation: dotAnim 1s ease-in infinite;
+      animation-delay: 0.4s;
+    }
+  }
+
+  span {
+    font-size: 2rem;
+  }
+}
+
+@keyframes dotAnim {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

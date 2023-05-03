@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { artworkContext } from "./context/ArtworkContext";
 import { IArtworkContext } from "./@types/artwork";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { auth } from "./config/firebase-config"
 
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
@@ -16,6 +15,7 @@ import Profile from "./pages/Profile";
 import Background from "./components/Background";
 import Footer from "./components/Footer";
 import InfoCard from "./components/InfoCard";
+import NotFound from "./components/NotFound";
 
 import './App.css';
 
@@ -32,6 +32,7 @@ function App() {
 						<Routes>
 							<Route path="/" element={<Login />} />
 							<Route path="/registration" element={<Register />} />
+							<Route path="*" element={<NotFound />} />
 						</Routes>
 					</BrowserRouter>
 					:
@@ -71,6 +72,7 @@ function App() {
 										<Route path=":artworkid" element={<Artwork parent="Profile" />} />
 									</Route>
 								</Route>
+								<Route path="*" element={<NotFound />} />
 							</Routes>
 							<Footer />
 						</BrowserRouter>
