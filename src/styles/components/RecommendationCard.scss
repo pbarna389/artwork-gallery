@@ -1,0 +1,32 @@
+.rec-wrapper {
+  align-items: center;
+  position: absolute;
+  cursor: pointer;
+
+  .link {
+    &.show {
+      opacity: 1;
+    }
+
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+    display: flex;
+    flex-direction: column;
+    img {
+      margin: 0 auto;
+      width: 20rem;
+      height: 20rem;
+    }
+
+    .link-wrapper {
+      span {
+        max-width: 15rem;
+      }
+
+      .icon-prov {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+}

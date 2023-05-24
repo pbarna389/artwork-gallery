@@ -6,7 +6,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import "../styles/components/NavigateIcon.css";
 
 interface INavigateIcon {
-    parent: "Artist" | "Artist_Artwork" | "Artwork" | "Profile" | "Profile_Artist_Artwork",
+    parent: "Artist" | "Artist_Artwork" | "Artwork" | "Profile" | "Profile_Artist_Artwork" | "Home" | "Home_Artist" | "Home_Artist_Artwork",
     setState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -14,12 +14,13 @@ const NavigateIcon: React.FC<INavigateIcon> = ({ parent, setState }) => {
     const [navTimeout, setNavTimeout] = useState<NodeJS.Timeout>();
     const navigate = useNavigate();
     const params = useParams();
-    // console.log(parent)
+    console.log(parent);
+    console.log(params);
 
     const handleClick = (): void => {
         setState(false);
         const id = setTimeout(() => {
-            navigate(`${parent === "Artist" ? `/artists/${params.page}/` : parent === "Artist_Artwork" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}` : parent === "Artwork" ? `/artworks/${params.artworkspage}` : parent === "Profile_Artist_Artwork" ? `/profile/artist/${params.personid}/${params.artworkpage}` : "/profile"}`);
+            navigate(`${parent === "Artist" ? `/artists/${params.page}/` : parent === "Artist_Artwork" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}` : parent === "Artwork" ? `/artworks/${params.artworkspage}` : parent === "Home" ? `/` : parent === "Home_Artist_Artwork" ? `/artist/${params.personid}/${params.artworkpage}` : parent === "Profile_Artist_Artwork" ? `/profile/artist/${params.personid}/${params.artworkpage}` : "/profile"}`);
             if (parent === "Artist") {
                 console.log("reseting actual artist")
             }

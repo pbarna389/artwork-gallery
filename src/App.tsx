@@ -40,7 +40,20 @@ function App() {
 						<BrowserRouter>
 							<Navbar />
 							<Routes>
-								<Route path="/" element={<Home />} />
+								<Route path="/">
+									<Route index element={<Home />} />
+									<Route path="/artist">
+										<Route path=":personid">
+											<Route path=":artworkpage">
+												<Route index element={<Artist type="home" />} />
+												<Route path=":artworkid" element={<Artwork parent="Home_Artist" />} />
+											</Route>
+										</Route>
+									</Route>
+									<Route path="/artwork">
+										<Route path=":artworkid" element={<Artwork parent="Home" />} />
+									</Route>
+								</Route>
 								<Route path="/artists">
 									<Route path=":page">
 										<Route index element={<Artists />} />

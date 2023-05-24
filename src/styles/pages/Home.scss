@@ -11,19 +11,16 @@ body {
   margin: 0;
   width: 100%;
   display: flex;
-}
 
-.column {
-  width: 30rem;
-  height: 90vh;
+  gap: 1rem;
 
-  display: flex;
-  flex-direction: row-reverse;
+  .rec-wrapper:first-child {
+    top: 5rem;
+    left: 5rem;
+  }
 
-  .helper {
-    width: shared.$column-helper-width;
-    height: inherit;
-    background-color: shared.$basic-color;
-    opacity: shared.$column-opac;
+  .rec-wrapper:last-child {
+    top: 5rem;
+    right: 5rem;
   }
 }

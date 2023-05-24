@@ -9,17 +9,13 @@ body {
   margin: 0;
   width: 100%;
   display: flex;
+  gap: 1rem;
 }
-
-.column {
-  width: 30rem;
-  height: 90vh;
-  display: flex;
-  flex-direction: row-reverse;
+.home-wrapper .rec-wrapper:first-child {
+  top: 5rem;
+  left: 5rem;
 }
-.column .helper {
-  width: 3px;
-  height: inherit;
-  background-color: #fff;
-  opacity: 0.2;
+.home-wrapper .rec-wrapper:last-child {
+  top: 5rem;
+  right: 5rem;
 }/*# sourceMappingURL=Home.css.map */

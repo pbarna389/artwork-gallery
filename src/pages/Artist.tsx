@@ -17,11 +17,10 @@ import NavigateIcon from "../components/NavigateIcon";
 import NavigateForward from "../components/NavigateForward";
 import Loader from "../components/Loader";
 
-import "../styles/pages/Artist.css"
-
+import "../styles/pages/Artist.css";
 
 interface IArtist {
-    type: "profile" | "browse"
+    type: "profile" | "browse" | "home"
 };
 
 const Artist: React.FC<IArtist> = ({ type }) => {
@@ -30,6 +29,9 @@ const Artist: React.FC<IArtist> = ({ type }) => {
     const { actual_artist, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading, mobileView, dataDispatch } = useContext(artworkContext) as IArtworkContext;
 
     const params = useParams();
+
+    console.log(type)
+    console.log(params);
 
     const swiperRef: MutableRefObject<HTMLElement | undefined> = useRef();
 
@@ -49,7 +51,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
         clearTimeout(visibleTimeout)
     }, [!loading && actual_artist && actualArtistArtworksURLS]);
 
-    const handleClick = (e: any, id: number): void => {
+    const handleClick = (id: number): void => {
         setArtworkID(id)
     };
 
@@ -91,8 +93,8 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                                     <div className="link-wrapper">
                                                         <span className="link-title">{el.title}</span>
                                                         <Link
-                                                            to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/artist/${params.personid}/${params.artworkpage}/${el.id}`}`}
-                                                            onClick={e => handleClick(e, el.id)}
+                                                            to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : type === "home" ? `/artist/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/artist/${params.personid}/${params.artworkpage}/${el.id}`}`}
+                                                            onClick={() => handleClick(el.id)}
                                                         >
                                                             <NavigateForward />
                                                         </Link>
@@ -106,7 +108,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                             </div>
                         </div>
                         <div className="button-wrapper">
-                            <NavigateIcon parent={`${type === "browse" ? "Artist" : "Profile"}`} setState={setVisible} />
+                            <NavigateIcon parent={`${type === "browse" ? "Artist" : type === "home" ? "Home" : "Profile"}`} setState={setVisible} />
                         </div>
                     </div>
                     : <Loader />

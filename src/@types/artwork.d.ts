@@ -52,6 +52,20 @@ export type dataActionType = {
   payload: any;
 };
 
+export interface IRecState {
+  artist: any;
+  artwork: any;
+  artist_id: number | undefined;
+  artwork_id: number | undefined;
+  artist_total: number;
+  artwork_total: number;
+}
+
+export type TRecAction = {
+  type: "artist" | "artwork" | "artist_total" | "artwork_total";
+  payload: any;
+};
+
 export interface IArtworkContext {
   mobileView: boolean;
   artists: any;
@@ -83,9 +97,12 @@ export interface IArtworkContext {
   userState: any;
   userDispatch: React.Dispatch<React.ReducerAction<any>>;
   dataDispatch: any;
+  recState: IRecState;
+  recDispatch: any;
   fetchUserData: Function;
   handleTimeout: Function;
   handleInfoCard: Function;
+  handleSetArtist: Function;
   infoCardState: any;
 }
 

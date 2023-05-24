@@ -1,0 +1,26 @@
+.rec-wrapper {
+  align-items: center;
+  position: absolute;
+  cursor: pointer;
+}
+.rec-wrapper .link {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  display: flex;
+  flex-direction: column;
+}
+.rec-wrapper .link.show {
+  opacity: 1;
+}
+.rec-wrapper .link img {
+  margin: 0 auto;
+  width: 20rem;
+  height: 20rem;
+}
+.rec-wrapper .link .link-wrapper span {
+  max-width: 15rem;
+}
+.rec-wrapper .link .link-wrapper .icon-prov {
+  width: 2rem;
+  height: 2rem;
+}/*# sourceMappingURL=RecommendationCard.css.map */

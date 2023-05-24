@@ -19,7 +19,7 @@ import Picture from "../assets/prof-pic.png";
 
 const Artists = () => {
     const [visible, setVisible] = useState<boolean>(false);
-    const { artists, artistId, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, mobileView, loading, dataDispatch } = useContext(artworkContext) as IArtworkContext;
+    const { artists, artistId, setArtistPagination, artistMaxPage, setArtistID, setArtistName, artistArtworkPag, setArtistArtworkPag, mobileView, loading, dataDispatch, handleSetArtist } = useContext(artworkContext) as IArtworkContext;
 
     const elementRef01: MutableRefObject<HTMLElement | any> = useRef();
     const swiperRef: MutableRefObject<HTMLElement | any> = useRef();
@@ -33,21 +33,6 @@ const Artists = () => {
         if (params.page) setArtistPagination(Number(params.page))
         setArtistArtworkPag(1)
     }, []);
-
-    const handleClick = (name: string, id: number): void => {
-        if (artistId !== id) {
-            dataDispatch({ type: "set_actual_artist", payload: undefined });
-            dataDispatch({ type: "actual_artist_artworks_URLS", payload: undefined })
-            dataDispatch({
-                type: "actual_artist_related_artworks", payload: undefined
-            });
-            dataDispatch({
-                type: "actual_artist_artwork_max_page_num", payload: undefined
-            })
-            setArtistID(id);
-            setArtistName(name.split(" ").slice(-1).join("+"));
-        }
-    };
 
     return (
         <>
@@ -69,7 +54,7 @@ const Artists = () => {
                                                 </div>
                                                 <div className="link-wrapper">
                                                     <span>{el.title}</span>
-                                                    <Link key={el.id} to={`/artists/${params.page}/${el.id}/${artistArtworkPag}`} onClick={e => handleClick(el.title, el.id)}>
+                                                    <Link key={el.id} to={`/artists/${params.page}/${el.id}/${artistArtworkPag}`} onClick={() => handleSetArtist(el.title, el.id)}>
                                                         <NavigateForward />
                                                     </Link>
                                                 </div>

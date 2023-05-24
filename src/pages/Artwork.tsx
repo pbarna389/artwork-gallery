@@ -10,13 +10,14 @@ import Loader from "../components/Loader";
 import "../styles/pages/Artwork.css";
 
 interface IArtwork {
-    parent: "Artist" | "Artwork" | "Profile" | "Profile_Artist"
+    parent: "Artist" | "Artwork" | "Profile" | "Profile_Artist" | "Home" | "Home_Artist"
 }
 
 const Artwork: React.FC<IArtwork> = ({ parent }) => {
     const [visible, setVisible] = useState<boolean>(false);
     const [visibleTimeout, setVisibleTimeout] = useState<NodeJS.Timeout>();
     const { actual_artwork, actual_artwork_url, actual_artwork_id, loading, dataDispatch } = useContext(artworkContext) as IArtworkContext;
+    console.log(parent)
 
     useEffect(() => {
         setVisible(false)
@@ -40,7 +41,7 @@ const Artwork: React.FC<IArtwork> = ({ parent }) => {
                 actual_artwork && !loading && actual_artwork_url ?
                     <>
                         <div className={`button-wrapper ${visible ? "show" : ""}`}>
-                            <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} setState={setVisible} />
+                            <NavigateIcon parent={`${parent === "Artist" ? "Artist_Artwork" : parent === "Artwork" ? "Artwork" : parent === "Home" ? "Home" : parent === "Home_Artist" ? "Home_Artist_Artwork" : parent === "Profile_Artist" ? "Profile_Artist_Artwork" : "Profile"}`} setState={setVisible} />
                         </div>
                         <div className={`artwork-image-wrapper ${visible ? "show" : ""}`}>
                             {

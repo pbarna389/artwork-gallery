@@ -9,9 +9,11 @@ import { db, auth } from "../config/firebase-config";
 import dataReducer from "../reducers/dataReducer";
 import userReducer from "../reducers/userReducer";
 import InfoCardReducer from "../reducers/InfoCardReducer";
+import recommendReducer from "../reducers/recommendReducer";
 import { initialState } from "../reducers/dataReducer";
 import { userInitialState } from "../reducers/userReducer";
 import { infoCardInitialState } from "../reducers/InfoCardReducer";
+import { recInitialState } from "../reducers/recommendReducer";
 
 const ARTIST_SITE = import.meta.env.VITE_GET_ARTISTS;
 const ARTIST_DATA = import.meta.env.VITE_ARTIST_DATA;
@@ -48,6 +50,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     const [artistState, dataDispatch] = useReducer(dataReducer, initialState);
     const [userState, userDispatch] = useReducer(userReducer, userInitialState);
     const [infoCardState, infoCardDispatch] = useReducer(InfoCardReducer, infoCardInitialState);
+    const [recState, recDispatch] = useReducer(recommendReducer, recInitialState);
 
     useEffect(() => {
         // console.log("Update sceduled");
@@ -71,6 +74,20 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
     }, [windowWidth]);
 
     useEffect(() => {
+        if (recState.artist_id !== undefined) {
+            console.log(artistState.artists[recState.artist_id]);
+            recDispatch({ type: "artist", payload: artistState.artists[recState.artist_id] })
+        }
+    }, [recState.artist_id]);
+
+    useEffect(() => {
+        if (recState.artwork_id !== undefined) {
+            console.log(artistState.artworks[recState.artwork_id]);
+            recDispatch({ type: "artwork", payload: artistState.artworks[recState.artwork_id] })
+        }
+    }, [recState.artwork_id]);
+
+    useEffect(() => {
         dataDispatch({ type: "set_artists", payload: undefined })
         const fetchData = async () => {
             try {
@@ -81,7 +98,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                 };
 
                 const data = await response.json();
-                // console.log(data);
+                console.log(data);
                 dataDispatch({
                     type: "set_artists", payload: data.data.sort((a: any, b: any) => {
                         const actElement = a.title.charAt(0) + a.title.slice(1);
@@ -92,6 +109,9 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                 dataDispatch({
                     type: "set_artist_max_page_num", payload: data.pagination.total_pages
                 })
+                recDispatch({
+                    type: "artist_total", payload: data.pagination.total
+                });
 
             } catch (error) {
                 console.log(error)
@@ -103,13 +123,6 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
 
     useEffect(() => {
         if (artistName) {
-            // dataDispatch({ type: "actual_artist_artworks_URLS", payload: undefined })
-            // dataDispatch({
-            //     type: "actual_artist_related_artworks", payload: undefined
-            // });
-            // dataDispatch({
-            //     type: "actual_artist_artwork_max_page_num", payload: undefined
-            // })
             dataDispatch({
                 type: "loading", payload: true
             })
@@ -243,6 +256,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                 };
 
                 const data = await response.json();
+                console.log(data);
 
                 const newData: any[] = [];
 
@@ -283,6 +297,9 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
                 dataDispatch({
                     type: "set_artworks_max_page_num", payload: data.pagination.total_pages
                 })
+                recDispatch({
+                    type: "artwork_total", payload: data.pagination.total
+                });
 
             } catch (error) {
                 console.log(error)
@@ -361,6 +378,21 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
         infoCardTimeoutReset()
     };
 
+    const handleSetArtist = (name: string, id: number): void => {
+        if (artistID !== id) {
+            dataDispatch({ type: "set_actual_artist", payload: undefined });
+            dataDispatch({ type: "actual_artist_artworks_URLS", payload: undefined })
+            dataDispatch({
+                type: "actual_artist_related_artworks", payload: undefined
+            });
+            dataDispatch({
+                type: "actual_artist_artwork_max_page_num", payload: undefined
+            })
+            setArtistID(id);
+            setArtistName(name.split(" ").slice(-1).join("+"));
+        }
+    };
+
     return (
         <artworkContext.Provider value={{
             message: "ALIVE",
@@ -397,6 +429,9 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             dataDispatch: dataDispatch,
             artistId: artistID,
             artworkId: artworkID,
+            recDispatch: recDispatch,
+            recState: recState,
+            handleSetArtist: handleSetArtist,
         }}>
             {children}
         </artworkContext.Provider>
