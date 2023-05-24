@@ -1,16 +1,23 @@
 .rec-wrapper {
   align-items: center;
   position: absolute;
-  cursor: pointer;
 }
 .rec-wrapper .link {
   opacity: 0;
-  transition: opacity 0.3s ease-in;
+  transition: all 0.3s ease-in;
   display: flex;
   flex-direction: column;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .rec-wrapper .link.show {
+  cursor: pointer;
   opacity: 1;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
 }
 .rec-wrapper .link img {
   margin: 0 auto;

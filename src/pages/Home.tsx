@@ -1,13 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import { artworkContext } from "../context/ArtworkContext";
 import { IArtworkContext } from "../@types/artwork";
+import Loader from "../components/Loader";
 import RecommendationCard from "../components/RecommendationCard";
 import "../styles/pages/Home.css";
 
 const Home = () => {
     const [artistTimeout, setArtistTimeout] = useState<NodeJS.Timeout>();
     const [artworkTimeout, setArtworkTimeout] = useState<NodeJS.Timeout>();
-    const { recState, recDispatch, artists, artworks, handleSetArtist, artistArtworkPag } = useContext(artworkContext) as IArtworkContext;
+    const { recState, recDispatch, artists, artworks, handleSetArtist, artistArtworkPag, loading } = useContext(artworkContext) as IArtworkContext;
 
     const artistTO = 11000;
     const artworkTO = 8000;
@@ -29,7 +30,7 @@ const Home = () => {
                 return () => clearTimeout(artistTimeout);
             }
         }
-    }, [recState.artist_id]);
+    }, [recState.artist_id, artists]);
 
     useEffect(() => {
         if (artworks) {
@@ -49,19 +50,26 @@ const Home = () => {
                 return () => clearTimeout(artworkTimeout);
             }
         }
-    }, [recState.artwork_id]);
+    }, [recState.artwork_id, artworks]);
 
     return (
-        <main className="home-wrapper">
+        <>
             {
-                recState.artist && recState.artwork ?
-                    <>
-                        <RecommendationCard id={recState.artist.id ? recState.artist.id : 0} title={recState.artist.title} type="artist" handleSetArtist={handleSetArtist} artistArtworkPag={artistArtworkPag} artistTO={artistTO} />
-                        <RecommendationCard id={recState.artwork.id ? recState.artwork.id : 0} title={recState.artwork.title} type="artwork" url={recState.artwork.iiif_url} img_id={recState.artwork.image_id} artworkTO={artworkTO} />
-                    </>
-                    : null
+                loading ?
+                    <Loader />
+                    :
+                    <main className="home-wrapper">
+                        {
+                            recState.artist && recState.artwork ?
+                                <>
+                                    <RecommendationCard id={recState.artist.id ? recState.artist.id : 0} title={recState.artist.title} type="artist" handleSetArtist={handleSetArtist} artistArtworkPag={artistArtworkPag} artistTO={artistTO} />
+                                    <RecommendationCard id={recState.artwork.id ? recState.artwork.id : 0} title={recState.artwork.title} type="artwork" url={recState.artwork.iiif_url} img_id={recState.artwork.image_id} artworkTO={artworkTO} />
+                                </>
+                                : null
+                        }
+                    </main>
             }
-        </main>
+        </>
     );
 };
 

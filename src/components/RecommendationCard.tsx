@@ -29,7 +29,7 @@ const RecommendationCard: React.FC<RecommendationCardProps> = ({ id, title, type
         }, type === "artist" && artistTO ? artistTO - 300 : type === "artwork" && artworkTO ? artworkTO - 300 : 0);
         const visibleTrueTimeout: NodeJS.Timeout = setTimeout(() => {
             setVisible(true)
-        }, type === "artist" && artistTO ? artistTO + 10 : type === "artwork" && artworkTO ? artworkTO + 10 : 0);
+        }, type === "artist" && artistTO ? artistTO + 10 : type === "artwork" && artworkTO ? artworkTO : 0);
 
         setVisibleFalseTO(visibleFalseTimeout);
         setVisibleTrueTO(visibleTrueTimeout);
@@ -38,7 +38,7 @@ const RecommendationCard: React.FC<RecommendationCardProps> = ({ id, title, type
             clearTimeout(visibleFalseTO);
             clearTimeout(visibleTrueTO);
         }
-    }, [visible]);
+    }, [visible === true]);
 
     return (
         <div className={`rec-wrapper`}>
