@@ -27,10 +27,10 @@ const RecommendationCard: React.FC<RecommendationCardProps> = ({ id, title, type
     useEffect(() => {
         const visibleFalseTimeout: NodeJS.Timeout = setTimeout(() => {
             setVisible(false)
-        }, type === "artist" && artistTO ? artistTO - 300 : type === "artwork" && artworkTO ? artworkTO - 300 : 0);
+        }, type === "artist" && artistTO ? 10700 : type === "artwork" && artworkTO ? 7700 : 0);
         const visibleTrueTimeout: NodeJS.Timeout = setTimeout(() => {
             setVisible(true)
-        }, type === "artist" && artistTO ? artistTO + 10 : type === "artwork" && artworkTO ? artworkTO : 0);
+        }, type === "artist" && artistTO ? 11010 : type === "artwork" && artworkTO ? 8010 : 0);
 
         setVisibleFalseTO(visibleFalseTimeout);
         setVisibleTrueTO(visibleTrueTimeout);
