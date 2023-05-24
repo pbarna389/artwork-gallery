@@ -393,6 +393,10 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
         }
     };
 
+    const handleSetArtworkID = (id: number): void => {
+        setArtworkID(id)
+    };
+
     return (
         <artworkContext.Provider value={{
             message: "ALIVE",
@@ -432,6 +436,7 @@ const ArtworkContextProvider: React.FC<IArtworkContextProps> = ({ children }) =>
             recDispatch: recDispatch,
             recState: recState,
             handleSetArtist: handleSetArtist,
+            handleSetArtworkID: handleSetArtworkID,
         }}>
             {children}
         </artworkContext.Provider>

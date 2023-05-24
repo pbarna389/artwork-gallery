@@ -13,12 +13,13 @@ interface RecommendationCardProps {
     artistTO?: number,
     artworkTO?: number,
     handleSetArtist?: Function,
+    handleSetArtworkID?: Function,
     artistArtworkPag?: number,
     url?: string,
     img_id?: string,
 }
 
-const RecommendationCard: React.FC<RecommendationCardProps> = ({ id, title, type, handleSetArtist, artistArtworkPag, url, img_id, artistTO, artworkTO }) => {
+const RecommendationCard: React.FC<RecommendationCardProps> = ({ id, title, type, handleSetArtist, handleSetArtworkID, artistArtworkPag, url, img_id, artistTO, artworkTO }) => {
     const [visible, setVisible] = useState<boolean>(true);
     const [visibleFalseTO, setVisibleFalseTO] = useState<NodeJS.Timeout>();
     const [visibleTrueTO, setVisibleTrueTO] = useState<NodeJS.Timeout>();
@@ -43,7 +44,7 @@ const RecommendationCard: React.FC<RecommendationCardProps> = ({ id, title, type
     return (
         <div className={`rec-wrapper`}>
             <h2>Recommended {type === "artist" ? "Artist" : "Artwork"}:</h2>
-            <Link className={`link ${visible ? "show" : ""}`} key={id} to={type === "artist" ? `/artist/${id}/${artistArtworkPag}` : `/artwork/${id}`} onClick={() => handleSetArtist ? handleSetArtist(title, id) : {}}>
+            <Link className={`link ${visible ? "show" : ""}`} key={id} to={type === "artist" ? `/artist/${id}/${artistArtworkPag}` : `/artwork/${id}`} onClick={() => handleSetArtist ? handleSetArtist(title, id) : handleSetArtworkID ? handleSetArtworkID(id) : {}}>
                 <img src={type === "artwork" ? img_id ? `${url}/${img_id}/full/843,/0/default.jpg` : goya : prof_picture} alt="" />
                 <div className="link-wrapper">
                     <span>{title}</span>

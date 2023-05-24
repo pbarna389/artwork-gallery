@@ -26,7 +26,7 @@ interface IArtist {
 const Artist: React.FC<IArtist> = ({ type }) => {
     const [visible, setVisible] = useState<boolean>(false);
     const [visibleTimeout, setVisibleTimeout] = useState<NodeJS.Timeout>();
-    const { actual_artist, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading, mobileView, dataDispatch } = useContext(artworkContext) as IArtworkContext;
+    const { actual_artist, artistArtworkMaxPage, setArtistArtworkPag, setArtworkID, actualArtistArtworksURLS, loading, mobileView, dataDispatch, handleSetArtworkID } = useContext(artworkContext) as IArtworkContext;
 
     const params = useParams();
 
@@ -50,10 +50,6 @@ const Artist: React.FC<IArtist> = ({ type }) => {
 
         clearTimeout(visibleTimeout)
     }, [!loading && actual_artist && actualArtistArtworksURLS]);
-
-    const handleClick = (id: number): void => {
-        setArtworkID(id)
-    };
 
     return (
         <>
@@ -94,7 +90,7 @@ const Artist: React.FC<IArtist> = ({ type }) => {
                                                         <span className="link-title">{el.title}</span>
                                                         <Link
                                                             to={`${type === "browse" ? `/artists/${params.page}/${params.personid}/${params.artworkpage}/${el.id}` : type === "home" ? `/artist/${params.personid}/${params.artworkpage}/${el.id}` : `/profile/artist/${params.personid}/${params.artworkpage}/${el.id}`}`}
-                                                            onClick={() => handleClick(el.id)}
+                                                            onClick={() => handleSetArtworkID(el.id)}
                                                         >
                                                             <NavigateForward />
                                                         </Link>

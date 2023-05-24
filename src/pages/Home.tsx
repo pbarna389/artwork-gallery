@@ -8,7 +8,7 @@ import "../styles/pages/Home.css";
 const Home = () => {
     const [artistTimeout, setArtistTimeout] = useState<NodeJS.Timeout>();
     const [artworkTimeout, setArtworkTimeout] = useState<NodeJS.Timeout>();
-    const { recState, recDispatch, artists, artworks, handleSetArtist, artistArtworkPag, loading } = useContext(artworkContext) as IArtworkContext;
+    const { recState, recDispatch, artists, artworks, handleSetArtist, artistArtworkPag, loading, handleSetArtworkID } = useContext(artworkContext) as IArtworkContext;
 
     const artistTO = 11000;
     const artworkTO = 8000;
@@ -63,7 +63,7 @@ const Home = () => {
                             recState.artist && recState.artwork ?
                                 <>
                                     <RecommendationCard id={recState.artist.id ? recState.artist.id : 0} title={recState.artist.title} type="artist" handleSetArtist={handleSetArtist} artistArtworkPag={artistArtworkPag} artistTO={artistTO} />
-                                    <RecommendationCard id={recState.artwork.id ? recState.artwork.id : 0} title={recState.artwork.title} type="artwork" url={recState.artwork.iiif_url} img_id={recState.artwork.image_id} artworkTO={artworkTO} />
+                                    <RecommendationCard id={recState.artwork.id ? recState.artwork.id : 0} title={recState.artwork.title} type="artwork" handleSetArtworkID={handleSetArtworkID} url={recState.artwork.iiif_url} img_id={recState.artwork.image_id} artworkTO={artworkTO} />
                                 </>
                                 : null
                         }

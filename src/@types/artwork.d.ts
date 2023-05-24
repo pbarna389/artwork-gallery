@@ -103,6 +103,7 @@ export interface IArtworkContext {
   handleTimeout: Function;
   handleInfoCard: Function;
   handleSetArtist: Function;
+  handleSetArtworkID: Function;
   infoCardState: any;
 }
 
